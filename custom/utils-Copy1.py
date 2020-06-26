@@ -9,7 +9,6 @@ from torch.utils.data.sampler import SubsetRandomSampler
 
 class parameters:
     def __init__(self):
-        self.model_type = 'empty'
         self.lr = 'empty'
         self.epochs = 'empty'
         self.batch_size = 'empty'
@@ -34,11 +33,10 @@ class parameters:
         def remaining_weight(self, remaining_weight):
             self.__remaining_weight = remaining_weight
         """
-    # LeNet300        
+            
     def type(self, x):
         if x == 'LeNet300':
             # parameters
-            self.model_type = x
             self.lr = 0.0012
             self.epochs = 50
             self.batch_size = 60
@@ -50,16 +48,16 @@ class parameters:
             self.noi = 12
             
             # dataset
-            transform = transforms.Compose([
+            self.transforms = transforms.Compose([
                 transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))
             ])
             self.trainset = dsets.MNIST(root='../MNIST_data/',
                                      train=True,
-                                     transform = transform,
+                                     transform = self.transforms,
                                      download=True)
             self.testset = dsets.MNIST(root='../MNIST_data/',
                                     train=False,
-                                    transform = transform,
+                                    transform = self.transforms,
                                     download=True)
             self.train_loader = torch.utils.data.DataLoader(dataset = self.trainset,
                                                      batch_size=self.batch_size,
@@ -69,10 +67,9 @@ class parameters:
                                                      shuffle=False,
                                                      drop_last=True)
             
-        # Conv6    
+            
         elif x == 'Conv6':
             # parameters
-            self.model_type = x
             self.lr = 0.0003
             self.epochs = 50
             self.batch_size = 60
@@ -84,47 +81,47 @@ class parameters:
             self.noi = 12
             
             # dataset
-            transform = transforms.Compose([transforms.ToTensor(),
+            self.transform = transforms.Compose([transforms.ToTensor(),
                                            transforms.Normalize((0.4914, 0.4822, 0.4465),
                                                                 (0.247, 0.243, 0.261))
                                            ])
 
             self.trainset = dsets.CIFAR10('../CIFAR10/',
                                      train=True,
-                                     transform = transform,
+                                     transform = self.transform,
                                      download=False)
 
             self.valset = dsets.CIFAR10('../CIFAR10/',
                                      train=True,
-                                     transform = transform,
+                                     transform = self.transform,
                                      download=False)
 
             self.testset = dsets.CIFAR10('../CIFAR10/',
                                      train=False,
-                                     transform = transform,
+                                     transform = self.transform,
                                      download=False)
 
             # validation set 분류
             self.validation_ratio = 0.1
-            num_train = len(self.trainset)
-            indices = list(range(num_train))
+            self.num_train = len(self.trainset)
+            self.indices = list(range(self.num_train))
             # 설정한 비율만큼 분할 시의 data 갯수
-            split = int(np.floor(self.validation_ratio * num_train))
+            self.split = int(np.floor(self.validation_ratio * self.num_train))
             # shuffle
-            np.random.shuffle(indices)
+            np.random.shuffle(self.indices)
             # data 분할
-            train_idx, val_idx = indices[split:], indices[:split]
-            train_sampler = SubsetRandomSampler(train_idx)
-            val_sampler = SubsetRandomSampler(val_idx)
+            self.train_idx, self.val_idx = self.indices[self.split:], self.indices[:self.split]
+            self.train_sampler = SubsetRandomSampler(self.train_idx)
+            self.val_sampler = SubsetRandomSampler(self.val_idx)
 
             self.train_loader = torch.utils.data.DataLoader(dataset = self.trainset,
                                                       batch_size = self.batch_size,
-                                                      sampler = train_sampler,
+                                                      sampler = self.train_sampler,
                                                       drop_last = True)
 
             self.val_loader = torch.utils.data.DataLoader(dataset = self.valset,
                                                       batch_size = self.batch_size,
-                                                      sampler = val_sampler,
+                                                      sampler = self.val_sampler,
                                                       drop_last = True)
 
             self.test_loader = torch.utils.data.DataLoader(dataset = self.testset,
@@ -145,10 +142,6 @@ class LeNet300(nn.Module):
         self.fc1 = nn.Linear(28*28, 300, bias = True)
         self.fc2 = nn.Linear(300, 100, bias = True)
         self.fc3 = nn.Linear(100, 10, bias = True)
-        
-        init.xavier_uniform_(self.fc1.weight)
-        init.xavier_uniform_(self.fc2.weight)
-        init.xavier_uniform_(self.fc3.weight)
         
     def forward(self, x):
         x = x.view(x.size(0), -1)
