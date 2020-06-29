@@ -14,18 +14,18 @@ class parameters:
         self.epochs = 'empty'
         self.batch_size = 'empty'
         self.weight_decay = 'empty'
+        self.iteration = 'empty'
         self.prune_per_c = 'empty'
         self.prune_per_f = 'empty'
         self.prune_per_o = 'empty'
-        self.test_iter = 'empty'
-        self.prune_iter = 'empty'
+        self.noi = 'empty'
         self.trainset = 'empty'
         self.valset = 'empty'
         self.testset = 'empty'
         self.train_loader = 'empty'
         self.val_loader = 'empty'
         self.test_loader = 'empty'
-        
+    
         """
         @property
         def remaining_weight(self):
@@ -43,11 +43,11 @@ class parameters:
             self.epochs = 50
             self.batch_size = 60
             self.weight_decay = 1.2e-3
-            self.test_iter= 5
+            self.iteration = 0
             self.prune_per_c = 1
             self.prune_per_f = 0.2
             self.prune_per_o = 0.1
-            self.prune_iter = 12
+            self.noi = 12
             
             # dataset
             transform = transforms.Compose([
@@ -77,11 +77,11 @@ class parameters:
             self.epochs = 50
             self.batch_size = 60
             self.weight_decay = 3e-3
-            self.test_iter = 5
+            self.iteration = 0
             self.prune_per_c = 0.15
             self.prune_per_f = 0.2
             self.prune_per_o = 0.1
-            self.prune_iter = 12
+            self.noi = 12
             
             # dataset
             transform = transforms.Compose([transforms.ToTensor(),
@@ -144,17 +144,17 @@ class LeNet300(nn.Module):
         
         self.fc1 = nn.Linear(28*28, 300, bias = True)
         self.fc2 = nn.Linear(300, 100, bias = True)
-        self.fcout = nn.Linear(100, 10, bias = True)
+        self.fc3 = nn.Linear(100, 10, bias = True)
         
         init.xavier_uniform_(self.fc1.weight)
         init.xavier_uniform_(self.fc2.weight)
-        init.xavier_uniform_(self.fcout.weight)
+        init.xavier_uniform_(self.fc3.weight)
         
     def forward(self, x):
         x = x.view(x.size(0), -1)
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
-        x = self.fcout(x)
+        x = self.fc3(x)
         return x
     
 class Conv6(nn.Module):
@@ -170,7 +170,7 @@ class Conv6(nn.Module):
 
         self.fc1 = nn.Linear(4*4*256, 256, bias = True)
         self.fc2 = nn.Linear(256, 256, bias = True)
-        self.fcout = nn.Linear(256, 10, bias = True)
+        self.fc3 = nn.Linear(256, 10, bias = True)
     
     def forward(self, x):
         x = F.relu(self.conv1(x))
@@ -187,5 +187,5 @@ class Conv6(nn.Module):
         x = F.dropout(x, training = self.training)
         x = F.relu(self.fc2(x))
         x = F.dropout(x, training = self.training)
-        x = self.fcout(x)
+        x = self.fc3(x)
         return x
