@@ -36,7 +36,7 @@ class parameters:
         """
     # LeNet300        
     def type(self, x):
-        if x == 'LeNet300':
+        if x == 'Lenet_300_100':
             # parameters
             self.model_type = x
             self.lr = 0.0012
@@ -47,7 +47,73 @@ class parameters:
             self.prune_per_c = 1
             self.prune_per_f = 0.2
             self.prune_per_o = 0.1
-            self.prune_iter = 12
+            self.prune_iter = 21
+            
+            # dataset
+            transform = transforms.Compose([
+                transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))
+            ])
+            self.trainset = dsets.MNIST(root='../MNIST_data/',
+                                     train=True,
+                                     transform = transform,
+                                     download=True)
+            self.testset = dsets.MNIST(root='../MNIST_data/',
+                                    train=False,
+                                    transform = transform,
+                                    download=True)
+            self.train_loader = torch.utils.data.DataLoader(dataset = self.trainset,
+                                                     batch_size=self.batch_size,
+                                                     shuffle=True,
+                                                     drop_last=True)
+            self.test_loader = torch.utils.data.DataLoader(dataset = self.testset,
+                                                     shuffle=False,
+                                                     drop_last=True)
+            
+        elif x == 'Lenet_250_75':
+            # parameters
+            self.model_type = x
+            self.lr = 0.0012
+            self.epochs = 50
+            self.batch_size = 60
+            self.weight_decay = 1.2e-3
+            self.test_iter= 5
+            self.prune_per_c = 1
+            self.prune_per_f = 0.2
+            self.prune_per_o = 0.1
+            self.prune_iter = 21
+            
+            # dataset
+            transform = transforms.Compose([
+                transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))
+            ])
+            self.trainset = dsets.MNIST(root='../MNIST_data/',
+                                     train=True,
+                                     transform = transform,
+                                     download=True)
+            self.testset = dsets.MNIST(root='../MNIST_data/',
+                                    train=False,
+                                    transform = transform,
+                                    download=True)
+            self.train_loader = torch.utils.data.DataLoader(dataset = self.trainset,
+                                                     batch_size=self.batch_size,
+                                                     shuffle=True,
+                                                     drop_last=True)
+            self.test_loader = torch.utils.data.DataLoader(dataset = self.testset,
+                                                     shuffle=False,
+                                                     drop_last=True)
+            
+        elif x == 'Lenet_200_50':
+            # parameters
+            self.model_type = x
+            self.lr = 0.0012
+            self.epochs = 50
+            self.batch_size = 60
+            self.weight_decay = 1.2e-3
+            self.test_iter= 5
+            self.prune_per_c = 1
+            self.prune_per_f = 0.2
+            self.prune_per_o = 0.1
+            self.prune_iter = 20
             
             # dataset
             transform = transforms.Compose([
@@ -81,7 +147,7 @@ class parameters:
             self.prune_per_c = 0.15
             self.prune_per_f = 0.2
             self.prune_per_o = 0.1
-            self.prune_iter = 12
+            self.prune_iter = 21
             
             # dataset
             transform = transforms.Compose([transforms.ToTensor(),
@@ -134,17 +200,87 @@ class parameters:
             self.classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog',
                        'frog', 'horse', 'ship', 'truck')
 
+        elif x == 'TestModel':
+            # parameters
+            self.model_type = x
+            self.lr = 0.001
+            self.epochs = 2
+            self.batch_size = 60
+            self.weight_decay = 3e-3
+            self.test_iter = 2
+            self.prune_per_c = 0.2
+            self.prune_per_f = 0.3
+            self.prune_per_o = 0.1
+            self.prune_iter = 2
             
+            # dataset
+            # dataset
+            transform = transforms.Compose([
+                transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))
+            ])
+            self.trainset = dsets.MNIST(root='../MNIST_data/',
+                                     train=True,
+                                     transform = transform,
+                                     download=True)
+            self.testset = dsets.MNIST(root='../MNIST_data/',
+                                    train=False,
+                                    transform = transform,
+                                    download=True)
+            self.train_loader = torch.utils.data.DataLoader(dataset = self.trainset,
+                                                     batch_size=self.batch_size,
+                                                     shuffle=True,
+                                                     drop_last=True)
+            self.test_loader = torch.utils.data.DataLoader(dataset = self.testset,
+                                                     shuffle=False,
+                                                     drop_last=True)            
 
             
 # model class
-class LeNet300(nn.Module):
+class Lenet_300_100(nn.Module):
     def __init__(self):
-        super(LeNet300, self).__init__()
+        super(Lenet_300_100, self).__init__()
         
         self.fc1 = nn.Linear(28*28, 300, bias = True)
         self.fc2 = nn.Linear(300, 100, bias = True)
         self.fcout = nn.Linear(100, 10, bias = True)
+        
+        init.xavier_uniform_(self.fc1.weight)
+        init.xavier_uniform_(self.fc2.weight)
+        init.xavier_uniform_(self.fcout.weight)
+        
+    def forward(self, x):
+        x = x.view(x.size(0), -1)
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = self.fcout(x)
+        return x
+    
+class Lenet_250_75(nn.Module):
+    def __init__(self):
+        super(Lenet_250_75, self).__init__()
+        
+        self.fc1 = nn.Linear(28*28, 250, bias = True)
+        self.fc2 = nn.Linear(250, 75, bias = True)
+        self.fcout = nn.Linear(75, 10, bias = True)
+        
+        init.xavier_uniform_(self.fc1.weight)
+        init.xavier_uniform_(self.fc2.weight)
+        init.xavier_uniform_(self.fcout.weight)
+        
+    def forward(self, x):
+        x = x.view(x.size(0), -1)
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = self.fcout(x)
+        return x
+    
+class Lenet_200_50(nn.Module):
+    def __init__(self):
+        super(Lenet_200_50, self).__init__()
+        
+        self.fc1 = nn.Linear(28*28, 200, bias = True)
+        self.fc2 = nn.Linear(200, 50, bias = True)
+        self.fcout = nn.Linear(50, 10, bias = True)
         
         init.xavier_uniform_(self.fc1.weight)
         init.xavier_uniform_(self.fc2.weight)
@@ -186,6 +322,27 @@ class Conv6(nn.Module):
         x = F.relu(self.fc1(x))
         x = F.dropout(x, training = self.training)
         x = F.relu(self.fc2(x))
+        x = F.dropout(x, training = self.training)
+        x = self.fcout(x)
+        return x
+    
+class TestModel(nn.Module):
+    def __init__(self):
+        super(TestModel, self).__init__()
+        
+        self.conv1 = nn.Conv2d(1, 3, kernel_size = 3, stride = 1, padding = 1)
+        self.conv2 = nn.Conv2d(3, 6, kernel_size = 3, stride = 1, padding = 1)
+
+        self.fc1 = nn.Linear(14*14*6, 50, bias = True)
+        self.fcout = nn.Linear(50, 10, bias = True)
+    
+    def forward(self, x):
+        x = F.relu(self.conv1(x))
+        x = F.relu(self.conv2(x))
+        x = F.max_pool2d(x, 2)
+
+        x = x.view(x.size(0), -1)
+        x = F.relu(self.fc1(x))
         x = F.dropout(x, training = self.training)
         x = self.fcout(x)
         return x

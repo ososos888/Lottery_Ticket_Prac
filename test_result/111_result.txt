@@ -1,0 +1,56 @@
+model_type: Lenet_300_100
+lr: 0.0012
+epochs: 50
+batch_size: 60
+weight_decay: 0.0012
+prune_per_c: 1
+prune_per_f: 0.2
+prune_per_o: 0.1
+test_iter: 5
+prune_iter: 21
+trainset: Dataset MNIST
+    Number of datapoints: 60000
+    Root location: ../MNIST_data/
+    Split: Train
+    StandardTransform
+Transform: Compose(
+               ToTensor()
+               Normalize(mean=(0.1307,), std=(0.3081,))
+           )
+valset: empty
+testset: Dataset MNIST
+    Number of datapoints: 10000
+    Root location: ../MNIST_data/
+    Split: Test
+    StandardTransform
+Transform: Compose(
+               ToTensor()
+               Normalize(mean=(0.1307,), std=(0.3081,))
+           )
+train_loader: <torch.utils.data.dataloader.DataLoader object at 0x7f680c73c490>
+val_loader: empty
+test_loader: <torch.utils.data.dataloader.DataLoader object at 0x7f680b53e8d0> 
+
+
+Model structure
+ Lenet_300_100(
+  (fc1): Linear(in_features=784, out_features=300, bias=True)
+  (fc2): Linear(in_features=300, out_features=100, bias=True)
+  (fcout): Linear(in_features=100, out_features=10, bias=True)
+)
+===================================================================== 
+
+Test_Iter (1/5)
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :        266200 (266200 | 0)          100.00
+fc1.weight   :        235200 (235200 | 0)          100.00
+fc2.weight   :         30000 (30000 | 0)           100.00
+fcout.weight :          1000 (1000 | 0)            100.00
+------------------------------------------------------------
+
+Learning start! [Prune_iter : (1/21), Remaining weight : 100.0 %] 
+
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.68806) (accu: 0.0658)
+[epoch : 1] (l_loss: 0.20989) (t_loss: 0.13697) (accu: 0.9545)
+[epoch : 2] (l_loss: 0.10751) (t_loss: 0.10141) (accu: 0.9669)

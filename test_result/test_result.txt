@@ -1,0 +1,60 @@
+model_type: Lenet_300_100
+lr: 0.0012
+epochs: 50
+batch_size: 60
+weight_decay: 0.0012
+prune_per_c: 1
+prune_per_f: 0.2
+prune_per_o: 0.1
+test_iter: 1
+prune_iter: 20
+trainset: Dataset MNIST
+    Number of datapoints: 60000
+    Root location: ../MNIST_data/
+    Split: Train
+    StandardTransform
+Transform: Compose(
+               ToTensor()
+               Normalize(mean=(0.1307,), std=(0.3081,))
+           )
+valset: empty
+testset: Dataset MNIST
+    Number of datapoints: 10000
+    Root location: ../MNIST_data/
+    Split: Test
+    StandardTransform
+Transform: Compose(
+               ToTensor()
+               Normalize(mean=(0.1307,), std=(0.3081,))
+           )
+train_loader: <torch.utils.data.dataloader.DataLoader object at 0x7f3041530d10>
+val_loader: empty
+test_loader: <torch.utils.data.dataloader.DataLoader object at 0x7f30415bf910> 
+
+
+Model structure
+ Lenet_300_100(
+  (fc1): Linear(in_features=784, out_features=300, bias=True)
+  (fc2): Linear(in_features=300, out_features=100, bias=True)
+  (fcout): Linear(in_features=100, out_features=10, bias=True)
+)
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :        266200 (266200 | 0)          100.00
+fc1.weight   :        235200 (235200 | 0)          100.00
+fc2.weight   :         30000 (30000 | 0)           100.00
+fcout.weight :          1000 (1000 | 0)            100.00
+------------------------------------------------------------
+
+Learning start! [Prune_iter : (1/20), Remaining weight : 100.0 %] 
+
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 3.05641) (accu: 0.0797)
+[epoch : 1] (l_loss: 0.20672) (t_loss: 0.11965) (accu: 0.9619)
+[epoch : 2] (l_loss: 0.10733) (t_loss: 0.09142) (accu: 0.9715)
+[epoch : 3] (l_loss: 0.09364) (t_loss: 0.08698) (accu: 0.9723)
+[epoch : 4] (l_loss: 0.08327) (t_loss: 0.08313) (accu: 0.9723)
+[epoch : 5] (l_loss: 0.08137) (t_loss: 0.07774) (accu: 0.9739)
+[epoch : 6] (l_loss: 0.07700) (t_loss: 0.09980) (accu: 0.9688)
+[epoch : 7] (l_loss: 0.07443) (t_loss: 0.08184) (accu: 0.9725)
+[epoch : 8] (l_loss: 0.07133) (t_loss: 0.09742) (accu: 0.9688)
+[epoch : 9] (l_loss: 0.06776) (t_loss: 0.07570) (accu: 0.9767)
