@@ -290,9 +290,9 @@ model_init = copy.deepcopy(model)
 criterion = nn.CrossEntropyLoss().to(device)
 
 # change parameter (원할 경우 class에 접근하여 직접 변경)
-#param.epochs = 5
-#param.test_iter = 5
-#param.prune_iter = 5
+#param.epochs = 10
+#param.test_iter = 1
+#param.prune_iter = 30
 # model.fc1 = nn.Linear(784, 200)
 
 trained_weights = {}
@@ -364,11 +364,11 @@ for i in range(1, (param.test_iter+1)):
         
         sys.stdout.close()
         sys.stdout = temp
-        print("\nLearning start! [Prune_iter : (%d/%d), Remaining weight : %s %%] \n" % (j+1 , param.prune_iter, remaining_weight))
+        print("Learning start! [Prune_iter : (%d/%d), Remaining weight : %s %%]" % (j+1 , param.prune_iter, remaining_weight))
         temp = sys.stdout
         sys.stdout = open(FileName,'a')
         
-        print("\nLearning start! [Prune_iter : (%d/%d), Remaining weight : %s %%] \n" % (j+1 , param.prune_iter, remaining_weight))
+        print("Learning start! [Prune_iter : (%d/%d), Remaining weight : %s %%]" % (j+1 , param.prune_iter, remaining_weight))
         # 시작 시간 check
         #print(model.fcout.weight[0])
         # initial accuracy 확인 및 plot

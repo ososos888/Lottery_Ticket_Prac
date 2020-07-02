@@ -53,6 +53,7 @@ class parameters:
             transform = transforms.Compose([
                 transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))
             ])
+
             self.trainset = dsets.MNIST(root='../MNIST_data/',
                                      train=True,
                                      transform = transform,
@@ -61,13 +62,37 @@ class parameters:
                                     train=False,
                                     transform = transform,
                                     download=True)
+            self.valset = dsets.MNIST('../MNIST_data/',
+                                     train=True,
+                                     transform = transform,
+                                     download=True)
+            
+            # validation set 분류
+            self.validation_ratio = (1/12)
+            num_train = len(self.trainset)
+            indices = list(range(num_train))
+            # 설정한 비율만큼 분할 시의 data 갯수
+            split = int(np.floor(self.validation_ratio * num_train))
+            # shuffle
+            np.random.shuffle(indices)
+            # data 분할
+            train_idx, val_idx = indices[split:], indices[:split]
+            train_sampler = SubsetRandomSampler(train_idx)
+            val_sampler = SubsetRandomSampler(val_idx)
+
             self.train_loader = torch.utils.data.DataLoader(dataset = self.trainset,
-                                                     batch_size=self.batch_size,
-                                                     shuffle=True,
-                                                     drop_last=True)
+                                                      batch_size = self.batch_size,
+                                                      sampler = train_sampler,
+                                                      drop_last = True)
+
+            self.val_loader = torch.utils.data.DataLoader(dataset = self.valset,
+                                                      batch_size = self.batch_size,
+                                                      sampler = val_sampler,
+                                                      drop_last = True)
+
             self.test_loader = torch.utils.data.DataLoader(dataset = self.testset,
-                                                     shuffle=False,
-                                                     drop_last=True)
+                                                      shuffle = False,
+                                                      drop_last = True)
             
         elif x == 'Lenet_250_75':
             # parameters
@@ -86,6 +111,7 @@ class parameters:
             transform = transforms.Compose([
                 transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))
             ])
+
             self.trainset = dsets.MNIST(root='../MNIST_data/',
                                      train=True,
                                      transform = transform,
@@ -94,13 +120,37 @@ class parameters:
                                     train=False,
                                     transform = transform,
                                     download=True)
+            self.valset = dsets.MNIST('../MNIST_data/',
+                                     train=True,
+                                     transform = transform,
+                                     download=True)
+            
+            # validation set 분류
+            self.validation_ratio = (1/12)
+            num_train = len(self.trainset)
+            indices = list(range(num_train))
+            # 설정한 비율만큼 분할 시의 data 갯수
+            split = int(np.floor(self.validation_ratio * num_train))
+            # shuffle
+            np.random.shuffle(indices)
+            # data 분할
+            train_idx, val_idx = indices[split:], indices[:split]
+            train_sampler = SubsetRandomSampler(train_idx)
+            val_sampler = SubsetRandomSampler(val_idx)
+
             self.train_loader = torch.utils.data.DataLoader(dataset = self.trainset,
-                                                     batch_size=self.batch_size,
-                                                     shuffle=True,
-                                                     drop_last=True)
+                                                      batch_size = self.batch_size,
+                                                      sampler = train_sampler,
+                                                      drop_last = True)
+
+            self.val_loader = torch.utils.data.DataLoader(dataset = self.valset,
+                                                      batch_size = self.batch_size,
+                                                      sampler = val_sampler,
+                                                      drop_last = True)
+
             self.test_loader = torch.utils.data.DataLoader(dataset = self.testset,
-                                                     shuffle=False,
-                                                     drop_last=True)
+                                                      shuffle = False,
+                                                      drop_last = True)
             
         elif x == 'Lenet_200_50':
             # parameters
@@ -119,6 +169,7 @@ class parameters:
             transform = transforms.Compose([
                 transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))
             ])
+
             self.trainset = dsets.MNIST(root='../MNIST_data/',
                                      train=True,
                                      transform = transform,
@@ -127,13 +178,37 @@ class parameters:
                                     train=False,
                                     transform = transform,
                                     download=True)
+            self.valset = dsets.MNIST('../MNIST_data/',
+                                     train=True,
+                                     transform = transform,
+                                     download=True)
+            
+            # validation set 분류
+            self.validation_ratio = (1/12)
+            num_train = len(self.trainset)
+            indices = list(range(num_train))
+            # 설정한 비율만큼 분할 시의 data 갯수
+            split = int(np.floor(self.validation_ratio * num_train))
+            # shuffle
+            np.random.shuffle(indices)
+            # data 분할
+            train_idx, val_idx = indices[split:], indices[:split]
+            train_sampler = SubsetRandomSampler(train_idx)
+            val_sampler = SubsetRandomSampler(val_idx)
+
             self.train_loader = torch.utils.data.DataLoader(dataset = self.trainset,
-                                                     batch_size=self.batch_size,
-                                                     shuffle=True,
-                                                     drop_last=True)
+                                                      batch_size = self.batch_size,
+                                                      sampler = train_sampler,
+                                                      drop_last = True)
+
+            self.val_loader = torch.utils.data.DataLoader(dataset = self.valset,
+                                                      batch_size = self.batch_size,
+                                                      sampler = val_sampler,
+                                                      drop_last = True)
+
             self.test_loader = torch.utils.data.DataLoader(dataset = self.testset,
-                                                     shuffle=False,
-                                                     drop_last=True)
+                                                      shuffle = False,
+                                                      drop_last = True)
             
         # Conv6    
         elif x == 'Conv6':
