@@ -1,0 +1,41 @@
+model_type: Lenet_300_100
+lr: 0.0012
+epochs: 2
+batch_size: 60
+weight_decay: 0.0001
+prune_per_c: 1
+prune_per_f: 0.2
+prune_per_o: 0.1
+test_iter: 2
+prune_iter: 2
+trainset: Dataset MNIST
+    Number of datapoints: 60000
+    Root location: ../MNIST_data/
+    Split: Train
+    StandardTransform
+Transform: Compose(
+               ToTensor()
+               Normalize(mean=(0.1307,), std=(0.3081,))
+           )
+valset: empty
+testset: Dataset MNIST
+    Number of datapoints: 10000
+    Root location: ../MNIST_data/
+    Split: Test
+    StandardTransform
+Transform: Compose(
+               ToTensor()
+               Normalize(mean=(0.1307,), std=(0.3081,))
+           )
+train_loader: <torch.utils.data.dataloader.DataLoader object at 0x7f543b057390>
+val_loader: <torch.utils.data.dataloader.DataLoader object at 0x7f543b057450>
+test_loader: <torch.utils.data.dataloader.DataLoader object at 0x7f543b057290>
+validation_ratio: 0.08333333333333333 
+
+
+Model structure
+ Lenet_300_100(
+  (fc1): Linear(in_features=784, out_features=300, bias=True)
+  (fc2): Linear(in_features=300, out_features=100, bias=True)
+  (fcout): Linear(in_features=100, out_features=10, bias=True)
+)

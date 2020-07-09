@@ -1,0 +1,2616 @@
+model_type: Lenet_300_100
+lr: 0.0012
+epochs: 20
+batch_size: 60
+weight_decay: 0
+prune_per_c: 1
+prune_per_f: 0.2
+prune_per_o: 0.1
+test_iter: 3
+prune_iter: 21
+trainset: Dataset MNIST
+    Number of datapoints: 60000
+    Root location: ../MNIST_data/
+    Split: Train
+    StandardTransform
+Transform: Compose(
+               ToTensor()
+               Normalize(mean=(0.1307,), std=(0.3081,))
+           )
+valset: empty
+testset: Dataset MNIST
+    Number of datapoints: 10000
+    Root location: ../MNIST_data/
+    Split: Test
+    StandardTransform
+Transform: Compose(
+               ToTensor()
+               Normalize(mean=(0.1307,), std=(0.3081,))
+           )
+train_loader: <torch.utils.data.dataloader.DataLoader object at 0x7f1e12dc6ed0>
+val_loader: <torch.utils.data.dataloader.DataLoader object at 0x7f1e12dc6d50>
+test_loader: <torch.utils.data.dataloader.DataLoader object at 0x7f1e12e3af10>
+validation_ratio: 0.08333333333333333 
+
+
+Model structure
+ Lenet_300_100(
+  (fc1): Linear(in_features=784, out_features=300, bias=True)
+  (fc2): Linear(in_features=300, out_features=100, bias=True)
+  (fcout): Linear(in_features=100, out_features=10, bias=True)
+)
+===================================================================== 
+
+Test_Iter (1/3)
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :        266200 (266200 | 0)          100.00
+fc1.weight   :        235200 (235200 | 0)          100.00
+fc2.weight   :         30000 (30000 | 0)           100.00
+fcout.weight :          1000 (1000 | 0)            100.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (1/21), Remaining weight : 100.0 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 3.75352) (accu: 0.1086)
+[epoch : 1] (l_loss: 0.21713) (t_loss: 0.11491) (accu: 0.9654)
+[epoch : 2] (l_loss: 0.09691) (t_loss: 0.10374) (accu: 0.9682)
+[epoch : 3] (l_loss: 0.06567) (t_loss: 0.08941) (accu: 0.9746)
+[epoch : 4] (l_loss: 0.05321) (t_loss: 0.08780) (accu: 0.9757)
+[epoch : 5] (l_loss: 0.04271) (t_loss: 0.09237) (accu: 0.9742)
+[epoch : 6] (l_loss: 0.03686) (t_loss: 0.08607) (accu: 0.9773)
+[epoch : 7] (l_loss: 0.03007) (t_loss: 0.09755) (accu: 0.9753)
+[epoch : 8] (l_loss: 0.02854) (t_loss: 0.09476) (accu: 0.9776)
+[epoch : 9] (l_loss: 0.02502) (t_loss: 0.11121) (accu: 0.9755)
+[epoch : 10] (l_loss: 0.02322) (t_loss: 0.09648) (accu: 0.9784)
+[epoch : 11] (l_loss: 0.02491) (t_loss: 0.11196) (accu: 0.9760)
+[epoch : 12] (l_loss: 0.02135) (t_loss: 0.09908) (accu: 0.9807)
+[epoch : 13] (l_loss: 0.01801) (t_loss: 0.10706) (accu: 0.9782)
+[epoch : 14] (l_loss: 0.02114) (t_loss: 0.11815) (accu: 0.9752)
+[epoch : 15] (l_loss: 0.01701) (t_loss: 0.10575) (accu: 0.9807)
+[epoch : 16] (l_loss: 0.01639) (t_loss: 0.12768) (accu: 0.9769)
+[epoch : 17] (l_loss: 0.01758) (t_loss: 0.13710) (accu: 0.9765)
+[epoch : 18] (l_loss: 0.01522) (t_loss: 0.13613) (accu: 0.9757)
+[epoch : 19] (l_loss: 0.01703) (t_loss: 0.14245) (accu: 0.9776)
+[epoch : 20] (l_loss: 0.01332) (t_loss: 0.15205) (accu: 0.9782)
+Finish! (Best accu: 0.9807) (Time taken(sec) : 201.04) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (213060 | 53140)         80.04
+fc1.weight   :      235200 (188160 | 47040)         80.00
+fc2.weight   :        30000 (24000 | 6000)          80.00
+fcout.weight :          1000 (900 | 100)            90.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (2/21), Remaining weight : 80.04 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.50388) (accu: 0.1462)
+[epoch : 1] (l_loss: 0.18548) (t_loss: 0.10610) (accu: 0.9681)
+[epoch : 2] (l_loss: 0.08012) (t_loss: 0.08403) (accu: 0.9733)
+[epoch : 3] (l_loss: 0.05554) (t_loss: 0.08950) (accu: 0.9727)
+[epoch : 4] (l_loss: 0.04217) (t_loss: 0.09810) (accu: 0.9744)
+[epoch : 5] (l_loss: 0.03445) (t_loss: 0.07655) (accu: 0.9809)
+[epoch : 6] (l_loss: 0.02830) (t_loss: 0.10467) (accu: 0.9755)
+[epoch : 7] (l_loss: 0.02703) (t_loss: 0.09781) (accu: 0.9775)
+[epoch : 8] (l_loss: 0.02446) (t_loss: 0.08693) (accu: 0.9792)
+[epoch : 9] (l_loss: 0.01996) (t_loss: 0.11996) (accu: 0.9730)
+[epoch : 10] (l_loss: 0.01957) (t_loss: 0.14414) (accu: 0.9713)
+[epoch : 11] (l_loss: 0.02165) (t_loss: 0.11160) (accu: 0.9774)
+[epoch : 12] (l_loss: 0.01329) (t_loss: 0.13147) (accu: 0.9756)
+[epoch : 13] (l_loss: 0.01743) (t_loss: 0.10439) (accu: 0.9810)
+[epoch : 14] (l_loss: 0.01550) (t_loss: 0.10543) (accu: 0.9813)
+[epoch : 15] (l_loss: 0.01408) (t_loss: 0.10121) (accu: 0.9797)
+[epoch : 16] (l_loss: 0.01224) (t_loss: 0.16453) (accu: 0.9726)
+[epoch : 17] (l_loss: 0.01545) (t_loss: 0.11874) (accu: 0.9799)
+[epoch : 18] (l_loss: 0.01014) (t_loss: 0.12348) (accu: 0.9815)
+[epoch : 19] (l_loss: 0.01345) (t_loss: 0.16638) (accu: 0.9754)
+[epoch : 20] (l_loss: 0.01293) (t_loss: 0.13864) (accu: 0.9790)
+Finish! (Best accu: 0.9815) (Time taken(sec) : 208.89) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (170538 | 95662)         64.06
+fc1.weight   :      235200 (150528 | 84672)         64.00
+fc2.weight   :       30000 (19200 | 10800)          64.00
+fcout.weight :          1000 (810 | 190)            81.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (3/21), Remaining weight : 64.06 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.26643) (accu: 0.1925)
+[epoch : 1] (l_loss: 0.16524) (t_loss: 0.08939) (accu: 0.9723)
+[epoch : 2] (l_loss: 0.06656) (t_loss: 0.07920) (accu: 0.9772)
+[epoch : 3] (l_loss: 0.04484) (t_loss: 0.06659) (accu: 0.9792)
+[epoch : 4] (l_loss: 0.03372) (t_loss: 0.08700) (accu: 0.9760)
+[epoch : 5] (l_loss: 0.02673) (t_loss: 0.07309) (accu: 0.9806)
+[epoch : 6] (l_loss: 0.02273) (t_loss: 0.11565) (accu: 0.9732)
+[epoch : 7] (l_loss: 0.02301) (t_loss: 0.08578) (accu: 0.9792)
+[epoch : 8] (l_loss: 0.01765) (t_loss: 0.10103) (accu: 0.9779)
+[epoch : 9] (l_loss: 0.01689) (t_loss: 0.09281) (accu: 0.9802)
+[epoch : 10] (l_loss: 0.01345) (t_loss: 0.09306) (accu: 0.9818)
+[epoch : 11] (l_loss: 0.01739) (t_loss: 0.09020) (accu: 0.9817)
+[epoch : 12] (l_loss: 0.01325) (t_loss: 0.10105) (accu: 0.9809)
+[epoch : 13] (l_loss: 0.01349) (t_loss: 0.10728) (accu: 0.9807)
+[epoch : 14] (l_loss: 0.01376) (t_loss: 0.11412) (accu: 0.9794)
+[epoch : 15] (l_loss: 0.01039) (t_loss: 0.09853) (accu: 0.9830)
+[epoch : 16] (l_loss: 0.01187) (t_loss: 0.13402) (accu: 0.9765)
+[epoch : 17] (l_loss: 0.01301) (t_loss: 0.13582) (accu: 0.9801)
+[epoch : 18] (l_loss: 0.01114) (t_loss: 0.12600) (accu: 0.9802)
+[epoch : 19] (l_loss: 0.00853) (t_loss: 0.11536) (accu: 0.9815)
+[epoch : 20] (l_loss: 0.00992) (t_loss: 0.14066) (accu: 0.9801)
+Finish! (Best accu: 0.9830) (Time taken(sec) : 208.74) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (136511 | 129689)        51.28
+fc1.weight   :      235200 (120422 | 114778)        51.20
+fc2.weight   :       30000 (15360 | 14640)          51.20
+fcout.weight :          1000 (729 | 271)            72.90
+------------------------------------------------------------
+Learning start! [Prune_iter : (4/21), Remaining weight : 51.28 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.27022) (accu: 0.2004)
+[epoch : 1] (l_loss: 0.14883) (t_loss: 0.09138) (accu: 0.9719)
+[epoch : 2] (l_loss: 0.05593) (t_loss: 0.07032) (accu: 0.9788)
+[epoch : 3] (l_loss: 0.03595) (t_loss: 0.07874) (accu: 0.9777)
+[epoch : 4] (l_loss: 0.02471) (t_loss: 0.07563) (accu: 0.9790)
+[epoch : 5] (l_loss: 0.02196) (t_loss: 0.08276) (accu: 0.9776)
+[epoch : 6] (l_loss: 0.01818) (t_loss: 0.08755) (accu: 0.9794)
+[epoch : 7] (l_loss: 0.01723) (t_loss: 0.09379) (accu: 0.9802)
+[epoch : 8] (l_loss: 0.01294) (t_loss: 0.08402) (accu: 0.9819)
+[epoch : 9] (l_loss: 0.01641) (t_loss: 0.10889) (accu: 0.9790)
+[epoch : 10] (l_loss: 0.01033) (t_loss: 0.11123) (accu: 0.9786)
+[epoch : 11] (l_loss: 0.01386) (t_loss: 0.12703) (accu: 0.9750)
+[epoch : 12] (l_loss: 0.01056) (t_loss: 0.10824) (accu: 0.9795)
+[epoch : 13] (l_loss: 0.01291) (t_loss: 0.11630) (accu: 0.9813)
+[epoch : 14] (l_loss: 0.00774) (t_loss: 0.13250) (accu: 0.9787)
+[epoch : 15] (l_loss: 0.01119) (t_loss: 0.11357) (accu: 0.9799)
+[epoch : 16] (l_loss: 0.01102) (t_loss: 0.12390) (accu: 0.9786)
+[epoch : 17] (l_loss: 0.00723) (t_loss: 0.14422) (accu: 0.9768)
+[epoch : 18] (l_loss: 0.00915) (t_loss: 0.11853) (accu: 0.9818)
+[epoch : 19] (l_loss: 0.00886) (t_loss: 0.12510) (accu: 0.9812)
+[epoch : 20] (l_loss: 0.00646) (t_loss: 0.11824) (accu: 0.9834)
+Finish! (Best accu: 0.9834) (Time taken(sec) : 209.96) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (109282 | 156918)        41.05
+fc1.weight   :      235200 (96338 | 138862)         40.96
+fc2.weight   :       30000 (12288 | 17712)          40.96
+fcout.weight :          1000 (656 | 344)            65.60
+------------------------------------------------------------
+Learning start! [Prune_iter : (5/21), Remaining weight : 41.05 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.13486) (accu: 0.2213)
+[epoch : 1] (l_loss: 0.13058) (t_loss: 0.07161) (accu: 0.9771)
+[epoch : 2] (l_loss: 0.04406) (t_loss: 0.08452) (accu: 0.9754)
+[epoch : 3] (l_loss: 0.02711) (t_loss: 0.06384) (accu: 0.9821)
+[epoch : 4] (l_loss: 0.01860) (t_loss: 0.06656) (accu: 0.9805)
+[epoch : 5] (l_loss: 0.01613) (t_loss: 0.07530) (accu: 0.9820)
+[epoch : 6] (l_loss: 0.01479) (t_loss: 0.07448) (accu: 0.9821)
+[epoch : 7] (l_loss: 0.01158) (t_loss: 0.09561) (accu: 0.9772)
+[epoch : 8] (l_loss: 0.01343) (t_loss: 0.08541) (accu: 0.9820)
+[epoch : 9] (l_loss: 0.00924) (t_loss: 0.08583) (accu: 0.9821)
+[epoch : 10] (l_loss: 0.01062) (t_loss: 0.09739) (accu: 0.9808)
+[epoch : 11] (l_loss: 0.01072) (t_loss: 0.10272) (accu: 0.9809)
+[epoch : 12] (l_loss: 0.00913) (t_loss: 0.10055) (accu: 0.9803)
+[epoch : 13] (l_loss: 0.00650) (t_loss: 0.10754) (accu: 0.9813)
+[epoch : 14] (l_loss: 0.00748) (t_loss: 0.11295) (accu: 0.9822)
+[epoch : 15] (l_loss: 0.00881) (t_loss: 0.11448) (accu: 0.9817)
+[epoch : 16] (l_loss: 0.00814) (t_loss: 0.11956) (accu: 0.9809)
+[epoch : 17] (l_loss: 0.00389) (t_loss: 0.13099) (accu: 0.9802)
+[epoch : 18] (l_loss: 0.01015) (t_loss: 0.12577) (accu: 0.9786)
+[epoch : 19] (l_loss: 0.00855) (t_loss: 0.10881) (accu: 0.9830)
+[epoch : 20] (l_loss: 0.00566) (t_loss: 0.12418) (accu: 0.9814)
+Finish! (Best accu: 0.9830) (Time taken(sec) : 211.23) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (87490 | 178710)         32.87
+fc1.weight   :      235200 (77070 | 158130)         32.77
+fc2.weight   :        30000 (9830 | 20170)          32.77
+fcout.weight :          1000 (590 | 410)            59.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (6/21), Remaining weight : 32.87 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.95397) (accu: 0.2686)
+[epoch : 1] (l_loss: 0.12241) (t_loss: 0.07136) (accu: 0.9774)
+[epoch : 2] (l_loss: 0.03577) (t_loss: 0.06305) (accu: 0.9809)
+[epoch : 3] (l_loss: 0.02059) (t_loss: 0.06541) (accu: 0.9823)
+[epoch : 4] (l_loss: 0.01577) (t_loss: 0.07424) (accu: 0.9811)
+[epoch : 5] (l_loss: 0.01277) (t_loss: 0.08419) (accu: 0.9802)
+[epoch : 6] (l_loss: 0.00944) (t_loss: 0.09439) (accu: 0.9790)
+[epoch : 7] (l_loss: 0.00971) (t_loss: 0.09021) (accu: 0.9789)
+[epoch : 8] (l_loss: 0.00736) (t_loss: 0.07811) (accu: 0.9829)
+[epoch : 9] (l_loss: 0.00679) (t_loss: 0.09605) (accu: 0.9815)
+[epoch : 10] (l_loss: 0.00593) (t_loss: 0.11240) (accu: 0.9783)
+[epoch : 11] (l_loss: 0.00982) (t_loss: 0.11080) (accu: 0.9798)
+[epoch : 12] (l_loss: 0.00772) (t_loss: 0.10515) (accu: 0.9827)
+[epoch : 13] (l_loss: 0.00558) (t_loss: 0.11639) (accu: 0.9823)
+[epoch : 14] (l_loss: 0.00508) (t_loss: 0.11574) (accu: 0.9820)
+[epoch : 15] (l_loss: 0.00640) (t_loss: 0.11138) (accu: 0.9815)
+[epoch : 16] (l_loss: 0.00704) (t_loss: 0.11321) (accu: 0.9829)
+[epoch : 17] (l_loss: 0.00392) (t_loss: 0.12190) (accu: 0.9822)
+[epoch : 18] (l_loss: 0.00684) (t_loss: 0.13973) (accu: 0.9814)
+[epoch : 19] (l_loss: 0.00423) (t_loss: 0.13154) (accu: 0.9811)
+[epoch : 20] (l_loss: 0.00353) (t_loss: 0.14538) (accu: 0.9799)
+Finish! (Best accu: 0.9829) (Time taken(sec) : 211.21) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (70051 | 196149)         26.32
+fc1.weight   :      235200 (61656 | 173544)         26.21
+fc2.weight   :        30000 (7864 | 22136)          26.21
+fcout.weight :          1000 (531 | 469)            53.10
+------------------------------------------------------------
+Learning start! [Prune_iter : (7/21), Remaining weight : 26.32 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.96648) (accu: 0.2571)
+[epoch : 1] (l_loss: 0.11564) (t_loss: 0.05929) (accu: 0.9820)
+[epoch : 2] (l_loss: 0.03041) (t_loss: 0.05614) (accu: 0.9828)
+[epoch : 3] (l_loss: 0.01586) (t_loss: 0.05847) (accu: 0.9837)
+[epoch : 4] (l_loss: 0.01016) (t_loss: 0.06425) (accu: 0.9829)
+[epoch : 5] (l_loss: 0.00893) (t_loss: 0.07260) (accu: 0.9811)
+[epoch : 6] (l_loss: 0.00859) (t_loss: 0.07644) (accu: 0.9796)
+[epoch : 7] (l_loss: 0.00644) (t_loss: 0.08643) (accu: 0.9823)
+[epoch : 8] (l_loss: 0.00764) (t_loss: 0.09542) (accu: 0.9811)
+[epoch : 9] (l_loss: 0.00482) (t_loss: 0.08931) (accu: 0.9833)
+[epoch : 10] (l_loss: 0.00596) (t_loss: 0.10141) (accu: 0.9810)
+[epoch : 11] (l_loss: 0.00612) (t_loss: 0.11674) (accu: 0.9804)
+[epoch : 12] (l_loss: 0.00430) (t_loss: 0.10707) (accu: 0.9816)
+[epoch : 13] (l_loss: 0.00552) (t_loss: 0.13366) (accu: 0.9791)
+[epoch : 14] (l_loss: 0.00542) (t_loss: 0.10366) (accu: 0.9833)
+[epoch : 15] (l_loss: 0.00649) (t_loss: 0.12316) (accu: 0.9807)
+[epoch : 16] (l_loss: 0.00397) (t_loss: 0.11562) (accu: 0.9833)
+[epoch : 17] (l_loss: 0.00423) (t_loss: 0.13341) (accu: 0.9783)
+[epoch : 18] (l_loss: 0.00470) (t_loss: 0.13621) (accu: 0.9803)
+[epoch : 19] (l_loss: 0.00384) (t_loss: 0.12930) (accu: 0.9810)
+[epoch : 20] (l_loss: 0.00412) (t_loss: 0.17193) (accu: 0.9785)
+Finish! (Best accu: 0.9837) (Time taken(sec) : 210.28) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (56094 | 210106)         21.07
+fc1.weight   :      235200 (49325 | 185875)         20.97
+fc2.weight   :        30000 (6291 | 23709)          20.97
+fcout.weight :          1000 (478 | 522)            47.80
+------------------------------------------------------------
+Learning start! [Prune_iter : (8/21), Remaining weight : 21.07 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.81246) (accu: 0.4156)
+[epoch : 1] (l_loss: 0.11168) (t_loss: 0.06206) (accu: 0.9807)
+[epoch : 2] (l_loss: 0.02666) (t_loss: 0.06212) (accu: 0.9804)
+[epoch : 3] (l_loss: 0.01326) (t_loss: 0.06330) (accu: 0.9826)
+[epoch : 4] (l_loss: 0.00912) (t_loss: 0.07417) (accu: 0.9817)
+[epoch : 5] (l_loss: 0.00629) (t_loss: 0.07104) (accu: 0.9816)
+[epoch : 6] (l_loss: 0.00525) (t_loss: 0.08635) (accu: 0.9815)
+[epoch : 7] (l_loss: 0.00747) (t_loss: 0.07795) (accu: 0.9829)
+[epoch : 8] (l_loss: 0.00389) (t_loss: 0.08100) (accu: 0.9836)
+[epoch : 9] (l_loss: 0.00317) (t_loss: 0.10467) (accu: 0.9793)
+[epoch : 10] (l_loss: 0.00696) (t_loss: 0.10216) (accu: 0.9826)
+[epoch : 11] (l_loss: 0.00330) (t_loss: 0.10496) (accu: 0.9809)
+[epoch : 12] (l_loss: 0.00417) (t_loss: 0.10708) (accu: 0.9823)
+[epoch : 13] (l_loss: 0.00530) (t_loss: 0.09299) (accu: 0.9838)
+[epoch : 14] (l_loss: 0.00314) (t_loss: 0.10640) (accu: 0.9817)
+[epoch : 15] (l_loss: 0.00533) (t_loss: 0.12492) (accu: 0.9795)
+[epoch : 16] (l_loss: 0.00373) (t_loss: 0.10541) (accu: 0.9831)
+[epoch : 17] (l_loss: 0.00211) (t_loss: 0.11897) (accu: 0.9826)
+[epoch : 18] (l_loss: 0.00368) (t_loss: 0.12570) (accu: 0.9818)
+[epoch : 19] (l_loss: 0.00428) (t_loss: 0.14802) (accu: 0.9778)
+[epoch : 20] (l_loss: 0.00364) (t_loss: 0.13868) (accu: 0.9826)
+Finish! (Best accu: 0.9838) (Time taken(sec) : 212.16) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (44923 | 221277)         16.88
+fc1.weight   :      235200 (39460 | 195740)         16.78
+fc2.weight   :        30000 (5033 | 24967)          16.78
+fcout.weight :          1000 (430 | 570)            43.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (9/21), Remaining weight : 16.88 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.76209) (accu: 0.3901)
+[epoch : 1] (l_loss: 0.11564) (t_loss: 0.06294) (accu: 0.9808)
+[epoch : 2] (l_loss: 0.02652) (t_loss: 0.06534) (accu: 0.9804)
+[epoch : 3] (l_loss: 0.01201) (t_loss: 0.06429) (accu: 0.9825)
+[epoch : 4] (l_loss: 0.00644) (t_loss: 0.07299) (accu: 0.9828)
+[epoch : 5] (l_loss: 0.00589) (t_loss: 0.07370) (accu: 0.9820)
+[epoch : 6] (l_loss: 0.00294) (t_loss: 0.10788) (accu: 0.9744)
+[epoch : 7] (l_loss: 0.00709) (t_loss: 0.08454) (accu: 0.9822)
+[epoch : 8] (l_loss: 0.00146) (t_loss: 0.08767) (accu: 0.9843)
+[epoch : 9] (l_loss: 0.00526) (t_loss: 0.09479) (accu: 0.9828)
+[epoch : 10] (l_loss: 0.00217) (t_loss: 0.11296) (accu: 0.9789)
+[epoch : 11] (l_loss: 0.00676) (t_loss: 0.10669) (accu: 0.9822)
+[epoch : 12] (l_loss: 0.00167) (t_loss: 0.09710) (accu: 0.9838)
+[epoch : 13] (l_loss: 0.00259) (t_loss: 0.11006) (accu: 0.9821)
+[epoch : 14] (l_loss: 0.00378) (t_loss: 0.11142) (accu: 0.9818)
+[epoch : 15] (l_loss: 0.00376) (t_loss: 0.13136) (accu: 0.9813)
+[epoch : 16] (l_loss: 0.00384) (t_loss: 0.11640) (accu: 0.9826)
+[epoch : 17] (l_loss: 0.00220) (t_loss: 0.11583) (accu: 0.9822)
+[epoch : 18] (l_loss: 0.00161) (t_loss: 0.11373) (accu: 0.9827)
+[epoch : 19] (l_loss: 0.00158) (t_loss: 0.13090) (accu: 0.9830)
+[epoch : 20] (l_loss: 0.00466) (t_loss: 0.14977) (accu: 0.9784)
+Finish! (Best accu: 0.9843) (Time taken(sec) : 214.70) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (35982 | 230218)         13.52
+fc1.weight   :      235200 (31568 | 203632)         13.42
+fc2.weight   :        30000 (4027 | 25973)          13.42
+fcout.weight :          1000 (387 | 613)            38.70
+------------------------------------------------------------
+Learning start! [Prune_iter : (10/21), Remaining weight : 13.52 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.79407) (accu: 0.3516)
+[epoch : 1] (l_loss: 0.12196) (t_loss: 0.06184) (accu: 0.9807)
+[epoch : 2] (l_loss: 0.02625) (t_loss: 0.05720) (accu: 0.9813)
+[epoch : 3] (l_loss: 0.01167) (t_loss: 0.06110) (accu: 0.9822)
+[epoch : 4] (l_loss: 0.00643) (t_loss: 0.05977) (accu: 0.9843)
+[epoch : 5] (l_loss: 0.00486) (t_loss: 0.07401) (accu: 0.9824)
+[epoch : 6] (l_loss: 0.00283) (t_loss: 0.07087) (accu: 0.9842)
+[epoch : 7] (l_loss: 0.00367) (t_loss: 0.08955) (accu: 0.9825)
+[epoch : 8] (l_loss: 0.00495) (t_loss: 0.08143) (accu: 0.9843)
+[epoch : 9] (l_loss: 0.00271) (t_loss: 0.09106) (accu: 0.9841)
+[epoch : 10] (l_loss: 0.00207) (t_loss: 0.09588) (accu: 0.9824)
+[epoch : 11] (l_loss: 0.00409) (t_loss: 0.10174) (accu: 0.9827)
+[epoch : 12] (l_loss: 0.00248) (t_loss: 0.11033) (accu: 0.9823)
+[epoch : 13] (l_loss: 0.00188) (t_loss: 0.11299) (accu: 0.9823)
+[epoch : 14] (l_loss: 0.00228) (t_loss: 0.11803) (accu: 0.9797)
+[epoch : 15] (l_loss: 0.00273) (t_loss: 0.11354) (accu: 0.9817)
+[epoch : 16] (l_loss: 0.00130) (t_loss: 0.10631) (accu: 0.9844)
+[epoch : 17] (l_loss: 0.00306) (t_loss: 0.11895) (accu: 0.9806)
+[epoch : 18] (l_loss: 0.00216) (t_loss: 0.13260) (accu: 0.9810)
+[epoch : 19] (l_loss: 0.00187) (t_loss: 0.12063) (accu: 0.9826)
+[epoch : 20] (l_loss: 0.00056) (t_loss: 0.12407) (accu: 0.9829)
+Finish! (Best accu: 0.9844) (Time taken(sec) : 216.10) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (28824 | 237376)         10.83
+fc1.weight   :      235200 (25254 | 209946)         10.74
+fc2.weight   :        30000 (3221 | 26779)          10.74
+fcout.weight :          1000 (349 | 651)            34.90
+------------------------------------------------------------
+Learning start! [Prune_iter : (11/21), Remaining weight : 10.83 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.81965) (accu: 0.3537)
+[epoch : 1] (l_loss: 0.13435) (t_loss: 0.06562) (accu: 0.9807)
+[epoch : 2] (l_loss: 0.02716) (t_loss: 0.05507) (accu: 0.9825)
+[epoch : 3] (l_loss: 0.01179) (t_loss: 0.05964) (accu: 0.9824)
+[epoch : 4] (l_loss: 0.00662) (t_loss: 0.05982) (accu: 0.9848)
+[epoch : 5] (l_loss: 0.00341) (t_loss: 0.06583) (accu: 0.9830)
+[epoch : 6] (l_loss: 0.00228) (t_loss: 0.07377) (accu: 0.9834)
+[epoch : 7] (l_loss: 0.00466) (t_loss: 0.09264) (accu: 0.9812)
+[epoch : 8] (l_loss: 0.00188) (t_loss: 0.07610) (accu: 0.9845)
+[epoch : 9] (l_loss: 0.00206) (t_loss: 0.10049) (accu: 0.9806)
+[epoch : 10] (l_loss: 0.00392) (t_loss: 0.09171) (accu: 0.9824)
+[epoch : 11] (l_loss: 0.00122) (t_loss: 0.10331) (accu: 0.9825)
+[epoch : 12] (l_loss: 0.00202) (t_loss: 0.10509) (accu: 0.9812)
+[epoch : 13] (l_loss: 0.00126) (t_loss: 0.10261) (accu: 0.9832)
+[epoch : 14] (l_loss: 0.00374) (t_loss: 0.10571) (accu: 0.9816)
+[epoch : 15] (l_loss: 0.00152) (t_loss: 0.11700) (accu: 0.9808)
+[epoch : 16] (l_loss: 0.00100) (t_loss: 0.09971) (accu: 0.9844)
+[epoch : 17] (l_loss: 0.00010) (t_loss: 0.09730) (accu: 0.9844)
+[epoch : 18] (l_loss: 0.00004) (t_loss: 0.09874) (accu: 0.9847)
+[epoch : 19] (l_loss: 0.00003) (t_loss: 0.09970) (accu: 0.9845)
+[epoch : 20] (l_loss: 0.00002) (t_loss: 0.10158) (accu: 0.9848)
+Finish! (Best accu: 0.9848) (Time taken(sec) : 217.87) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (23095 | 243105)          8.68
+fc1.weight   :      235200 (20204 | 214996)          8.59
+fc2.weight   :        30000 (2577 | 27423)           8.59
+fcout.weight :          1000 (314 | 686)            31.40
+------------------------------------------------------------
+Learning start! [Prune_iter : (12/21), Remaining weight : 8.68 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.83557) (accu: 0.3069)
+[epoch : 1] (l_loss: 0.14338) (t_loss: 0.06701) (accu: 0.9806)
+[epoch : 2] (l_loss: 0.02884) (t_loss: 0.05656) (accu: 0.9829)
+[epoch : 3] (l_loss: 0.01282) (t_loss: 0.05509) (accu: 0.9841)
+[epoch : 4] (l_loss: 0.00679) (t_loss: 0.05980) (accu: 0.9840)
+[epoch : 5] (l_loss: 0.00389) (t_loss: 0.06540) (accu: 0.9845)
+[epoch : 6] (l_loss: 0.00306) (t_loss: 0.07036) (accu: 0.9824)
+[epoch : 7] (l_loss: 0.00182) (t_loss: 0.08798) (accu: 0.9812)
+[epoch : 8] (l_loss: 0.00096) (t_loss: 0.09024) (accu: 0.9811)
+[epoch : 9] (l_loss: 0.00488) (t_loss: 0.08047) (accu: 0.9834)
+[epoch : 10] (l_loss: 0.00168) (t_loss: 0.08291) (accu: 0.9840)
+[epoch : 11] (l_loss: 0.00042) (t_loss: 0.08157) (accu: 0.9846)
+[epoch : 12] (l_loss: 0.00013) (t_loss: 0.08323) (accu: 0.9847)
+[epoch : 13] (l_loss: 0.00008) (t_loss: 0.08438) (accu: 0.9849)
+[epoch : 14] (l_loss: 0.00006) (t_loss: 0.08674) (accu: 0.9844)
+[epoch : 15] (l_loss: 0.00004) (t_loss: 0.09130) (accu: 0.9843)
+[epoch : 16] (l_loss: 0.00513) (t_loss: 0.12663) (accu: 0.9807)
+[epoch : 17] (l_loss: 0.00415) (t_loss: 0.10467) (accu: 0.9820)
+[epoch : 18] (l_loss: 0.00082) (t_loss: 0.09549) (accu: 0.9838)
+[epoch : 19] (l_loss: 0.00014) (t_loss: 0.09945) (accu: 0.9835)
+[epoch : 20] (l_loss: 0.00005) (t_loss: 0.09962) (accu: 0.9838)
+Finish! (Best accu: 0.9849) (Time taken(sec) : 225.23) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (18507 | 247693)          6.95
+fc1.weight   :      235200 (16163 | 219037)          6.87
+fc2.weight   :        30000 (2062 | 27938)           6.87
+fcout.weight :          1000 (282 | 718)            28.20
+------------------------------------------------------------
+Learning start! [Prune_iter : (13/21), Remaining weight : 6.95 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.91332) (accu: 0.2648)
+[epoch : 1] (l_loss: 0.16740) (t_loss: 0.07032) (accu: 0.9792)
+[epoch : 2] (l_loss: 0.03355) (t_loss: 0.05518) (accu: 0.9823)
+[epoch : 3] (l_loss: 0.01618) (t_loss: 0.06023) (accu: 0.9822)
+[epoch : 4] (l_loss: 0.00847) (t_loss: 0.05909) (accu: 0.9833)
+[epoch : 5] (l_loss: 0.00471) (t_loss: 0.06621) (accu: 0.9834)
+[epoch : 6] (l_loss: 0.00261) (t_loss: 0.06895) (accu: 0.9835)
+[epoch : 7] (l_loss: 0.00222) (t_loss: 0.07823) (accu: 0.9819)
+[epoch : 8] (l_loss: 0.00230) (t_loss: 0.08978) (accu: 0.9813)
+[epoch : 9] (l_loss: 0.00329) (t_loss: 0.08459) (accu: 0.9834)
+[epoch : 10] (l_loss: 0.00106) (t_loss: 0.08247) (accu: 0.9832)
+[epoch : 11] (l_loss: 0.00036) (t_loss: 0.08370) (accu: 0.9842)
+[epoch : 12] (l_loss: 0.00016) (t_loss: 0.08586) (accu: 0.9843)
+[epoch : 13] (l_loss: 0.00011) (t_loss: 0.08662) (accu: 0.9848)
+[epoch : 14] (l_loss: 0.00008) (t_loss: 0.08896) (accu: 0.9852)
+[epoch : 15] (l_loss: 0.00549) (t_loss: 0.11657) (accu: 0.9816)
+[epoch : 16] (l_loss: 0.00167) (t_loss: 0.10019) (accu: 0.9835)
+[epoch : 17] (l_loss: 0.00034) (t_loss: 0.09703) (accu: 0.9850)
+[epoch : 18] (l_loss: 0.00008) (t_loss: 0.09810) (accu: 0.9848)
+[epoch : 19] (l_loss: 0.00006) (t_loss: 0.09917) (accu: 0.9849)
+[epoch : 20] (l_loss: 0.00004) (t_loss: 0.10136) (accu: 0.9850)
+Finish! (Best accu: 0.9852) (Time taken(sec) : 228.74) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (14833 | 251367)          5.57
+fc1.weight   :      235200 (12930 | 222270)          5.50
+fc2.weight   :        30000 (1649 | 28351)           5.50
+fcout.weight :          1000 (254 | 746)            25.40
+------------------------------------------------------------
+Learning start! [Prune_iter : (14/21), Remaining weight : 5.57 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.97572) (accu: 0.2610)
+[epoch : 1] (l_loss: 0.19216) (t_loss: 0.07179) (accu: 0.9793)
+[epoch : 2] (l_loss: 0.03844) (t_loss: 0.05692) (accu: 0.9832)
+[epoch : 3] (l_loss: 0.01964) (t_loss: 0.05553) (accu: 0.9832)
+[epoch : 4] (l_loss: 0.01070) (t_loss: 0.05967) (accu: 0.9834)
+[epoch : 5] (l_loss: 0.00606) (t_loss: 0.06048) (accu: 0.9843)
+[epoch : 6] (l_loss: 0.00345) (t_loss: 0.06766) (accu: 0.9834)
+[epoch : 7] (l_loss: 0.00253) (t_loss: 0.07397) (accu: 0.9827)
+[epoch : 8] (l_loss: 0.00267) (t_loss: 0.07494) (accu: 0.9836)
+[epoch : 9] (l_loss: 0.00104) (t_loss: 0.07920) (accu: 0.9840)
+[epoch : 10] (l_loss: 0.00192) (t_loss: 0.08233) (accu: 0.9829)
+[epoch : 11] (l_loss: 0.00125) (t_loss: 0.09510) (accu: 0.9810)
+[epoch : 12] (l_loss: 0.00329) (t_loss: 0.08689) (accu: 0.9837)
+[epoch : 13] (l_loss: 0.00035) (t_loss: 0.08581) (accu: 0.9843)
+[epoch : 14] (l_loss: 0.00015) (t_loss: 0.08793) (accu: 0.9846)
+[epoch : 15] (l_loss: 0.00011) (t_loss: 0.08978) (accu: 0.9848)
+[epoch : 16] (l_loss: 0.00008) (t_loss: 0.09162) (accu: 0.9847)
+[epoch : 17] (l_loss: 0.00006) (t_loss: 0.09487) (accu: 0.9851)
+[epoch : 18] (l_loss: 0.00005) (t_loss: 0.09639) (accu: 0.9848)
+[epoch : 19] (l_loss: 0.00614) (t_loss: 0.11394) (accu: 0.9818)
+[epoch : 20] (l_loss: 0.00111) (t_loss: 0.11316) (accu: 0.9823)
+Finish! (Best accu: 0.9851) (Time taken(sec) : 227.45) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (11892 | 254308)          4.47
+fc1.weight   :      235200 (10344 | 224856)          4.40
+fc2.weight   :        30000 (1319 | 28681)           4.40
+fcout.weight :          1000 (229 | 771)            22.90
+------------------------------------------------------------
+Learning start! [Prune_iter : (15/21), Remaining weight : 4.47 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.02562) (accu: 0.3269)
+[epoch : 1] (l_loss: 0.22497) (t_loss: 0.08076) (accu: 0.9772)
+[epoch : 2] (l_loss: 0.04536) (t_loss: 0.06056) (accu: 0.9808)
+[epoch : 3] (l_loss: 0.02361) (t_loss: 0.05923) (accu: 0.9826)
+[epoch : 4] (l_loss: 0.01365) (t_loss: 0.06002) (accu: 0.9812)
+[epoch : 5] (l_loss: 0.00816) (t_loss: 0.06313) (accu: 0.9824)
+[epoch : 6] (l_loss: 0.00473) (t_loss: 0.07124) (accu: 0.9813)
+[epoch : 7] (l_loss: 0.00337) (t_loss: 0.07010) (accu: 0.9832)
+[epoch : 8] (l_loss: 0.00261) (t_loss: 0.08232) (accu: 0.9812)
+[epoch : 9] (l_loss: 0.00155) (t_loss: 0.08189) (accu: 0.9826)
+[epoch : 10] (l_loss: 0.00098) (t_loss: 0.08204) (accu: 0.9835)
+[epoch : 11] (l_loss: 0.00069) (t_loss: 0.08544) (accu: 0.9832)
+[epoch : 12] (l_loss: 0.00295) (t_loss: 0.10600) (accu: 0.9803)
+[epoch : 13] (l_loss: 0.00142) (t_loss: 0.09602) (accu: 0.9822)
+[epoch : 14] (l_loss: 0.00033) (t_loss: 0.09663) (accu: 0.9824)
+[epoch : 15] (l_loss: 0.00017) (t_loss: 0.09784) (accu: 0.9825)
+[epoch : 16] (l_loss: 0.00011) (t_loss: 0.10043) (accu: 0.9826)
+[epoch : 17] (l_loss: 0.00009) (t_loss: 0.10272) (accu: 0.9829)
+[epoch : 18] (l_loss: 0.00007) (t_loss: 0.10525) (accu: 0.9824)
+[epoch : 19] (l_loss: 0.00131) (t_loss: 0.15969) (accu: 0.9762)
+[epoch : 20] (l_loss: 0.00369) (t_loss: 0.12444) (accu: 0.9822)
+Finish! (Best accu: 0.9835) (Time taken(sec) : 222.79) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (9537 | 256663)          3.58
+fc1.weight   :       235200 (8275 | 226925)          3.52
+fc2.weight   :        30000 (1056 | 28944)           3.52
+fcout.weight :          1000 (206 | 794)            20.60
+------------------------------------------------------------
+Learning start! [Prune_iter : (16/21), Remaining weight : 3.58 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.05602) (accu: 0.2527)
+[epoch : 1] (l_loss: 0.25777) (t_loss: 0.09020) (accu: 0.9738)
+[epoch : 2] (l_loss: 0.05279) (t_loss: 0.06448) (accu: 0.9804)
+[epoch : 3] (l_loss: 0.02880) (t_loss: 0.05904) (accu: 0.9820)
+[epoch : 4] (l_loss: 0.01740) (t_loss: 0.06016) (accu: 0.9820)
+[epoch : 5] (l_loss: 0.01112) (t_loss: 0.06340) (accu: 0.9814)
+[epoch : 6] (l_loss: 0.00691) (t_loss: 0.06550) (accu: 0.9829)
+[epoch : 7] (l_loss: 0.00461) (t_loss: 0.07095) (accu: 0.9832)
+[epoch : 8] (l_loss: 0.00275) (t_loss: 0.07879) (accu: 0.9817)
+[epoch : 9] (l_loss: 0.00206) (t_loss: 0.07868) (accu: 0.9832)
+[epoch : 10] (l_loss: 0.00187) (t_loss: 0.08505) (accu: 0.9820)
+[epoch : 11] (l_loss: 0.00139) (t_loss: 0.09218) (accu: 0.9825)
+[epoch : 12] (l_loss: 0.00109) (t_loss: 0.09465) (accu: 0.9824)
+[epoch : 13] (l_loss: 0.00112) (t_loss: 0.10597) (accu: 0.9816)
+[epoch : 14] (l_loss: 0.00062) (t_loss: 0.09978) (accu: 0.9839)
+[epoch : 15] (l_loss: 0.00026) (t_loss: 0.10254) (accu: 0.9829)
+[epoch : 16] (l_loss: 0.00015) (t_loss: 0.10553) (accu: 0.9825)
+[epoch : 17] (l_loss: 0.00011) (t_loss: 0.11023) (accu: 0.9824)
+[epoch : 18] (l_loss: 0.00011) (t_loss: 0.12856) (accu: 0.9794)
+[epoch : 19] (l_loss: 0.00402) (t_loss: 0.11913) (accu: 0.9813)
+[epoch : 20] (l_loss: 0.00026) (t_loss: 0.11787) (accu: 0.9822)
+Finish! (Best accu: 0.9839) (Time taken(sec) : 231.91) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (7649 | 258551)          2.87
+fc1.weight   :       235200 (6620 | 228580)          2.81
+fc2.weight   :        30000 (844 | 29156)            2.81
+fcout.weight :          1000 (185 | 815)            18.50
+------------------------------------------------------------
+Learning start! [Prune_iter : (17/21), Remaining weight : 2.87 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.09566) (accu: 0.3118)
+[epoch : 1] (l_loss: 0.29677) (t_loss: 0.09968) (accu: 0.9715)
+[epoch : 2] (l_loss: 0.06450) (t_loss: 0.06709) (accu: 0.9802)
+[epoch : 3] (l_loss: 0.03701) (t_loss: 0.06105) (accu: 0.9819)
+[epoch : 4] (l_loss: 0.02395) (t_loss: 0.06236) (accu: 0.9818)
+[epoch : 5] (l_loss: 0.01599) (t_loss: 0.06394) (accu: 0.9806)
+[epoch : 6] (l_loss: 0.01102) (t_loss: 0.06559) (accu: 0.9823)
+[epoch : 7] (l_loss: 0.00755) (t_loss: 0.06882) (accu: 0.9826)
+[epoch : 8] (l_loss: 0.00520) (t_loss: 0.07146) (accu: 0.9821)
+[epoch : 9] (l_loss: 0.00371) (t_loss: 0.07281) (accu: 0.9831)
+[epoch : 10] (l_loss: 0.00265) (t_loss: 0.07845) (accu: 0.9825)
+[epoch : 11] (l_loss: 0.00226) (t_loss: 0.08155) (accu: 0.9831)
+[epoch : 12] (l_loss: 0.00148) (t_loss: 0.08537) (accu: 0.9824)
+[epoch : 13] (l_loss: 0.00121) (t_loss: 0.08741) (accu: 0.9829)
+[epoch : 14] (l_loss: 0.00225) (t_loss: 0.09845) (accu: 0.9827)
+[epoch : 15] (l_loss: 0.00085) (t_loss: 0.10136) (accu: 0.9832)
+[epoch : 16] (l_loss: 0.00043) (t_loss: 0.09793) (accu: 0.9839)
+[epoch : 17] (l_loss: 0.00038) (t_loss: 0.10439) (accu: 0.9828)
+[epoch : 18] (l_loss: 0.00234) (t_loss: 0.11108) (accu: 0.9829)
+[epoch : 19] (l_loss: 0.00096) (t_loss: 0.11002) (accu: 0.9834)
+[epoch : 20] (l_loss: 0.00037) (t_loss: 0.10680) (accu: 0.9850)
+Finish! (Best accu: 0.9850) (Time taken(sec) : 234.32) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (6139 | 260061)          2.31
+fc1.weight   :       235200 (5296 | 229904)          2.25
+fc2.weight   :        30000 (676 | 29324)            2.25
+fcout.weight :          1000 (167 | 833)            16.70
+------------------------------------------------------------
+Learning start! [Prune_iter : (18/21), Remaining weight : 2.31 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.15161) (accu: 0.2052)
+[epoch : 1] (l_loss: 0.34942) (t_loss: 0.11415) (accu: 0.9663)
+[epoch : 2] (l_loss: 0.07806) (t_loss: 0.07824) (accu: 0.9759)
+[epoch : 3] (l_loss: 0.04742) (t_loss: 0.07102) (accu: 0.9786)
+[epoch : 4] (l_loss: 0.03250) (t_loss: 0.06438) (accu: 0.9806)
+[epoch : 5] (l_loss: 0.02316) (t_loss: 0.06463) (accu: 0.9814)
+[epoch : 6] (l_loss: 0.01715) (t_loss: 0.06504) (accu: 0.9812)
+[epoch : 7] (l_loss: 0.01272) (t_loss: 0.06577) (accu: 0.9821)
+[epoch : 8] (l_loss: 0.00990) (t_loss: 0.06961) (accu: 0.9819)
+[epoch : 9] (l_loss: 0.00733) (t_loss: 0.07269) (accu: 0.9826)
+[epoch : 10] (l_loss: 0.00582) (t_loss: 0.07424) (accu: 0.9828)
+[epoch : 11] (l_loss: 0.00429) (t_loss: 0.07816) (accu: 0.9826)
+[epoch : 12] (l_loss: 0.00354) (t_loss: 0.08129) (accu: 0.9823)
+[epoch : 13] (l_loss: 0.00247) (t_loss: 0.08331) (accu: 0.9827)
+[epoch : 14] (l_loss: 0.00197) (t_loss: 0.09037) (accu: 0.9819)
+[epoch : 15] (l_loss: 0.00162) (t_loss: 0.09354) (accu: 0.9814)
+[epoch : 16] (l_loss: 0.00164) (t_loss: 0.09630) (accu: 0.9818)
+[epoch : 17] (l_loss: 0.00109) (t_loss: 0.09992) (accu: 0.9814)
+[epoch : 18] (l_loss: 0.00080) (t_loss: 0.09944) (accu: 0.9821)
+[epoch : 19] (l_loss: 0.00111) (t_loss: 0.11182) (accu: 0.9809)
+[epoch : 20] (l_loss: 0.00123) (t_loss: 0.10768) (accu: 0.9805)
+Finish! (Best accu: 0.9828) (Time taken(sec) : 232.73) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (4927 | 261273)          1.85
+fc1.weight   :       235200 (4237 | 230963)          1.80
+fc2.weight   :        30000 (540 | 29460)            1.80
+fcout.weight :          1000 (150 | 850)            15.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (19/21), Remaining weight : 1.85 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.20565) (accu: 0.1937)
+[epoch : 1] (l_loss: 0.40220) (t_loss: 0.12652) (accu: 0.9632)
+[epoch : 2] (l_loss: 0.09185) (t_loss: 0.08724) (accu: 0.9751)
+[epoch : 3] (l_loss: 0.05963) (t_loss: 0.07431) (accu: 0.9781)
+[epoch : 4] (l_loss: 0.04319) (t_loss: 0.07138) (accu: 0.9782)
+[epoch : 5] (l_loss: 0.03289) (t_loss: 0.07087) (accu: 0.9789)
+[epoch : 6] (l_loss: 0.02604) (t_loss: 0.06794) (accu: 0.9804)
+[epoch : 7] (l_loss: 0.02057) (t_loss: 0.06999) (accu: 0.9811)
+[epoch : 8] (l_loss: 0.01627) (t_loss: 0.07092) (accu: 0.9797)
+[epoch : 9] (l_loss: 0.01333) (t_loss: 0.07187) (accu: 0.9819)
+[epoch : 10] (l_loss: 0.01102) (t_loss: 0.07570) (accu: 0.9813)
+[epoch : 11] (l_loss: 0.00922) (t_loss: 0.07789) (accu: 0.9813)
+[epoch : 12] (l_loss: 0.00757) (t_loss: 0.08014) (accu: 0.9809)
+[epoch : 13] (l_loss: 0.00598) (t_loss: 0.08299) (accu: 0.9810)
+[epoch : 14] (l_loss: 0.00517) (t_loss: 0.08577) (accu: 0.9808)
+[epoch : 15] (l_loss: 0.00428) (t_loss: 0.08973) (accu: 0.9814)
+[epoch : 16] (l_loss: 0.00349) (t_loss: 0.09323) (accu: 0.9813)
+[epoch : 17] (l_loss: 0.00308) (t_loss: 0.09968) (accu: 0.9812)
+[epoch : 18] (l_loss: 0.00258) (t_loss: 0.10118) (accu: 0.9810)
+[epoch : 19] (l_loss: 0.00215) (t_loss: 0.10685) (accu: 0.9818)
+[epoch : 20] (l_loss: 0.00178) (t_loss: 0.10776) (accu: 0.9809)
+Finish! (Best accu: 0.9819) (Time taken(sec) : 233.12) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (3957 | 262243)          1.49
+fc1.weight   :       235200 (3390 | 231810)          1.44
+fc2.weight   :        30000 (432 | 29568)            1.44
+fcout.weight :          1000 (135 | 865)            13.50
+------------------------------------------------------------
+Learning start! [Prune_iter : (20/21), Remaining weight : 1.49 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.23866) (accu: 0.1371)
+[epoch : 1] (l_loss: 0.47075) (t_loss: 0.14647) (accu: 0.9577)
+[epoch : 2] (l_loss: 0.10860) (t_loss: 0.10264) (accu: 0.9704)
+[epoch : 3] (l_loss: 0.07298) (t_loss: 0.08832) (accu: 0.9730)
+[epoch : 4] (l_loss: 0.05516) (t_loss: 0.08104) (accu: 0.9744)
+[epoch : 5] (l_loss: 0.04391) (t_loss: 0.07795) (accu: 0.9747)
+[epoch : 6] (l_loss: 0.03596) (t_loss: 0.07602) (accu: 0.9773)
+[epoch : 7] (l_loss: 0.03042) (t_loss: 0.07617) (accu: 0.9775)
+[epoch : 8] (l_loss: 0.02577) (t_loss: 0.07626) (accu: 0.9778)
+[epoch : 9] (l_loss: 0.02260) (t_loss: 0.07780) (accu: 0.9779)
+[epoch : 10] (l_loss: 0.01977) (t_loss: 0.08092) (accu: 0.9781)
+[epoch : 11] (l_loss: 0.01727) (t_loss: 0.08178) (accu: 0.9785)
+[epoch : 12] (l_loss: 0.01539) (t_loss: 0.08280) (accu: 0.9775)
+[epoch : 13] (l_loss: 0.01345) (t_loss: 0.08522) (accu: 0.9780)
+[epoch : 14] (l_loss: 0.01224) (t_loss: 0.08710) (accu: 0.9783)
+[epoch : 15] (l_loss: 0.01111) (t_loss: 0.09254) (accu: 0.9769)
+[epoch : 16] (l_loss: 0.00996) (t_loss: 0.09457) (accu: 0.9776)
+[epoch : 17] (l_loss: 0.00875) (t_loss: 0.09902) (accu: 0.9773)
+[epoch : 18] (l_loss: 0.00823) (t_loss: 0.09947) (accu: 0.9773)
+[epoch : 19] (l_loss: 0.00727) (t_loss: 0.10293) (accu: 0.9780)
+[epoch : 20] (l_loss: 0.00676) (t_loss: 0.10573) (accu: 0.9781)
+Finish! (Best accu: 0.9785) (Time taken(sec) : 237.93) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (3180 | 263020)          1.19
+fc1.weight   :       235200 (2712 | 232488)          1.15
+fc2.weight   :        30000 (346 | 29654)            1.15
+fcout.weight :          1000 (122 | 878)            12.20
+------------------------------------------------------------
+Learning start! [Prune_iter : (21/21), Remaining weight : 1.19 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.27816) (accu: 0.1030)
+[epoch : 1] (l_loss: 0.53981) (t_loss: 0.16435) (accu: 0.9540)
+[epoch : 2] (l_loss: 0.12608) (t_loss: 0.11761) (accu: 0.9657)
+[epoch : 3] (l_loss: 0.08912) (t_loss: 0.09759) (accu: 0.9707)
+[epoch : 4] (l_loss: 0.07028) (t_loss: 0.09108) (accu: 0.9730)
+[epoch : 5] (l_loss: 0.05857) (t_loss: 0.08692) (accu: 0.9748)
+[epoch : 6] (l_loss: 0.05031) (t_loss: 0.08457) (accu: 0.9752)
+[epoch : 7] (l_loss: 0.04423) (t_loss: 0.08484) (accu: 0.9741)
+[epoch : 8] (l_loss: 0.03960) (t_loss: 0.08338) (accu: 0.9759)
+[epoch : 9] (l_loss: 0.03560) (t_loss: 0.08606) (accu: 0.9760)
+[epoch : 10] (l_loss: 0.03247) (t_loss: 0.08635) (accu: 0.9767)
+[epoch : 11] (l_loss: 0.03021) (t_loss: 0.08585) (accu: 0.9775)
+[epoch : 12] (l_loss: 0.02809) (t_loss: 0.08775) (accu: 0.9765)
+[epoch : 13] (l_loss: 0.02591) (t_loss: 0.09135) (accu: 0.9766)
+[epoch : 14] (l_loss: 0.02462) (t_loss: 0.09112) (accu: 0.9776)
+[epoch : 15] (l_loss: 0.02313) (t_loss: 0.09225) (accu: 0.9766)
+[epoch : 16] (l_loss: 0.02158) (t_loss: 0.09560) (accu: 0.9765)
+[epoch : 17] (l_loss: 0.02059) (t_loss: 0.09800) (accu: 0.9760)
+[epoch : 18] (l_loss: 0.01965) (t_loss: 0.09973) (accu: 0.9766)
+[epoch : 19] (l_loss: 0.01863) (t_loss: 0.10120) (accu: 0.9762)
+[epoch : 20] (l_loss: 0.01755) (t_loss: 0.10522) (accu: 0.9759)
+Finish! (Best accu: 0.9776) (Time taken(sec) : 237.61) 
+
+
+Maximum accuracy per weight remaining
+Remaining weight 100.0 %  Epoch 14 Accu 0.9807
+Remaining weight 80.04 %  Epoch 17 Accu 0.9815
+Remaining weight 64.06 %  Epoch 14 Accu 0.9830
+Remaining weight 51.28 %  Epoch 19 Accu 0.9834
+Remaining weight 41.05 %  Epoch 18 Accu 0.9830
+Remaining weight 32.87 %  Epoch 15 Accu 0.9829
+Remaining weight 26.32 %  Epoch 2 Accu 0.9837
+Remaining weight 21.07 %  Epoch 12 Accu 0.9838
+Remaining weight 16.88 %  Epoch 7 Accu 0.9843
+Remaining weight 13.52 %  Epoch 15 Accu 0.9844
+Remaining weight 10.83 %  Epoch 19 Accu 0.9848
+Remaining weight 8.68 %  Epoch 12 Accu 0.9849
+Remaining weight 6.95 %  Epoch 13 Accu 0.9852
+Remaining weight 5.57 %  Epoch 16 Accu 0.9851
+Remaining weight 4.47 %  Epoch 9 Accu 0.9835
+Remaining weight 3.58 %  Epoch 13 Accu 0.9839
+Remaining weight 2.87 %  Epoch 19 Accu 0.9850
+Remaining weight 2.31 %  Epoch 9 Accu 0.9828
+Remaining weight 1.85 %  Epoch 8 Accu 0.9819
+Remaining weight 1.49 %  Epoch 10 Accu 0.9785
+Remaining weight 1.19 %  Epoch 13 Accu 0.9776
+===================================================================== 
+
+Test_Iter (2/3)
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :        266200 (266200 | 0)          100.00
+fc1.weight   :        235200 (235200 | 0)          100.00
+fc2.weight   :         30000 (30000 | 0)           100.00
+fcout.weight :          1000 (1000 | 0)            100.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (1/21), Remaining weight : 100.0 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 3.75352) (accu: 0.1086)
+[epoch : 1] (l_loss: 0.21110) (t_loss: 0.12612) (accu: 0.9615)
+[epoch : 2] (l_loss: 0.09410) (t_loss: 0.10213) (accu: 0.9677)
+[epoch : 3] (l_loss: 0.06578) (t_loss: 0.10006) (accu: 0.9723)
+[epoch : 4] (l_loss: 0.05003) (t_loss: 0.11377) (accu: 0.9679)
+[epoch : 5] (l_loss: 0.04288) (t_loss: 0.07637) (accu: 0.9786)
+[epoch : 6] (l_loss: 0.03847) (t_loss: 0.08755) (accu: 0.9752)
+[epoch : 7] (l_loss: 0.03224) (t_loss: 0.08808) (accu: 0.9762)
+[epoch : 8] (l_loss: 0.02766) (t_loss: 0.08327) (accu: 0.9790)
+[epoch : 9] (l_loss: 0.02673) (t_loss: 0.09256) (accu: 0.9777)
+[epoch : 10] (l_loss: 0.02212) (t_loss: 0.09220) (accu: 0.9794)
+[epoch : 11] (l_loss: 0.02241) (t_loss: 0.09811) (accu: 0.9801)
+[epoch : 12] (l_loss: 0.02355) (t_loss: 0.11448) (accu: 0.9746)
+[epoch : 13] (l_loss: 0.01698) (t_loss: 0.11460) (accu: 0.9755)
+[epoch : 14] (l_loss: 0.02129) (t_loss: 0.12967) (accu: 0.9725)
+[epoch : 15] (l_loss: 0.01761) (t_loss: 0.11975) (accu: 0.9770)
+[epoch : 16] (l_loss: 0.01682) (t_loss: 0.10882) (accu: 0.9779)
+[epoch : 17] (l_loss: 0.01282) (t_loss: 0.12917) (accu: 0.9765)
+[epoch : 18] (l_loss: 0.01808) (t_loss: 0.13893) (accu: 0.9765)
+[epoch : 19] (l_loss: 0.01746) (t_loss: 0.11282) (accu: 0.9801)
+[epoch : 20] (l_loss: 0.01495) (t_loss: 0.14324) (accu: 0.9780)
+Finish! (Best accu: 0.9801) (Time taken(sec) : 204.71) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (213060 | 53140)         80.04
+fc1.weight   :      235200 (188160 | 47040)         80.00
+fc2.weight   :        30000 (24000 | 6000)          80.00
+fcout.weight :          1000 (900 | 100)            90.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (2/21), Remaining weight : 80.04 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.50744) (accu: 0.1656)
+[epoch : 1] (l_loss: 0.18180) (t_loss: 0.11627) (accu: 0.9616)
+[epoch : 2] (l_loss: 0.07865) (t_loss: 0.08782) (accu: 0.9709)
+[epoch : 3] (l_loss: 0.05558) (t_loss: 0.09924) (accu: 0.9713)
+[epoch : 4] (l_loss: 0.04305) (t_loss: 0.07434) (accu: 0.9780)
+[epoch : 5] (l_loss: 0.03363) (t_loss: 0.07688) (accu: 0.9786)
+[epoch : 6] (l_loss: 0.03122) (t_loss: 0.09169) (accu: 0.9783)
+[epoch : 7] (l_loss: 0.02703) (t_loss: 0.09491) (accu: 0.9774)
+[epoch : 8] (l_loss: 0.02272) (t_loss: 0.09134) (accu: 0.9796)
+[epoch : 9] (l_loss: 0.02220) (t_loss: 0.09160) (accu: 0.9793)
+[epoch : 10] (l_loss: 0.01836) (t_loss: 0.09808) (accu: 0.9774)
+[epoch : 11] (l_loss: 0.01904) (t_loss: 0.10286) (accu: 0.9771)
+[epoch : 12] (l_loss: 0.01738) (t_loss: 0.11890) (accu: 0.9764)
+[epoch : 13] (l_loss: 0.01656) (t_loss: 0.10184) (accu: 0.9791)
+[epoch : 14] (l_loss: 0.01026) (t_loss: 0.11336) (accu: 0.9773)
+[epoch : 15] (l_loss: 0.01995) (t_loss: 0.12786) (accu: 0.9770)
+[epoch : 16] (l_loss: 0.01290) (t_loss: 0.09578) (accu: 0.9815)
+[epoch : 17] (l_loss: 0.01276) (t_loss: 0.10815) (accu: 0.9808)
+[epoch : 18] (l_loss: 0.01500) (t_loss: 0.12482) (accu: 0.9800)
+[epoch : 19] (l_loss: 0.01401) (t_loss: 0.13623) (accu: 0.9780)
+[epoch : 20] (l_loss: 0.01146) (t_loss: 0.15054) (accu: 0.9766)
+Finish! (Best accu: 0.9815) (Time taken(sec) : 205.68) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (170538 | 95662)         64.06
+fc1.weight   :      235200 (150528 | 84672)         64.00
+fc2.weight   :       30000 (19200 | 10800)          64.00
+fcout.weight :          1000 (810 | 190)            81.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (3/21), Remaining weight : 64.06 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.25519) (accu: 0.1921)
+[epoch : 1] (l_loss: 0.16281) (t_loss: 0.11094) (accu: 0.9653)
+[epoch : 2] (l_loss: 0.06549) (t_loss: 0.08314) (accu: 0.9743)
+[epoch : 3] (l_loss: 0.04433) (t_loss: 0.07380) (accu: 0.9776)
+[epoch : 4] (l_loss: 0.03158) (t_loss: 0.09482) (accu: 0.9744)
+[epoch : 5] (l_loss: 0.03038) (t_loss: 0.07850) (accu: 0.9785)
+[epoch : 6] (l_loss: 0.02418) (t_loss: 0.07807) (accu: 0.9801)
+[epoch : 7] (l_loss: 0.02166) (t_loss: 0.08166) (accu: 0.9806)
+[epoch : 8] (l_loss: 0.01955) (t_loss: 0.08386) (accu: 0.9803)
+[epoch : 9] (l_loss: 0.01519) (t_loss: 0.12438) (accu: 0.9712)
+[epoch : 10] (l_loss: 0.01688) (t_loss: 0.10009) (accu: 0.9787)
+[epoch : 11] (l_loss: 0.01421) (t_loss: 0.11479) (accu: 0.9788)
+[epoch : 12] (l_loss: 0.01164) (t_loss: 0.12066) (accu: 0.9769)
+[epoch : 13] (l_loss: 0.01578) (t_loss: 0.12468) (accu: 0.9769)
+[epoch : 14] (l_loss: 0.01028) (t_loss: 0.11835) (accu: 0.9768)
+[epoch : 15] (l_loss: 0.01172) (t_loss: 0.11817) (accu: 0.9772)
+[epoch : 16] (l_loss: 0.01271) (t_loss: 0.12758) (accu: 0.9765)
+[epoch : 17] (l_loss: 0.01206) (t_loss: 0.10972) (accu: 0.9805)
+[epoch : 18] (l_loss: 0.01104) (t_loss: 0.11176) (accu: 0.9802)
+[epoch : 19] (l_loss: 0.00897) (t_loss: 0.12635) (accu: 0.9799)
+[epoch : 20] (l_loss: 0.00863) (t_loss: 0.14079) (accu: 0.9786)
+Finish! (Best accu: 0.9806) (Time taken(sec) : 210.11) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (136511 | 129689)        51.28
+fc1.weight   :      235200 (120422 | 114778)        51.20
+fc2.weight   :       30000 (15360 | 14640)          51.20
+fcout.weight :          1000 (729 | 271)            72.90
+------------------------------------------------------------
+Learning start! [Prune_iter : (4/21), Remaining weight : 51.28 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.18003) (accu: 0.2188)
+[epoch : 1] (l_loss: 0.14694) (t_loss: 0.09066) (accu: 0.9717)
+[epoch : 2] (l_loss: 0.05185) (t_loss: 0.08431) (accu: 0.9743)
+[epoch : 3] (l_loss: 0.03385) (t_loss: 0.07690) (accu: 0.9779)
+[epoch : 4] (l_loss: 0.02397) (t_loss: 0.08520) (accu: 0.9755)
+[epoch : 5] (l_loss: 0.02005) (t_loss: 0.09192) (accu: 0.9763)
+[epoch : 6] (l_loss: 0.01833) (t_loss: 0.08217) (accu: 0.9796)
+[epoch : 7] (l_loss: 0.01451) (t_loss: 0.08226) (accu: 0.9791)
+[epoch : 8] (l_loss: 0.01838) (t_loss: 0.09738) (accu: 0.9782)
+[epoch : 9] (l_loss: 0.01164) (t_loss: 0.10225) (accu: 0.9780)
+[epoch : 10] (l_loss: 0.01136) (t_loss: 0.09913) (accu: 0.9792)
+[epoch : 11] (l_loss: 0.01252) (t_loss: 0.11033) (accu: 0.9797)
+[epoch : 12] (l_loss: 0.00968) (t_loss: 0.11536) (accu: 0.9784)
+[epoch : 13] (l_loss: 0.01031) (t_loss: 0.09544) (accu: 0.9823)
+[epoch : 14] (l_loss: 0.01106) (t_loss: 0.14545) (accu: 0.9765)
+[epoch : 15] (l_loss: 0.01110) (t_loss: 0.09822) (accu: 0.9816)
+[epoch : 16] (l_loss: 0.00840) (t_loss: 0.09929) (accu: 0.9829)
+[epoch : 17] (l_loss: 0.01028) (t_loss: 0.12568) (accu: 0.9800)
+[epoch : 18] (l_loss: 0.00597) (t_loss: 0.13534) (accu: 0.9799)
+[epoch : 19] (l_loss: 0.00956) (t_loss: 0.13228) (accu: 0.9805)
+[epoch : 20] (l_loss: 0.00760) (t_loss: 0.12611) (accu: 0.9788)
+Finish! (Best accu: 0.9829) (Time taken(sec) : 211.22) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (109282 | 156918)        41.05
+fc1.weight   :      235200 (96338 | 138862)         40.96
+fc2.weight   :       30000 (12288 | 17712)          40.96
+fcout.weight :          1000 (656 | 344)            65.60
+------------------------------------------------------------
+Learning start! [Prune_iter : (5/21), Remaining weight : 41.05 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.05119) (accu: 0.2758)
+[epoch : 1] (l_loss: 0.13189) (t_loss: 0.07784) (accu: 0.9746)
+[epoch : 2] (l_loss: 0.04470) (t_loss: 0.07520) (accu: 0.9756)
+[epoch : 3] (l_loss: 0.02690) (t_loss: 0.07365) (accu: 0.9777)
+[epoch : 4] (l_loss: 0.02022) (t_loss: 0.07757) (accu: 0.9781)
+[epoch : 5] (l_loss: 0.01411) (t_loss: 0.07813) (accu: 0.9785)
+[epoch : 6] (l_loss: 0.01396) (t_loss: 0.07498) (accu: 0.9821)
+[epoch : 7] (l_loss: 0.01508) (t_loss: 0.08897) (accu: 0.9794)
+[epoch : 8] (l_loss: 0.00828) (t_loss: 0.09546) (accu: 0.9788)
+[epoch : 9] (l_loss: 0.01099) (t_loss: 0.10063) (accu: 0.9790)
+[epoch : 10] (l_loss: 0.01074) (t_loss: 0.08322) (accu: 0.9829)
+[epoch : 11] (l_loss: 0.00858) (t_loss: 0.10696) (accu: 0.9785)
+[epoch : 12] (l_loss: 0.00988) (t_loss: 0.10661) (accu: 0.9802)
+[epoch : 13] (l_loss: 0.00855) (t_loss: 0.10094) (accu: 0.9815)
+[epoch : 14] (l_loss: 0.00618) (t_loss: 0.11426) (accu: 0.9795)
+[epoch : 15] (l_loss: 0.00764) (t_loss: 0.10916) (accu: 0.9825)
+[epoch : 16] (l_loss: 0.00610) (t_loss: 0.13804) (accu: 0.9786)
+[epoch : 17] (l_loss: 0.00888) (t_loss: 0.14274) (accu: 0.9765)
+[epoch : 18] (l_loss: 0.00875) (t_loss: 0.11824) (accu: 0.9808)
+[epoch : 19] (l_loss: 0.00516) (t_loss: 0.12352) (accu: 0.9816)
+[epoch : 20] (l_loss: 0.00748) (t_loss: 0.13515) (accu: 0.9817)
+Finish! (Best accu: 0.9829) (Time taken(sec) : 211.41) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (87490 | 178710)         32.87
+fc1.weight   :      235200 (77070 | 158130)         32.77
+fc2.weight   :        30000 (9830 | 20170)          32.77
+fcout.weight :          1000 (590 | 410)            59.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (6/21), Remaining weight : 32.87 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.91810) (accu: 0.2990)
+[epoch : 1] (l_loss: 0.11815) (t_loss: 0.07005) (accu: 0.9777)
+[epoch : 2] (l_loss: 0.03403) (t_loss: 0.06571) (accu: 0.9793)
+[epoch : 3] (l_loss: 0.01866) (t_loss: 0.06780) (accu: 0.9787)
+[epoch : 4] (l_loss: 0.01452) (t_loss: 0.08452) (accu: 0.9780)
+[epoch : 5] (l_loss: 0.01160) (t_loss: 0.08789) (accu: 0.9769)
+[epoch : 6] (l_loss: 0.01158) (t_loss: 0.07157) (accu: 0.9830)
+[epoch : 7] (l_loss: 0.00988) (t_loss: 0.08502) (accu: 0.9806)
+[epoch : 8] (l_loss: 0.00757) (t_loss: 0.09033) (accu: 0.9795)
+[epoch : 9] (l_loss: 0.00844) (t_loss: 0.08593) (accu: 0.9808)
+[epoch : 10] (l_loss: 0.00628) (t_loss: 0.09209) (accu: 0.9811)
+[epoch : 11] (l_loss: 0.00794) (t_loss: 0.10143) (accu: 0.9813)
+[epoch : 12] (l_loss: 0.00713) (t_loss: 0.09730) (accu: 0.9828)
+[epoch : 13] (l_loss: 0.00488) (t_loss: 0.10400) (accu: 0.9818)
+[epoch : 14] (l_loss: 0.00642) (t_loss: 0.09986) (accu: 0.9823)
+[epoch : 15] (l_loss: 0.00641) (t_loss: 0.12854) (accu: 0.9788)
+[epoch : 16] (l_loss: 0.00731) (t_loss: 0.12318) (accu: 0.9799)
+[epoch : 17] (l_loss: 0.00447) (t_loss: 0.10794) (accu: 0.9833)
+[epoch : 18] (l_loss: 0.00588) (t_loss: 0.12935) (accu: 0.9809)
+[epoch : 19] (l_loss: 0.00289) (t_loss: 0.10336) (accu: 0.9839)
+[epoch : 20] (l_loss: 0.00539) (t_loss: 0.12230) (accu: 0.9833)
+Finish! (Best accu: 0.9839) (Time taken(sec) : 214.91) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (70051 | 196149)         26.32
+fc1.weight   :      235200 (61656 | 173544)         26.21
+fc2.weight   :        30000 (7864 | 22136)          26.21
+fcout.weight :          1000 (531 | 469)            53.10
+------------------------------------------------------------
+Learning start! [Prune_iter : (7/21), Remaining weight : 26.32 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.82891) (accu: 0.3517)
+[epoch : 1] (l_loss: 0.11149) (t_loss: 0.06498) (accu: 0.9792)
+[epoch : 2] (l_loss: 0.02931) (t_loss: 0.05784) (accu: 0.9806)
+[epoch : 3] (l_loss: 0.01649) (t_loss: 0.07833) (accu: 0.9766)
+[epoch : 4] (l_loss: 0.01117) (t_loss: 0.07269) (accu: 0.9793)
+[epoch : 5] (l_loss: 0.00824) (t_loss: 0.07531) (accu: 0.9797)
+[epoch : 6] (l_loss: 0.00917) (t_loss: 0.07150) (accu: 0.9807)
+[epoch : 7] (l_loss: 0.00709) (t_loss: 0.09787) (accu: 0.9778)
+[epoch : 8] (l_loss: 0.00727) (t_loss: 0.08507) (accu: 0.9808)
+[epoch : 9] (l_loss: 0.00444) (t_loss: 0.08260) (accu: 0.9814)
+[epoch : 10] (l_loss: 0.00470) (t_loss: 0.10474) (accu: 0.9786)
+[epoch : 11] (l_loss: 0.00784) (t_loss: 0.10387) (accu: 0.9812)
+[epoch : 12] (l_loss: 0.00531) (t_loss: 0.12642) (accu: 0.9771)
+[epoch : 13] (l_loss: 0.00431) (t_loss: 0.10237) (accu: 0.9818)
+[epoch : 14] (l_loss: 0.00353) (t_loss: 0.12377) (accu: 0.9785)
+[epoch : 15] (l_loss: 0.00596) (t_loss: 0.10834) (accu: 0.9827)
+[epoch : 16] (l_loss: 0.00435) (t_loss: 0.11655) (accu: 0.9817)
+[epoch : 17] (l_loss: 0.00261) (t_loss: 0.10043) (accu: 0.9840)
+[epoch : 18] (l_loss: 0.00621) (t_loss: 0.12904) (accu: 0.9799)
+[epoch : 19] (l_loss: 0.00312) (t_loss: 0.11888) (accu: 0.9828)
+[epoch : 20] (l_loss: 0.00311) (t_loss: 0.11339) (accu: 0.9823)
+Finish! (Best accu: 0.9840) (Time taken(sec) : 218.86) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (56094 | 210106)         21.07
+fc1.weight   :      235200 (49325 | 185875)         20.97
+fc2.weight   :        30000 (6291 | 23709)          20.97
+fcout.weight :          1000 (478 | 522)            47.80
+------------------------------------------------------------
+Learning start! [Prune_iter : (8/21), Remaining weight : 21.07 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.77663) (accu: 0.3932)
+[epoch : 1] (l_loss: 0.10941) (t_loss: 0.06053) (accu: 0.9806)
+[epoch : 2] (l_loss: 0.02597) (t_loss: 0.05519) (accu: 0.9824)
+[epoch : 3] (l_loss: 0.01234) (t_loss: 0.05581) (accu: 0.9824)
+[epoch : 4] (l_loss: 0.00862) (t_loss: 0.06236) (accu: 0.9823)
+[epoch : 5] (l_loss: 0.00736) (t_loss: 0.06381) (accu: 0.9823)
+[epoch : 6] (l_loss: 0.00575) (t_loss: 0.07093) (accu: 0.9821)
+[epoch : 7] (l_loss: 0.00619) (t_loss: 0.07585) (accu: 0.9810)
+[epoch : 8] (l_loss: 0.00541) (t_loss: 0.07443) (accu: 0.9832)
+[epoch : 9] (l_loss: 0.00369) (t_loss: 0.07969) (accu: 0.9832)
+[epoch : 10] (l_loss: 0.00551) (t_loss: 0.08533) (accu: 0.9810)
+[epoch : 11] (l_loss: 0.00311) (t_loss: 0.09437) (accu: 0.9809)
+[epoch : 12] (l_loss: 0.00239) (t_loss: 0.09271) (accu: 0.9826)
+[epoch : 13] (l_loss: 0.00620) (t_loss: 0.09508) (accu: 0.9821)
+[epoch : 14] (l_loss: 0.00429) (t_loss: 0.08866) (accu: 0.9834)
+[epoch : 15] (l_loss: 0.00132) (t_loss: 0.08999) (accu: 0.9835)
+[epoch : 16] (l_loss: 0.00549) (t_loss: 0.12368) (accu: 0.9792)
+[epoch : 17] (l_loss: 0.00415) (t_loss: 0.10048) (accu: 0.9832)
+[epoch : 18] (l_loss: 0.00111) (t_loss: 0.10455) (accu: 0.9842)
+[epoch : 19] (l_loss: 0.00020) (t_loss: 0.09321) (accu: 0.9839)
+[epoch : 20] (l_loss: 0.00003) (t_loss: 0.09189) (accu: 0.9847)
+Finish! (Best accu: 0.9847) (Time taken(sec) : 218.38) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (44923 | 221277)         16.88
+fc1.weight   :      235200 (39460 | 195740)         16.78
+fc2.weight   :        30000 (5033 | 24967)          16.78
+fcout.weight :          1000 (430 | 570)            43.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (9/21), Remaining weight : 16.88 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.72715) (accu: 0.4209)
+[epoch : 1] (l_loss: 0.11152) (t_loss: 0.06404) (accu: 0.9797)
+[epoch : 2] (l_loss: 0.02463) (t_loss: 0.06215) (accu: 0.9799)
+[epoch : 3] (l_loss: 0.01087) (t_loss: 0.06234) (accu: 0.9812)
+[epoch : 4] (l_loss: 0.00693) (t_loss: 0.06484) (accu: 0.9809)
+[epoch : 5] (l_loss: 0.00442) (t_loss: 0.05990) (accu: 0.9854)
+[epoch : 6] (l_loss: 0.00517) (t_loss: 0.06671) (accu: 0.9825)
+[epoch : 7] (l_loss: 0.00501) (t_loss: 0.07121) (accu: 0.9834)
+[epoch : 8] (l_loss: 0.00397) (t_loss: 0.08523) (accu: 0.9813)
+[epoch : 9] (l_loss: 0.00423) (t_loss: 0.08249) (accu: 0.9818)
+[epoch : 10] (l_loss: 0.00300) (t_loss: 0.08717) (accu: 0.9814)
+[epoch : 11] (l_loss: 0.00290) (t_loss: 0.08749) (accu: 0.9827)
+[epoch : 12] (l_loss: 0.00274) (t_loss: 0.08778) (accu: 0.9838)
+[epoch : 13] (l_loss: 0.00347) (t_loss: 0.09244) (accu: 0.9828)
+[epoch : 14] (l_loss: 0.00355) (t_loss: 0.10452) (accu: 0.9809)
+[epoch : 15] (l_loss: 0.00250) (t_loss: 0.09758) (accu: 0.9831)
+[epoch : 16] (l_loss: 0.00077) (t_loss: 0.09550) (accu: 0.9828)
+[epoch : 17] (l_loss: 0.00406) (t_loss: 0.10404) (accu: 0.9827)
+[epoch : 18] (l_loss: 0.00311) (t_loss: 0.10981) (accu: 0.9821)
+[epoch : 19] (l_loss: 0.00243) (t_loss: 0.09860) (accu: 0.9839)
+[epoch : 20] (l_loss: 0.00202) (t_loss: 0.11597) (accu: 0.9820)
+Finish! (Best accu: 0.9854) (Time taken(sec) : 222.87) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (35982 | 230218)         13.52
+fc1.weight   :      235200 (31568 | 203632)         13.42
+fc2.weight   :        30000 (4027 | 25973)          13.42
+fcout.weight :          1000 (387 | 613)            38.70
+------------------------------------------------------------
+Learning start! [Prune_iter : (10/21), Remaining weight : 13.52 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.73044) (accu: 0.3973)
+[epoch : 1] (l_loss: 0.11960) (t_loss: 0.06285) (accu: 0.9784)
+[epoch : 2] (l_loss: 0.02538) (t_loss: 0.05169) (accu: 0.9833)
+[epoch : 3] (l_loss: 0.01179) (t_loss: 0.05491) (accu: 0.9827)
+[epoch : 4] (l_loss: 0.00612) (t_loss: 0.05971) (accu: 0.9834)
+[epoch : 5] (l_loss: 0.00407) (t_loss: 0.06099) (accu: 0.9830)
+[epoch : 6] (l_loss: 0.00450) (t_loss: 0.06800) (accu: 0.9826)
+[epoch : 7] (l_loss: 0.00290) (t_loss: 0.06760) (accu: 0.9836)
+[epoch : 8] (l_loss: 0.00309) (t_loss: 0.08170) (accu: 0.9812)
+[epoch : 9] (l_loss: 0.00495) (t_loss: 0.07562) (accu: 0.9836)
+[epoch : 10] (l_loss: 0.00094) (t_loss: 0.07702) (accu: 0.9846)
+[epoch : 11] (l_loss: 0.00301) (t_loss: 0.10353) (accu: 0.9788)
+[epoch : 12] (l_loss: 0.00341) (t_loss: 0.08198) (accu: 0.9832)
+[epoch : 13] (l_loss: 0.00076) (t_loss: 0.07545) (accu: 0.9850)
+[epoch : 14] (l_loss: 0.00012) (t_loss: 0.07521) (accu: 0.9854)
+[epoch : 15] (l_loss: 0.00005) (t_loss: 0.07699) (accu: 0.9848)
+[epoch : 16] (l_loss: 0.00003) (t_loss: 0.07817) (accu: 0.9847)
+[epoch : 17] (l_loss: 0.00002) (t_loss: 0.07988) (accu: 0.9849)
+[epoch : 18] (l_loss: 0.00002) (t_loss: 0.08081) (accu: 0.9849)
+[epoch : 19] (l_loss: 0.00001) (t_loss: 0.08284) (accu: 0.9852)
+[epoch : 20] (l_loss: 0.00116) (t_loss: 0.13268) (accu: 0.9790)
+Finish! (Best accu: 0.9854) (Time taken(sec) : 219.79) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (28824 | 237376)         10.83
+fc1.weight   :      235200 (25254 | 209946)         10.74
+fc2.weight   :        30000 (3221 | 26779)          10.74
+fcout.weight :          1000 (349 | 651)            34.90
+------------------------------------------------------------
+Learning start! [Prune_iter : (11/21), Remaining weight : 10.83 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.77856) (accu: 0.3252)
+[epoch : 1] (l_loss: 0.13148) (t_loss: 0.06348) (accu: 0.9800)
+[epoch : 2] (l_loss: 0.02850) (t_loss: 0.05395) (accu: 0.9826)
+[epoch : 3] (l_loss: 0.01244) (t_loss: 0.05298) (accu: 0.9852)
+[epoch : 4] (l_loss: 0.00630) (t_loss: 0.05759) (accu: 0.9838)
+[epoch : 5] (l_loss: 0.00397) (t_loss: 0.06232) (accu: 0.9834)
+[epoch : 6] (l_loss: 0.00320) (t_loss: 0.06605) (accu: 0.9835)
+[epoch : 7] (l_loss: 0.00136) (t_loss: 0.07500) (accu: 0.9830)
+[epoch : 8] (l_loss: 0.00644) (t_loss: 0.07417) (accu: 0.9822)
+[epoch : 9] (l_loss: 0.00227) (t_loss: 0.08661) (accu: 0.9821)
+[epoch : 10] (l_loss: 0.00073) (t_loss: 0.07923) (accu: 0.9836)
+[epoch : 11] (l_loss: 0.00018) (t_loss: 0.07667) (accu: 0.9848)
+[epoch : 12] (l_loss: 0.00011) (t_loss: 0.07958) (accu: 0.9855)
+[epoch : 13] (l_loss: 0.00007) (t_loss: 0.08021) (accu: 0.9850)
+[epoch : 14] (l_loss: 0.00006) (t_loss: 0.08418) (accu: 0.9851)
+[epoch : 15] (l_loss: 0.00484) (t_loss: 0.11756) (accu: 0.9784)
+[epoch : 16] (l_loss: 0.00615) (t_loss: 0.08576) (accu: 0.9842)
+[epoch : 17] (l_loss: 0.00052) (t_loss: 0.08445) (accu: 0.9848)
+[epoch : 18] (l_loss: 0.00009) (t_loss: 0.08501) (accu: 0.9856)
+[epoch : 19] (l_loss: 0.00005) (t_loss: 0.08501) (accu: 0.9859)
+[epoch : 20] (l_loss: 0.00004) (t_loss: 0.08568) (accu: 0.9853)
+Finish! (Best accu: 0.9859) (Time taken(sec) : 218.23) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (23095 | 243105)          8.68
+fc1.weight   :      235200 (20204 | 214996)          8.59
+fc2.weight   :        30000 (2577 | 27423)           8.59
+fcout.weight :          1000 (314 | 686)            31.40
+------------------------------------------------------------
+Learning start! [Prune_iter : (12/21), Remaining weight : 8.68 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.83135) (accu: 0.3573)
+[epoch : 1] (l_loss: 0.14730) (t_loss: 0.06506) (accu: 0.9790)
+[epoch : 2] (l_loss: 0.03007) (t_loss: 0.05355) (accu: 0.9820)
+[epoch : 3] (l_loss: 0.01352) (t_loss: 0.05656) (accu: 0.9834)
+[epoch : 4] (l_loss: 0.00666) (t_loss: 0.06098) (accu: 0.9816)
+[epoch : 5] (l_loss: 0.00416) (t_loss: 0.05996) (accu: 0.9843)
+[epoch : 6] (l_loss: 0.00303) (t_loss: 0.06636) (accu: 0.9833)
+[epoch : 7] (l_loss: 0.00205) (t_loss: 0.07783) (accu: 0.9818)
+[epoch : 8] (l_loss: 0.00285) (t_loss: 0.07713) (accu: 0.9832)
+[epoch : 9] (l_loss: 0.00263) (t_loss: 0.08096) (accu: 0.9835)
+[epoch : 10] (l_loss: 0.00144) (t_loss: 0.07696) (accu: 0.9836)
+[epoch : 11] (l_loss: 0.00116) (t_loss: 0.08177) (accu: 0.9843)
+[epoch : 12] (l_loss: 0.00369) (t_loss: 0.08961) (accu: 0.9836)
+[epoch : 13] (l_loss: 0.00071) (t_loss: 0.08277) (accu: 0.9846)
+[epoch : 14] (l_loss: 0.00018) (t_loss: 0.08389) (accu: 0.9847)
+[epoch : 15] (l_loss: 0.00007) (t_loss: 0.08523) (accu: 0.9846)
+[epoch : 16] (l_loss: 0.00004) (t_loss: 0.08634) (accu: 0.9847)
+[epoch : 17] (l_loss: 0.00003) (t_loss: 0.08947) (accu: 0.9847)
+[epoch : 18] (l_loss: 0.00802) (t_loss: 0.11811) (accu: 0.9817)
+[epoch : 19] (l_loss: 0.00138) (t_loss: 0.09669) (accu: 0.9838)
+[epoch : 20] (l_loss: 0.00026) (t_loss: 0.09905) (accu: 0.9841)
+Finish! (Best accu: 0.9847) (Time taken(sec) : 223.63) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (18507 | 247693)          6.95
+fc1.weight   :      235200 (16163 | 219037)          6.87
+fc2.weight   :        30000 (2062 | 27938)           6.87
+fcout.weight :          1000 (282 | 718)            28.20
+------------------------------------------------------------
+Learning start! [Prune_iter : (13/21), Remaining weight : 6.95 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.89107) (accu: 0.3227)
+[epoch : 1] (l_loss: 0.16327) (t_loss: 0.06677) (accu: 0.9796)
+[epoch : 2] (l_loss: 0.03399) (t_loss: 0.05534) (accu: 0.9831)
+[epoch : 3] (l_loss: 0.01606) (t_loss: 0.05407) (accu: 0.9825)
+[epoch : 4] (l_loss: 0.00864) (t_loss: 0.05783) (accu: 0.9818)
+[epoch : 5] (l_loss: 0.00450) (t_loss: 0.06075) (accu: 0.9827)
+[epoch : 6] (l_loss: 0.00327) (t_loss: 0.06504) (accu: 0.9820)
+[epoch : 7] (l_loss: 0.00231) (t_loss: 0.06806) (accu: 0.9829)
+[epoch : 8] (l_loss: 0.00233) (t_loss: 0.07692) (accu: 0.9820)
+[epoch : 9] (l_loss: 0.00297) (t_loss: 0.09086) (accu: 0.9811)
+[epoch : 10] (l_loss: 0.00190) (t_loss: 0.07618) (accu: 0.9838)
+[epoch : 11] (l_loss: 0.00054) (t_loss: 0.07836) (accu: 0.9840)
+[epoch : 12] (l_loss: 0.00019) (t_loss: 0.08046) (accu: 0.9843)
+[epoch : 13] (l_loss: 0.00011) (t_loss: 0.08243) (accu: 0.9841)
+[epoch : 14] (l_loss: 0.00008) (t_loss: 0.08424) (accu: 0.9837)
+[epoch : 15] (l_loss: 0.00006) (t_loss: 0.08726) (accu: 0.9838)
+[epoch : 16] (l_loss: 0.00872) (t_loss: 0.10454) (accu: 0.9811)
+[epoch : 17] (l_loss: 0.00076) (t_loss: 0.09901) (accu: 0.9828)
+[epoch : 18] (l_loss: 0.00019) (t_loss: 0.09372) (accu: 0.9836)
+[epoch : 19] (l_loss: 0.00007) (t_loss: 0.09501) (accu: 0.9838)
+[epoch : 20] (l_loss: 0.00005) (t_loss: 0.09581) (accu: 0.9836)
+Finish! (Best accu: 0.9843) (Time taken(sec) : 228.09) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (14833 | 251367)          5.57
+fc1.weight   :      235200 (12930 | 222270)          5.50
+fc2.weight   :        30000 (1649 | 28351)           5.50
+fcout.weight :          1000 (254 | 746)            25.40
+------------------------------------------------------------
+Learning start! [Prune_iter : (14/21), Remaining weight : 5.57 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.98031) (accu: 0.2958)
+[epoch : 1] (l_loss: 0.19153) (t_loss: 0.07068) (accu: 0.9790)
+[epoch : 2] (l_loss: 0.03927) (t_loss: 0.05746) (accu: 0.9810)
+[epoch : 3] (l_loss: 0.01957) (t_loss: 0.05446) (accu: 0.9825)
+[epoch : 4] (l_loss: 0.01076) (t_loss: 0.05460) (accu: 0.9825)
+[epoch : 5] (l_loss: 0.00604) (t_loss: 0.06615) (accu: 0.9821)
+[epoch : 6] (l_loss: 0.00366) (t_loss: 0.06362) (accu: 0.9831)
+[epoch : 7] (l_loss: 0.00237) (t_loss: 0.07527) (accu: 0.9821)
+[epoch : 8] (l_loss: 0.00225) (t_loss: 0.08057) (accu: 0.9816)
+[epoch : 9] (l_loss: 0.00177) (t_loss: 0.08000) (accu: 0.9817)
+[epoch : 10] (l_loss: 0.00069) (t_loss: 0.08002) (accu: 0.9833)
+[epoch : 11] (l_loss: 0.00029) (t_loss: 0.08135) (accu: 0.9829)
+[epoch : 12] (l_loss: 0.00018) (t_loss: 0.08606) (accu: 0.9825)
+[epoch : 13] (l_loss: 0.00346) (t_loss: 0.10719) (accu: 0.9798)
+[epoch : 14] (l_loss: 0.00206) (t_loss: 0.09104) (accu: 0.9835)
+[epoch : 15] (l_loss: 0.00044) (t_loss: 0.10257) (accu: 0.9817)
+[epoch : 16] (l_loss: 0.00081) (t_loss: 0.11718) (accu: 0.9807)
+[epoch : 17] (l_loss: 0.00238) (t_loss: 0.10014) (accu: 0.9818)
+[epoch : 18] (l_loss: 0.00021) (t_loss: 0.10172) (accu: 0.9826)
+[epoch : 19] (l_loss: 0.00008) (t_loss: 0.10206) (accu: 0.9830)
+[epoch : 20] (l_loss: 0.00005) (t_loss: 0.10264) (accu: 0.9833)
+Finish! (Best accu: 0.9835) (Time taken(sec) : 231.71) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (11892 | 254308)          4.47
+fc1.weight   :      235200 (10344 | 224856)          4.40
+fc2.weight   :        30000 (1319 | 28681)           4.40
+fcout.weight :          1000 (229 | 771)            22.90
+------------------------------------------------------------
+Learning start! [Prune_iter : (15/21), Remaining weight : 4.47 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.94499) (accu: 0.3549)
+[epoch : 1] (l_loss: 0.22109) (t_loss: 0.08300) (accu: 0.9758)
+[epoch : 2] (l_loss: 0.04614) (t_loss: 0.06047) (accu: 0.9809)
+[epoch : 3] (l_loss: 0.02439) (t_loss: 0.05605) (accu: 0.9816)
+[epoch : 4] (l_loss: 0.01417) (t_loss: 0.05585) (accu: 0.9822)
+[epoch : 5] (l_loss: 0.00865) (t_loss: 0.06174) (accu: 0.9824)
+[epoch : 6] (l_loss: 0.00557) (t_loss: 0.06284) (accu: 0.9829)
+[epoch : 7] (l_loss: 0.00345) (t_loss: 0.07019) (accu: 0.9821)
+[epoch : 8] (l_loss: 0.00233) (t_loss: 0.07154) (accu: 0.9827)
+[epoch : 9] (l_loss: 0.00201) (t_loss: 0.07817) (accu: 0.9826)
+[epoch : 10] (l_loss: 0.00215) (t_loss: 0.08323) (accu: 0.9814)
+[epoch : 11] (l_loss: 0.00130) (t_loss: 0.08928) (accu: 0.9823)
+[epoch : 12] (l_loss: 0.00072) (t_loss: 0.09135) (accu: 0.9817)
+[epoch : 13] (l_loss: 0.00076) (t_loss: 0.09354) (accu: 0.9824)
+[epoch : 14] (l_loss: 0.00308) (t_loss: 0.10500) (accu: 0.9818)
+[epoch : 15] (l_loss: 0.00038) (t_loss: 0.09923) (accu: 0.9829)
+[epoch : 16] (l_loss: 0.00016) (t_loss: 0.10035) (accu: 0.9826)
+[epoch : 17] (l_loss: 0.00011) (t_loss: 0.10118) (accu: 0.9829)
+[epoch : 18] (l_loss: 0.00009) (t_loss: 0.10384) (accu: 0.9825)
+[epoch : 19] (l_loss: 0.00006) (t_loss: 0.10533) (accu: 0.9830)
+[epoch : 20] (l_loss: 0.00008) (t_loss: 0.11242) (accu: 0.9826)
+Finish! (Best accu: 0.9830) (Time taken(sec) : 226.79) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (9537 | 256663)          3.58
+fc1.weight   :       235200 (8275 | 226925)          3.52
+fc2.weight   :        30000 (1056 | 28944)           3.52
+fcout.weight :          1000 (206 | 794)            20.60
+------------------------------------------------------------
+Learning start! [Prune_iter : (16/21), Remaining weight : 3.58 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.07699) (accu: 0.2766)
+[epoch : 1] (l_loss: 0.26145) (t_loss: 0.08857) (accu: 0.9752)
+[epoch : 2] (l_loss: 0.05527) (t_loss: 0.06327) (accu: 0.9795)
+[epoch : 3] (l_loss: 0.03076) (t_loss: 0.05695) (accu: 0.9817)
+[epoch : 4] (l_loss: 0.01893) (t_loss: 0.05817) (accu: 0.9823)
+[epoch : 5] (l_loss: 0.01218) (t_loss: 0.06277) (accu: 0.9821)
+[epoch : 6] (l_loss: 0.00769) (t_loss: 0.06228) (accu: 0.9834)
+[epoch : 7] (l_loss: 0.00509) (t_loss: 0.06729) (accu: 0.9829)
+[epoch : 8] (l_loss: 0.00347) (t_loss: 0.07302) (accu: 0.9818)
+[epoch : 9] (l_loss: 0.00253) (t_loss: 0.07856) (accu: 0.9818)
+[epoch : 10] (l_loss: 0.00189) (t_loss: 0.07825) (accu: 0.9826)
+[epoch : 11] (l_loss: 0.00162) (t_loss: 0.08822) (accu: 0.9808)
+[epoch : 12] (l_loss: 0.00124) (t_loss: 0.09315) (accu: 0.9818)
+[epoch : 13] (l_loss: 0.00160) (t_loss: 0.09638) (accu: 0.9798)
+[epoch : 14] (l_loss: 0.00082) (t_loss: 0.09569) (accu: 0.9822)
+[epoch : 15] (l_loss: 0.00065) (t_loss: 0.09702) (accu: 0.9830)
+[epoch : 16] (l_loss: 0.00144) (t_loss: 0.09762) (accu: 0.9812)
+[epoch : 17] (l_loss: 0.00065) (t_loss: 0.09908) (accu: 0.9825)
+[epoch : 18] (l_loss: 0.00018) (t_loss: 0.10146) (accu: 0.9819)
+[epoch : 19] (l_loss: 0.00011) (t_loss: 0.10311) (accu: 0.9822)
+[epoch : 20] (l_loss: 0.00009) (t_loss: 0.10472) (accu: 0.9818)
+Finish! (Best accu: 0.9834) (Time taken(sec) : 232.11) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (7649 | 258551)          2.87
+fc1.weight   :       235200 (6620 | 228580)          2.81
+fc2.weight   :        30000 (844 | 29156)            2.81
+fcout.weight :          1000 (185 | 815)            18.50
+------------------------------------------------------------
+Learning start! [Prune_iter : (17/21), Remaining weight : 2.87 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.13112) (accu: 0.1912)
+[epoch : 1] (l_loss: 0.30184) (t_loss: 0.09480) (accu: 0.9740)
+[epoch : 2] (l_loss: 0.06519) (t_loss: 0.06826) (accu: 0.9807)
+[epoch : 3] (l_loss: 0.03862) (t_loss: 0.06163) (accu: 0.9819)
+[epoch : 4] (l_loss: 0.02542) (t_loss: 0.05994) (accu: 0.9825)
+[epoch : 5] (l_loss: 0.01739) (t_loss: 0.05869) (accu: 0.9825)
+[epoch : 6] (l_loss: 0.01222) (t_loss: 0.06041) (accu: 0.9828)
+[epoch : 7] (l_loss: 0.00853) (t_loss: 0.06683) (accu: 0.9829)
+[epoch : 8] (l_loss: 0.00598) (t_loss: 0.06863) (accu: 0.9828)
+[epoch : 9] (l_loss: 0.00425) (t_loss: 0.07207) (accu: 0.9822)
+[epoch : 10] (l_loss: 0.00338) (t_loss: 0.07663) (accu: 0.9826)
+[epoch : 11] (l_loss: 0.00233) (t_loss: 0.08034) (accu: 0.9830)
+[epoch : 12] (l_loss: 0.00196) (t_loss: 0.08417) (accu: 0.9813)
+[epoch : 13] (l_loss: 0.00131) (t_loss: 0.09057) (accu: 0.9825)
+[epoch : 14] (l_loss: 0.00138) (t_loss: 0.09353) (accu: 0.9820)
+[epoch : 15] (l_loss: 0.00145) (t_loss: 0.10427) (accu: 0.9807)
+[epoch : 16] (l_loss: 0.00079) (t_loss: 0.10133) (accu: 0.9823)
+[epoch : 17] (l_loss: 0.00101) (t_loss: 0.11391) (accu: 0.9804)
+[epoch : 18] (l_loss: 0.00147) (t_loss: 0.11999) (accu: 0.9805)
+[epoch : 19] (l_loss: 0.00050) (t_loss: 0.11054) (accu: 0.9806)
+[epoch : 20] (l_loss: 0.00020) (t_loss: 0.11113) (accu: 0.9812)
+Finish! (Best accu: 0.9830) (Time taken(sec) : 225.62) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (6139 | 260061)          2.31
+fc1.weight   :       235200 (5296 | 229904)          2.25
+fc2.weight   :        30000 (676 | 29324)            2.25
+fcout.weight :          1000 (167 | 833)            16.70
+------------------------------------------------------------
+Learning start! [Prune_iter : (18/21), Remaining weight : 2.31 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.17723) (accu: 0.2117)
+[epoch : 1] (l_loss: 0.35154) (t_loss: 0.11074) (accu: 0.9695)
+[epoch : 2] (l_loss: 0.07535) (t_loss: 0.07507) (accu: 0.9790)
+[epoch : 3] (l_loss: 0.04608) (t_loss: 0.06404) (accu: 0.9809)
+[epoch : 4] (l_loss: 0.03207) (t_loss: 0.06441) (accu: 0.9812)
+[epoch : 5] (l_loss: 0.02314) (t_loss: 0.06107) (accu: 0.9819)
+[epoch : 6] (l_loss: 0.01667) (t_loss: 0.06531) (accu: 0.9806)
+[epoch : 7] (l_loss: 0.01232) (t_loss: 0.06628) (accu: 0.9820)
+[epoch : 8] (l_loss: 0.00908) (t_loss: 0.07245) (accu: 0.9798)
+[epoch : 9] (l_loss: 0.00703) (t_loss: 0.07300) (accu: 0.9821)
+[epoch : 10] (l_loss: 0.00532) (t_loss: 0.07949) (accu: 0.9806)
+[epoch : 11] (l_loss: 0.00394) (t_loss: 0.08285) (accu: 0.9817)
+[epoch : 12] (l_loss: 0.00317) (t_loss: 0.08439) (accu: 0.9810)
+[epoch : 13] (l_loss: 0.00239) (t_loss: 0.08996) (accu: 0.9800)
+[epoch : 14] (l_loss: 0.00224) (t_loss: 0.09303) (accu: 0.9806)
+[epoch : 15] (l_loss: 0.00182) (t_loss: 0.10076) (accu: 0.9808)
+[epoch : 16] (l_loss: 0.00150) (t_loss: 0.10517) (accu: 0.9809)
+[epoch : 17] (l_loss: 0.00108) (t_loss: 0.11064) (accu: 0.9809)
+[epoch : 18] (l_loss: 0.00094) (t_loss: 0.11126) (accu: 0.9803)
+[epoch : 19] (l_loss: 0.00051) (t_loss: 0.11335) (accu: 0.9812)
+[epoch : 20] (l_loss: 0.00059) (t_loss: 0.12364) (accu: 0.9801)
+Finish! (Best accu: 0.9821) (Time taken(sec) : 228.35) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (4927 | 261273)          1.85
+fc1.weight   :       235200 (4237 | 230963)          1.80
+fc2.weight   :        30000 (540 | 29460)            1.80
+fcout.weight :          1000 (150 | 850)            15.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (19/21), Remaining weight : 1.85 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.24669) (accu: 0.2052)
+[epoch : 1] (l_loss: 0.41315) (t_loss: 0.12561) (accu: 0.9653)
+[epoch : 2] (l_loss: 0.09111) (t_loss: 0.08848) (accu: 0.9747)
+[epoch : 3] (l_loss: 0.05904) (t_loss: 0.07652) (accu: 0.9778)
+[epoch : 4] (l_loss: 0.04299) (t_loss: 0.07336) (accu: 0.9776)
+[epoch : 5] (l_loss: 0.03274) (t_loss: 0.06852) (accu: 0.9791)
+[epoch : 6] (l_loss: 0.02580) (t_loss: 0.06867) (accu: 0.9806)
+[epoch : 7] (l_loss: 0.02052) (t_loss: 0.06982) (accu: 0.9793)
+[epoch : 8] (l_loss: 0.01693) (t_loss: 0.07187) (accu: 0.9796)
+[epoch : 9] (l_loss: 0.01368) (t_loss: 0.07319) (accu: 0.9806)
+[epoch : 10] (l_loss: 0.01155) (t_loss: 0.07722) (accu: 0.9802)
+[epoch : 11] (l_loss: 0.00961) (t_loss: 0.08260) (accu: 0.9784)
+[epoch : 12] (l_loss: 0.00813) (t_loss: 0.08591) (accu: 0.9792)
+[epoch : 13] (l_loss: 0.00684) (t_loss: 0.08837) (accu: 0.9801)
+[epoch : 14] (l_loss: 0.00550) (t_loss: 0.09114) (accu: 0.9786)
+[epoch : 15] (l_loss: 0.00474) (t_loss: 0.09804) (accu: 0.9798)
+[epoch : 16] (l_loss: 0.00404) (t_loss: 0.10199) (accu: 0.9780)
+[epoch : 17] (l_loss: 0.00342) (t_loss: 0.10297) (accu: 0.9797)
+[epoch : 18] (l_loss: 0.00299) (t_loss: 0.11057) (accu: 0.9787)
+[epoch : 19] (l_loss: 0.00256) (t_loss: 0.11024) (accu: 0.9798)
+[epoch : 20] (l_loss: 0.00213) (t_loss: 0.11805) (accu: 0.9797)
+Finish! (Best accu: 0.9806) (Time taken(sec) : 237.05) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (3957 | 262243)          1.49
+fc1.weight   :       235200 (3390 | 231810)          1.44
+fc2.weight   :        30000 (432 | 29568)            1.44
+fcout.weight :          1000 (135 | 865)            13.50
+------------------------------------------------------------
+Learning start! [Prune_iter : (20/21), Remaining weight : 1.49 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.25949) (accu: 0.1444)
+[epoch : 1] (l_loss: 0.46129) (t_loss: 0.14124) (accu: 0.9624)
+[epoch : 2] (l_loss: 0.10301) (t_loss: 0.09587) (accu: 0.9728)
+[epoch : 3] (l_loss: 0.06910) (t_loss: 0.08387) (accu: 0.9743)
+[epoch : 4] (l_loss: 0.05280) (t_loss: 0.08085) (accu: 0.9761)
+[epoch : 5] (l_loss: 0.04264) (t_loss: 0.07567) (accu: 0.9770)
+[epoch : 6] (l_loss: 0.03582) (t_loss: 0.07543) (accu: 0.9774)
+[epoch : 7] (l_loss: 0.03023) (t_loss: 0.07675) (accu: 0.9784)
+[epoch : 8] (l_loss: 0.02609) (t_loss: 0.07805) (accu: 0.9777)
+[epoch : 9] (l_loss: 0.02307) (t_loss: 0.07964) (accu: 0.9777)
+[epoch : 10] (l_loss: 0.02019) (t_loss: 0.08433) (accu: 0.9778)
+[epoch : 11] (l_loss: 0.01781) (t_loss: 0.08646) (accu: 0.9785)
+[epoch : 12] (l_loss: 0.01593) (t_loss: 0.09067) (accu: 0.9771)
+[epoch : 13] (l_loss: 0.01399) (t_loss: 0.08902) (accu: 0.9778)
+[epoch : 14] (l_loss: 0.01277) (t_loss: 0.09370) (accu: 0.9776)
+[epoch : 15] (l_loss: 0.01130) (t_loss: 0.09946) (accu: 0.9755)
+[epoch : 16] (l_loss: 0.01032) (t_loss: 0.10266) (accu: 0.9775)
+[epoch : 17] (l_loss: 0.00946) (t_loss: 0.10530) (accu: 0.9769)
+[epoch : 18] (l_loss: 0.00839) (t_loss: 0.11059) (accu: 0.9762)
+[epoch : 19] (l_loss: 0.00766) (t_loss: 0.11061) (accu: 0.9768)
+[epoch : 20] (l_loss: 0.00703) (t_loss: 0.11447) (accu: 0.9770)
+Finish! (Best accu: 0.9785) (Time taken(sec) : 239.34) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (3180 | 263020)          1.19
+fc1.weight   :       235200 (2712 | 232488)          1.15
+fc2.weight   :        30000 (346 | 29654)            1.15
+fcout.weight :          1000 (122 | 878)            12.20
+------------------------------------------------------------
+Learning start! [Prune_iter : (21/21), Remaining weight : 1.19 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.28961) (accu: 0.1190)
+[epoch : 1] (l_loss: 0.53167) (t_loss: 0.15291) (accu: 0.9590)
+[epoch : 2] (l_loss: 0.11757) (t_loss: 0.10777) (accu: 0.9691)
+[epoch : 3] (l_loss: 0.08191) (t_loss: 0.09402) (accu: 0.9730)
+[epoch : 4] (l_loss: 0.06409) (t_loss: 0.08341) (accu: 0.9763)
+[epoch : 5] (l_loss: 0.05291) (t_loss: 0.07868) (accu: 0.9773)
+[epoch : 6] (l_loss: 0.04519) (t_loss: 0.07929) (accu: 0.9772)
+[epoch : 7] (l_loss: 0.03983) (t_loss: 0.07765) (accu: 0.9765)
+[epoch : 8] (l_loss: 0.03539) (t_loss: 0.07775) (accu: 0.9775)
+[epoch : 9] (l_loss: 0.03192) (t_loss: 0.07757) (accu: 0.9776)
+[epoch : 10] (l_loss: 0.02925) (t_loss: 0.08167) (accu: 0.9773)
+[epoch : 11] (l_loss: 0.02687) (t_loss: 0.08117) (accu: 0.9774)
+[epoch : 12] (l_loss: 0.02510) (t_loss: 0.08220) (accu: 0.9770)
+[epoch : 13] (l_loss: 0.02310) (t_loss: 0.08877) (accu: 0.9767)
+[epoch : 14] (l_loss: 0.02196) (t_loss: 0.08707) (accu: 0.9763)
+[epoch : 15] (l_loss: 0.02088) (t_loss: 0.09116) (accu: 0.9771)
+[epoch : 16] (l_loss: 0.01956) (t_loss: 0.09573) (accu: 0.9763)
+[epoch : 17] (l_loss: 0.01855) (t_loss: 0.09542) (accu: 0.9770)
+[epoch : 18] (l_loss: 0.01770) (t_loss: 0.09644) (accu: 0.9765)
+[epoch : 19] (l_loss: 0.01713) (t_loss: 0.09482) (accu: 0.9767)
+[epoch : 20] (l_loss: 0.01589) (t_loss: 0.09976) (accu: 0.9772)
+Finish! (Best accu: 0.9776) (Time taken(sec) : 246.79) 
+
+
+Maximum accuracy per weight remaining
+Remaining weight 100.0 %  Epoch 18 Accu 0.9801
+Remaining weight 80.04 %  Epoch 15 Accu 0.9815
+Remaining weight 64.06 %  Epoch 6 Accu 0.9806
+Remaining weight 51.28 %  Epoch 15 Accu 0.9829
+Remaining weight 41.05 %  Epoch 9 Accu 0.9829
+Remaining weight 32.87 %  Epoch 18 Accu 0.9839
+Remaining weight 26.32 %  Epoch 16 Accu 0.9840
+Remaining weight 21.07 %  Epoch 19 Accu 0.9847
+Remaining weight 16.88 %  Epoch 4 Accu 0.9854
+Remaining weight 13.52 %  Epoch 13 Accu 0.9854
+Remaining weight 10.83 %  Epoch 18 Accu 0.9859
+Remaining weight 8.68 %  Epoch 16 Accu 0.9847
+Remaining weight 6.95 %  Epoch 11 Accu 0.9843
+Remaining weight 5.57 %  Epoch 13 Accu 0.9835
+Remaining weight 4.47 %  Epoch 18 Accu 0.9830
+Remaining weight 3.58 %  Epoch 5 Accu 0.9834
+Remaining weight 2.87 %  Epoch 10 Accu 0.9830
+Remaining weight 2.31 %  Epoch 8 Accu 0.9821
+Remaining weight 1.85 %  Epoch 8 Accu 0.9806
+Remaining weight 1.49 %  Epoch 10 Accu 0.9785
+Remaining weight 1.19 %  Epoch 8 Accu 0.9776
+===================================================================== 
+
+Test_Iter (3/3)
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :        266200 (266200 | 0)          100.00
+fc1.weight   :        235200 (235200 | 0)          100.00
+fc2.weight   :         30000 (30000 | 0)           100.00
+fcout.weight :          1000 (1000 | 0)            100.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (1/21), Remaining weight : 100.0 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 3.75352) (accu: 0.1086)
+[epoch : 1] (l_loss: 0.21919) (t_loss: 0.12721) (accu: 0.9613)
+[epoch : 2] (l_loss: 0.09530) (t_loss: 0.09144) (accu: 0.9705)
+[epoch : 3] (l_loss: 0.06684) (t_loss: 0.08898) (accu: 0.9736)
+[epoch : 4] (l_loss: 0.05194) (t_loss: 0.08637) (accu: 0.9753)
+[epoch : 5] (l_loss: 0.04342) (t_loss: 0.09284) (accu: 0.9736)
+[epoch : 6] (l_loss: 0.03720) (t_loss: 0.09403) (accu: 0.9745)
+[epoch : 7] (l_loss: 0.03319) (t_loss: 0.09754) (accu: 0.9750)
+[epoch : 8] (l_loss: 0.03153) (t_loss: 0.10455) (accu: 0.9754)
+[epoch : 9] (l_loss: 0.02385) (t_loss: 0.10296) (accu: 0.9777)
+[epoch : 10] (l_loss: 0.02702) (t_loss: 0.10090) (accu: 0.9767)
+[epoch : 11] (l_loss: 0.02234) (t_loss: 0.12123) (accu: 0.9753)
+[epoch : 12] (l_loss: 0.02062) (t_loss: 0.12873) (accu: 0.9754)
+[epoch : 13] (l_loss: 0.02074) (t_loss: 0.11067) (accu: 0.9770)
+[epoch : 14] (l_loss: 0.01792) (t_loss: 0.13137) (accu: 0.9787)
+[epoch : 15] (l_loss: 0.01590) (t_loss: 0.10994) (accu: 0.9792)
+[epoch : 16] (l_loss: 0.01982) (t_loss: 0.11120) (accu: 0.9795)
+[epoch : 17] (l_loss: 0.01080) (t_loss: 0.11251) (accu: 0.9805)
+[epoch : 18] (l_loss: 0.01495) (t_loss: 0.13953) (accu: 0.9759)
+[epoch : 19] (l_loss: 0.01852) (t_loss: 0.14810) (accu: 0.9738)
+[epoch : 20] (l_loss: 0.01084) (t_loss: 0.13971) (accu: 0.9783)
+Finish! (Best accu: 0.9805) (Time taken(sec) : 205.89) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (213060 | 53140)         80.04
+fc1.weight   :      235200 (188160 | 47040)         80.00
+fc2.weight   :        30000 (24000 | 6000)          80.00
+fcout.weight :          1000 (900 | 100)            90.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (2/21), Remaining weight : 80.04 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.35998) (accu: 0.1976)
+[epoch : 1] (l_loss: 0.18309) (t_loss: 0.10142) (accu: 0.9663)
+[epoch : 2] (l_loss: 0.07974) (t_loss: 0.08827) (accu: 0.9706)
+[epoch : 3] (l_loss: 0.05492) (t_loss: 0.08759) (accu: 0.9738)
+[epoch : 4] (l_loss: 0.04229) (t_loss: 0.07823) (accu: 0.9762)
+[epoch : 5] (l_loss: 0.03453) (t_loss: 0.10088) (accu: 0.9738)
+[epoch : 6] (l_loss: 0.02969) (t_loss: 0.08824) (accu: 0.9763)
+[epoch : 7] (l_loss: 0.02709) (t_loss: 0.09135) (accu: 0.9768)
+[epoch : 8] (l_loss: 0.02181) (t_loss: 0.07957) (accu: 0.9817)
+[epoch : 9] (l_loss: 0.01983) (t_loss: 0.08577) (accu: 0.9804)
+[epoch : 10] (l_loss: 0.02138) (t_loss: 0.11991) (accu: 0.9768)
+[epoch : 11] (l_loss: 0.02013) (t_loss: 0.08667) (accu: 0.9822)
+[epoch : 12] (l_loss: 0.01549) (t_loss: 0.10284) (accu: 0.9802)
+[epoch : 13] (l_loss: 0.01723) (t_loss: 0.12819) (accu: 0.9757)
+[epoch : 14] (l_loss: 0.01416) (t_loss: 0.11768) (accu: 0.9791)
+[epoch : 15] (l_loss: 0.01643) (t_loss: 0.12622) (accu: 0.9785)
+[epoch : 16] (l_loss: 0.01308) (t_loss: 0.12227) (accu: 0.9808)
+[epoch : 17] (l_loss: 0.01270) (t_loss: 0.12686) (accu: 0.9772)
+[epoch : 18] (l_loss: 0.01434) (t_loss: 0.15407) (accu: 0.9746)
+[epoch : 19] (l_loss: 0.01383) (t_loss: 0.12709) (accu: 0.9790)
+[epoch : 20] (l_loss: 0.01360) (t_loss: 0.12748) (accu: 0.9803)
+Finish! (Best accu: 0.9822) (Time taken(sec) : 209.23) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (170538 | 95662)         64.06
+fc1.weight   :      235200 (150528 | 84672)         64.00
+fc2.weight   :       30000 (19200 | 10800)          64.00
+fcout.weight :          1000 (810 | 190)            81.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (3/21), Remaining weight : 64.06 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.20244) (accu: 0.2205)
+[epoch : 1] (l_loss: 0.16297) (t_loss: 0.08937) (accu: 0.9721)
+[epoch : 2] (l_loss: 0.06548) (t_loss: 0.07990) (accu: 0.9765)
+[epoch : 3] (l_loss: 0.04441) (t_loss: 0.08237) (accu: 0.9765)
+[epoch : 4] (l_loss: 0.03352) (t_loss: 0.07696) (accu: 0.9780)
+[epoch : 5] (l_loss: 0.02572) (t_loss: 0.08590) (accu: 0.9785)
+[epoch : 6] (l_loss: 0.02306) (t_loss: 0.09123) (accu: 0.9777)
+[epoch : 7] (l_loss: 0.01929) (t_loss: 0.08405) (accu: 0.9786)
+[epoch : 8] (l_loss: 0.01988) (t_loss: 0.10351) (accu: 0.9768)
+[epoch : 9] (l_loss: 0.01752) (t_loss: 0.09918) (accu: 0.9784)
+[epoch : 10] (l_loss: 0.01350) (t_loss: 0.10239) (accu: 0.9780)
+[epoch : 11] (l_loss: 0.01502) (t_loss: 0.10875) (accu: 0.9791)
+[epoch : 12] (l_loss: 0.01629) (t_loss: 0.11167) (accu: 0.9793)
+[epoch : 13] (l_loss: 0.01115) (t_loss: 0.09955) (accu: 0.9815)
+[epoch : 14] (l_loss: 0.01348) (t_loss: 0.10931) (accu: 0.9793)
+[epoch : 15] (l_loss: 0.01035) (t_loss: 0.12378) (accu: 0.9775)
+[epoch : 16] (l_loss: 0.01364) (t_loss: 0.11170) (accu: 0.9819)
+[epoch : 17] (l_loss: 0.01054) (t_loss: 0.11801) (accu: 0.9787)
+[epoch : 18] (l_loss: 0.01019) (t_loss: 0.12805) (accu: 0.9805)
+[epoch : 19] (l_loss: 0.00951) (t_loss: 0.14099) (accu: 0.9760)
+[epoch : 20] (l_loss: 0.01168) (t_loss: 0.12781) (accu: 0.9797)
+Finish! (Best accu: 0.9819) (Time taken(sec) : 210.14) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (136511 | 129689)        51.28
+fc1.weight   :      235200 (120422 | 114778)        51.20
+fc2.weight   :       30000 (15360 | 14640)          51.20
+fcout.weight :          1000 (729 | 271)            72.90
+------------------------------------------------------------
+Learning start! [Prune_iter : (4/21), Remaining weight : 51.28 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.07397) (accu: 0.2209)
+[epoch : 1] (l_loss: 0.14725) (t_loss: 0.07476) (accu: 0.9760)
+[epoch : 2] (l_loss: 0.05373) (t_loss: 0.06733) (accu: 0.9785)
+[epoch : 3] (l_loss: 0.03142) (t_loss: 0.06355) (accu: 0.9803)
+[epoch : 4] (l_loss: 0.02823) (t_loss: 0.07346) (accu: 0.9793)
+[epoch : 5] (l_loss: 0.02013) (t_loss: 0.07402) (accu: 0.9806)
+[epoch : 6] (l_loss: 0.01711) (t_loss: 0.09986) (accu: 0.9782)
+[epoch : 7] (l_loss: 0.01781) (t_loss: 0.07706) (accu: 0.9816)
+[epoch : 8] (l_loss: 0.01398) (t_loss: 0.09182) (accu: 0.9785)
+[epoch : 9] (l_loss: 0.01380) (t_loss: 0.10812) (accu: 0.9771)
+[epoch : 10] (l_loss: 0.01292) (t_loss: 0.09003) (accu: 0.9812)
+[epoch : 11] (l_loss: 0.01041) (t_loss: 0.09127) (accu: 0.9798)
+[epoch : 12] (l_loss: 0.01020) (t_loss: 0.12161) (accu: 0.9782)
+[epoch : 13] (l_loss: 0.01484) (t_loss: 0.11557) (accu: 0.9801)
+[epoch : 14] (l_loss: 0.00830) (t_loss: 0.10430) (accu: 0.9821)
+[epoch : 15] (l_loss: 0.00733) (t_loss: 0.10708) (accu: 0.9809)
+[epoch : 16] (l_loss: 0.00989) (t_loss: 0.13241) (accu: 0.9792)
+[epoch : 17] (l_loss: 0.01111) (t_loss: 0.11719) (accu: 0.9807)
+[epoch : 18] (l_loss: 0.00809) (t_loss: 0.10819) (accu: 0.9835)
+[epoch : 19] (l_loss: 0.00678) (t_loss: 0.13254) (accu: 0.9825)
+[epoch : 20] (l_loss: 0.01029) (t_loss: 0.13302) (accu: 0.9813)
+Finish! (Best accu: 0.9835) (Time taken(sec) : 211.76) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (109282 | 156918)        41.05
+fc1.weight   :      235200 (96338 | 138862)         40.96
+fc2.weight   :       30000 (12288 | 17712)          40.96
+fcout.weight :          1000 (656 | 344)            65.60
+------------------------------------------------------------
+Learning start! [Prune_iter : (5/21), Remaining weight : 41.05 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.02916) (accu: 0.2496)
+[epoch : 1] (l_loss: 0.13192) (t_loss: 0.07100) (accu: 0.9780)
+[epoch : 2] (l_loss: 0.04272) (t_loss: 0.06924) (accu: 0.9788)
+[epoch : 3] (l_loss: 0.02653) (t_loss: 0.07725) (accu: 0.9783)
+[epoch : 4] (l_loss: 0.01967) (t_loss: 0.08272) (accu: 0.9775)
+[epoch : 5] (l_loss: 0.01655) (t_loss: 0.08583) (accu: 0.9770)
+[epoch : 6] (l_loss: 0.01385) (t_loss: 0.07432) (accu: 0.9817)
+[epoch : 7] (l_loss: 0.01215) (t_loss: 0.07987) (accu: 0.9816)
+[epoch : 8] (l_loss: 0.01119) (t_loss: 0.10644) (accu: 0.9756)
+[epoch : 9] (l_loss: 0.00973) (t_loss: 0.09407) (accu: 0.9806)
+[epoch : 10] (l_loss: 0.01024) (t_loss: 0.09982) (accu: 0.9806)
+[epoch : 11] (l_loss: 0.00959) (t_loss: 0.10661) (accu: 0.9797)
+[epoch : 12] (l_loss: 0.00886) (t_loss: 0.11671) (accu: 0.9790)
+[epoch : 13] (l_loss: 0.00828) (t_loss: 0.10709) (accu: 0.9810)
+[epoch : 14] (l_loss: 0.00926) (t_loss: 0.10872) (accu: 0.9804)
+[epoch : 15] (l_loss: 0.00677) (t_loss: 0.11230) (accu: 0.9813)
+[epoch : 16] (l_loss: 0.00952) (t_loss: 0.12743) (accu: 0.9780)
+[epoch : 17] (l_loss: 0.00807) (t_loss: 0.13632) (accu: 0.9807)
+[epoch : 18] (l_loss: 0.00320) (t_loss: 0.11196) (accu: 0.9828)
+[epoch : 19] (l_loss: 0.00817) (t_loss: 0.13222) (accu: 0.9805)
+[epoch : 20] (l_loss: 0.00626) (t_loss: 0.13827) (accu: 0.9805)
+Finish! (Best accu: 0.9828) (Time taken(sec) : 217.88) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (87490 | 178710)         32.87
+fc1.weight   :      235200 (77070 | 158130)         32.77
+fc2.weight   :        30000 (9830 | 20170)          32.77
+fcout.weight :          1000 (590 | 410)            59.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (6/21), Remaining weight : 32.87 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.89860) (accu: 0.3119)
+[epoch : 1] (l_loss: 0.12038) (t_loss: 0.06158) (accu: 0.9797)
+[epoch : 2] (l_loss: 0.03517) (t_loss: 0.06379) (accu: 0.9804)
+[epoch : 3] (l_loss: 0.02026) (t_loss: 0.06651) (accu: 0.9809)
+[epoch : 4] (l_loss: 0.01533) (t_loss: 0.06283) (accu: 0.9823)
+[epoch : 5] (l_loss: 0.01069) (t_loss: 0.08103) (accu: 0.9805)
+[epoch : 6] (l_loss: 0.01036) (t_loss: 0.08200) (accu: 0.9806)
+[epoch : 7] (l_loss: 0.00998) (t_loss: 0.07845) (accu: 0.9833)
+[epoch : 8] (l_loss: 0.00836) (t_loss: 0.10102) (accu: 0.9780)
+[epoch : 9] (l_loss: 0.00899) (t_loss: 0.09229) (accu: 0.9838)
+[epoch : 10] (l_loss: 0.00619) (t_loss: 0.09088) (accu: 0.9806)
+[epoch : 11] (l_loss: 0.00704) (t_loss: 0.10355) (accu: 0.9816)
+[epoch : 12] (l_loss: 0.00815) (t_loss: 0.09981) (accu: 0.9816)
+[epoch : 13] (l_loss: 0.00507) (t_loss: 0.11259) (accu: 0.9804)
+[epoch : 14] (l_loss: 0.00759) (t_loss: 0.11530) (accu: 0.9810)
+[epoch : 15] (l_loss: 0.00554) (t_loss: 0.11439) (accu: 0.9802)
+[epoch : 16] (l_loss: 0.00800) (t_loss: 0.10191) (accu: 0.9831)
+[epoch : 17] (l_loss: 0.00484) (t_loss: 0.11497) (accu: 0.9826)
+[epoch : 18] (l_loss: 0.00424) (t_loss: 0.13242) (accu: 0.9803)
+[epoch : 19] (l_loss: 0.00565) (t_loss: 0.13840) (accu: 0.9799)
+[epoch : 20] (l_loss: 0.00585) (t_loss: 0.13193) (accu: 0.9800)
+Finish! (Best accu: 0.9838) (Time taken(sec) : 219.63) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (70051 | 196149)         26.32
+fc1.weight   :      235200 (61656 | 173544)         26.21
+fc2.weight   :        30000 (7864 | 22136)          26.21
+fcout.weight :          1000 (531 | 469)            53.10
+------------------------------------------------------------
+Learning start! [Prune_iter : (7/21), Remaining weight : 26.32 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.79976) (accu: 0.3807)
+[epoch : 1] (l_loss: 0.11559) (t_loss: 0.06476) (accu: 0.9798)
+[epoch : 2] (l_loss: 0.03078) (t_loss: 0.05739) (accu: 0.9828)
+[epoch : 3] (l_loss: 0.01526) (t_loss: 0.05963) (accu: 0.9830)
+[epoch : 4] (l_loss: 0.01020) (t_loss: 0.07189) (accu: 0.9809)
+[epoch : 5] (l_loss: 0.00970) (t_loss: 0.07706) (accu: 0.9812)
+[epoch : 6] (l_loss: 0.00799) (t_loss: 0.08940) (accu: 0.9766)
+[epoch : 7] (l_loss: 0.00797) (t_loss: 0.08647) (accu: 0.9817)
+[epoch : 8] (l_loss: 0.00701) (t_loss: 0.09613) (accu: 0.9796)
+[epoch : 9] (l_loss: 0.00720) (t_loss: 0.08676) (accu: 0.9822)
+[epoch : 10] (l_loss: 0.00641) (t_loss: 0.09868) (accu: 0.9819)
+[epoch : 11] (l_loss: 0.00431) (t_loss: 0.08738) (accu: 0.9844)
+[epoch : 12] (l_loss: 0.00630) (t_loss: 0.10278) (accu: 0.9804)
+[epoch : 13] (l_loss: 0.00493) (t_loss: 0.10423) (accu: 0.9824)
+[epoch : 14] (l_loss: 0.00476) (t_loss: 0.12141) (accu: 0.9809)
+[epoch : 15] (l_loss: 0.00418) (t_loss: 0.12419) (accu: 0.9796)
+[epoch : 16] (l_loss: 0.00468) (t_loss: 0.12161) (accu: 0.9825)
+[epoch : 17] (l_loss: 0.00539) (t_loss: 0.12947) (accu: 0.9816)
+[epoch : 18] (l_loss: 0.00535) (t_loss: 0.12597) (accu: 0.9820)
+[epoch : 19] (l_loss: 0.00324) (t_loss: 0.11848) (accu: 0.9834)
+[epoch : 20] (l_loss: 0.00215) (t_loss: 0.14758) (accu: 0.9806)
+Finish! (Best accu: 0.9844) (Time taken(sec) : 211.45) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (56094 | 210106)         21.07
+fc1.weight   :      235200 (49325 | 185875)         20.97
+fc2.weight   :        30000 (6291 | 23709)          20.97
+fcout.weight :          1000 (478 | 522)            47.80
+------------------------------------------------------------
+Learning start! [Prune_iter : (8/21), Remaining weight : 21.07 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.74992) (accu: 0.4205)
+[epoch : 1] (l_loss: 0.11246) (t_loss: 0.06353) (accu: 0.9794)
+[epoch : 2] (l_loss: 0.02644) (t_loss: 0.05868) (accu: 0.9824)
+[epoch : 3] (l_loss: 0.01179) (t_loss: 0.05916) (accu: 0.9823)
+[epoch : 4] (l_loss: 0.00966) (t_loss: 0.07385) (accu: 0.9818)
+[epoch : 5] (l_loss: 0.00879) (t_loss: 0.07612) (accu: 0.9805)
+[epoch : 6] (l_loss: 0.00582) (t_loss: 0.07190) (accu: 0.9846)
+[epoch : 7] (l_loss: 0.00372) (t_loss: 0.09019) (accu: 0.9796)
+[epoch : 8] (l_loss: 0.00597) (t_loss: 0.07479) (accu: 0.9829)
+[epoch : 9] (l_loss: 0.00401) (t_loss: 0.08820) (accu: 0.9831)
+[epoch : 10] (l_loss: 0.00487) (t_loss: 0.10048) (accu: 0.9803)
+[epoch : 11] (l_loss: 0.00434) (t_loss: 0.09624) (accu: 0.9829)
+[epoch : 12] (l_loss: 0.00472) (t_loss: 0.10827) (accu: 0.9810)
+[epoch : 13] (l_loss: 0.00491) (t_loss: 0.11257) (accu: 0.9809)
+[epoch : 14] (l_loss: 0.00279) (t_loss: 0.11013) (accu: 0.9824)
+[epoch : 15] (l_loss: 0.00037) (t_loss: 0.10027) (accu: 0.9837)
+[epoch : 16] (l_loss: 0.00008) (t_loss: 0.10145) (accu: 0.9845)
+[epoch : 17] (l_loss: 0.00004) (t_loss: 0.10163) (accu: 0.9849)
+[epoch : 18] (l_loss: 0.00002) (t_loss: 0.10261) (accu: 0.9850)
+[epoch : 19] (l_loss: 0.00001) (t_loss: 0.10377) (accu: 0.9851)
+[epoch : 20] (l_loss: 0.00001) (t_loss: 0.10467) (accu: 0.9853)
+Finish! (Best accu: 0.9853) (Time taken(sec) : 218.75) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (44923 | 221277)         16.88
+fc1.weight   :      235200 (39460 | 195740)         16.78
+fc2.weight   :        30000 (5033 | 24967)          16.78
+fcout.weight :          1000 (430 | 570)            43.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (9/21), Remaining weight : 16.88 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.64405) (accu: 0.4715)
+[epoch : 1] (l_loss: 0.11104) (t_loss: 0.05859) (accu: 0.9821)
+[epoch : 2] (l_loss: 0.02391) (t_loss: 0.05661) (accu: 0.9820)
+[epoch : 3] (l_loss: 0.01159) (t_loss: 0.05811) (accu: 0.9830)
+[epoch : 4] (l_loss: 0.00645) (t_loss: 0.06345) (accu: 0.9827)
+[epoch : 5] (l_loss: 0.00395) (t_loss: 0.06891) (accu: 0.9829)
+[epoch : 6] (l_loss: 0.00617) (t_loss: 0.08519) (accu: 0.9812)
+[epoch : 7] (l_loss: 0.00428) (t_loss: 0.08028) (accu: 0.9823)
+[epoch : 8] (l_loss: 0.00540) (t_loss: 0.09056) (accu: 0.9832)
+[epoch : 9] (l_loss: 0.00406) (t_loss: 0.07472) (accu: 0.9847)
+[epoch : 10] (l_loss: 0.00151) (t_loss: 0.08000) (accu: 0.9850)
+[epoch : 11] (l_loss: 0.00535) (t_loss: 0.09436) (accu: 0.9836)
+[epoch : 12] (l_loss: 0.00375) (t_loss: 0.10169) (accu: 0.9827)
+[epoch : 13] (l_loss: 0.00164) (t_loss: 0.10878) (accu: 0.9824)
+[epoch : 14] (l_loss: 0.00198) (t_loss: 0.10440) (accu: 0.9835)
+[epoch : 15] (l_loss: 0.00476) (t_loss: 0.10494) (accu: 0.9820)
+[epoch : 16] (l_loss: 0.00232) (t_loss: 0.12023) (accu: 0.9812)
+[epoch : 17] (l_loss: 0.00368) (t_loss: 0.11092) (accu: 0.9824)
+[epoch : 18] (l_loss: 0.00142) (t_loss: 0.11838) (accu: 0.9811)
+[epoch : 19] (l_loss: 0.00272) (t_loss: 0.12110) (accu: 0.9820)
+[epoch : 20] (l_loss: 0.00270) (t_loss: 0.11392) (accu: 0.9833)
+Finish! (Best accu: 0.9850) (Time taken(sec) : 221.04) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (35982 | 230218)         13.52
+fc1.weight   :      235200 (31568 | 203632)         13.42
+fc2.weight   :        30000 (4027 | 25973)          13.42
+fcout.weight :          1000 (387 | 613)            38.70
+------------------------------------------------------------
+Learning start! [Prune_iter : (10/21), Remaining weight : 13.52 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.76908) (accu: 0.3477)
+[epoch : 1] (l_loss: 0.11867) (t_loss: 0.06109) (accu: 0.9812)
+[epoch : 2] (l_loss: 0.02542) (t_loss: 0.05738) (accu: 0.9829)
+[epoch : 3] (l_loss: 0.01142) (t_loss: 0.05752) (accu: 0.9834)
+[epoch : 4] (l_loss: 0.00609) (t_loss: 0.05447) (accu: 0.9845)
+[epoch : 5] (l_loss: 0.00452) (t_loss: 0.06286) (accu: 0.9832)
+[epoch : 6] (l_loss: 0.00474) (t_loss: 0.08638) (accu: 0.9789)
+[epoch : 7] (l_loss: 0.00212) (t_loss: 0.07629) (accu: 0.9831)
+[epoch : 8] (l_loss: 0.00332) (t_loss: 0.09618) (accu: 0.9801)
+[epoch : 9] (l_loss: 0.00355) (t_loss: 0.09734) (accu: 0.9810)
+[epoch : 10] (l_loss: 0.00330) (t_loss: 0.08775) (accu: 0.9819)
+[epoch : 11] (l_loss: 0.00191) (t_loss: 0.08533) (accu: 0.9831)
+[epoch : 12] (l_loss: 0.00327) (t_loss: 0.09494) (accu: 0.9836)
+[epoch : 13] (l_loss: 0.00318) (t_loss: 0.09682) (accu: 0.9839)
+[epoch : 14] (l_loss: 0.00212) (t_loss: 0.10377) (accu: 0.9835)
+[epoch : 15] (l_loss: 0.00083) (t_loss: 0.11753) (accu: 0.9818)
+[epoch : 16] (l_loss: 0.00462) (t_loss: 0.10884) (accu: 0.9829)
+[epoch : 17] (l_loss: 0.00057) (t_loss: 0.11846) (accu: 0.9806)
+[epoch : 18] (l_loss: 0.00346) (t_loss: 0.12719) (accu: 0.9813)
+[epoch : 19] (l_loss: 0.00122) (t_loss: 0.13101) (accu: 0.9824)
+[epoch : 20] (l_loss: 0.00261) (t_loss: 0.12971) (accu: 0.9808)
+Finish! (Best accu: 0.9845) (Time taken(sec) : 224.53) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (28824 | 237376)         10.83
+fc1.weight   :      235200 (25254 | 209946)         10.74
+fc2.weight   :        30000 (3221 | 26779)          10.74
+fcout.weight :          1000 (349 | 651)            34.90
+------------------------------------------------------------
+Learning start! [Prune_iter : (11/21), Remaining weight : 10.83 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.79385) (accu: 0.3420)
+[epoch : 1] (l_loss: 0.13055) (t_loss: 0.06089) (accu: 0.9803)
+[epoch : 2] (l_loss: 0.02754) (t_loss: 0.05475) (accu: 0.9815)
+[epoch : 3] (l_loss: 0.01269) (t_loss: 0.05815) (accu: 0.9828)
+[epoch : 4] (l_loss: 0.00638) (t_loss: 0.05827) (accu: 0.9836)
+[epoch : 5] (l_loss: 0.00465) (t_loss: 0.06164) (accu: 0.9836)
+[epoch : 6] (l_loss: 0.00262) (t_loss: 0.06792) (accu: 0.9839)
+[epoch : 7] (l_loss: 0.00434) (t_loss: 0.07740) (accu: 0.9803)
+[epoch : 8] (l_loss: 0.00260) (t_loss: 0.07511) (accu: 0.9826)
+[epoch : 9] (l_loss: 0.00055) (t_loss: 0.08314) (accu: 0.9814)
+[epoch : 10] (l_loss: 0.00414) (t_loss: 0.08763) (accu: 0.9818)
+[epoch : 11] (l_loss: 0.00243) (t_loss: 0.07318) (accu: 0.9842)
+[epoch : 12] (l_loss: 0.00128) (t_loss: 0.07537) (accu: 0.9839)
+[epoch : 13] (l_loss: 0.00069) (t_loss: 0.08408) (accu: 0.9833)
+[epoch : 14] (l_loss: 0.00222) (t_loss: 0.10276) (accu: 0.9816)
+[epoch : 15] (l_loss: 0.00484) (t_loss: 0.09545) (accu: 0.9828)
+[epoch : 16] (l_loss: 0.00080) (t_loss: 0.08931) (accu: 0.9838)
+[epoch : 17] (l_loss: 0.00084) (t_loss: 0.09139) (accu: 0.9852)
+[epoch : 18] (l_loss: 0.00387) (t_loss: 0.11233) (accu: 0.9824)
+[epoch : 19] (l_loss: 0.00215) (t_loss: 0.10716) (accu: 0.9824)
+[epoch : 20] (l_loss: 0.00027) (t_loss: 0.09174) (accu: 0.9846)
+Finish! (Best accu: 0.9852) (Time taken(sec) : 220.67) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (23095 | 243105)          8.68
+fc1.weight   :      235200 (20204 | 214996)          8.59
+fc2.weight   :        30000 (2577 | 27423)           8.59
+fcout.weight :          1000 (314 | 686)            31.40
+------------------------------------------------------------
+Learning start! [Prune_iter : (12/21), Remaining weight : 8.68 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.83185) (accu: 0.3027)
+[epoch : 1] (l_loss: 0.14673) (t_loss: 0.06638) (accu: 0.9799)
+[epoch : 2] (l_loss: 0.03043) (t_loss: 0.05357) (accu: 0.9824)
+[epoch : 3] (l_loss: 0.01405) (t_loss: 0.05092) (accu: 0.9847)
+[epoch : 4] (l_loss: 0.00738) (t_loss: 0.05464) (accu: 0.9837)
+[epoch : 5] (l_loss: 0.00416) (t_loss: 0.05662) (accu: 0.9841)
+[epoch : 6] (l_loss: 0.00278) (t_loss: 0.06264) (accu: 0.9845)
+[epoch : 7] (l_loss: 0.00193) (t_loss: 0.08089) (accu: 0.9807)
+[epoch : 8] (l_loss: 0.00433) (t_loss: 0.07504) (accu: 0.9820)
+[epoch : 9] (l_loss: 0.00083) (t_loss: 0.06903) (accu: 0.9840)
+[epoch : 10] (l_loss: 0.00056) (t_loss: 0.07870) (accu: 0.9826)
+[epoch : 11] (l_loss: 0.00298) (t_loss: 0.09882) (accu: 0.9794)
+[epoch : 12] (l_loss: 0.00305) (t_loss: 0.08683) (accu: 0.9816)
+[epoch : 13] (l_loss: 0.00040) (t_loss: 0.07786) (accu: 0.9841)
+[epoch : 14] (l_loss: 0.00024) (t_loss: 0.08321) (accu: 0.9838)
+[epoch : 15] (l_loss: 0.00379) (t_loss: 0.09197) (accu: 0.9841)
+[epoch : 16] (l_loss: 0.00069) (t_loss: 0.09432) (accu: 0.9835)
+[epoch : 17] (l_loss: 0.00047) (t_loss: 0.09455) (accu: 0.9843)
+[epoch : 18] (l_loss: 0.00006) (t_loss: 0.09347) (accu: 0.9842)
+[epoch : 19] (l_loss: 0.00003) (t_loss: 0.09302) (accu: 0.9838)
+[epoch : 20] (l_loss: 0.00002) (t_loss: 0.09367) (accu: 0.9837)
+Finish! (Best accu: 0.9847) (Time taken(sec) : 220.37) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (18507 | 247693)          6.95
+fc1.weight   :      235200 (16163 | 219037)          6.87
+fc2.weight   :        30000 (2062 | 27938)           6.87
+fcout.weight :          1000 (282 | 718)            28.20
+------------------------------------------------------------
+Learning start! [Prune_iter : (13/21), Remaining weight : 6.95 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.84501) (accu: 0.4013)
+[epoch : 1] (l_loss: 0.16676) (t_loss: 0.06524) (accu: 0.9800)
+[epoch : 2] (l_loss: 0.03347) (t_loss: 0.05357) (accu: 0.9833)
+[epoch : 3] (l_loss: 0.01598) (t_loss: 0.05058) (accu: 0.9848)
+[epoch : 4] (l_loss: 0.00874) (t_loss: 0.05346) (accu: 0.9834)
+[epoch : 5] (l_loss: 0.00437) (t_loss: 0.05749) (accu: 0.9835)
+[epoch : 6] (l_loss: 0.00238) (t_loss: 0.06540) (accu: 0.9832)
+[epoch : 7] (l_loss: 0.00185) (t_loss: 0.06850) (accu: 0.9832)
+[epoch : 8] (l_loss: 0.00430) (t_loss: 0.08136) (accu: 0.9816)
+[epoch : 9] (l_loss: 0.00235) (t_loss: 0.07388) (accu: 0.9836)
+[epoch : 10] (l_loss: 0.00083) (t_loss: 0.07490) (accu: 0.9843)
+[epoch : 11] (l_loss: 0.00076) (t_loss: 0.07575) (accu: 0.9828)
+[epoch : 12] (l_loss: 0.00314) (t_loss: 0.08665) (accu: 0.9837)
+[epoch : 13] (l_loss: 0.00143) (t_loss: 0.08624) (accu: 0.9828)
+[epoch : 14] (l_loss: 0.00031) (t_loss: 0.08050) (accu: 0.9846)
+[epoch : 15] (l_loss: 0.00010) (t_loss: 0.08070) (accu: 0.9844)
+[epoch : 16] (l_loss: 0.00006) (t_loss: 0.08239) (accu: 0.9844)
+[epoch : 17] (l_loss: 0.00005) (t_loss: 0.08396) (accu: 0.9838)
+[epoch : 18] (l_loss: 0.00004) (t_loss: 0.08763) (accu: 0.9836)
+[epoch : 19] (l_loss: 0.00003) (t_loss: 0.08770) (accu: 0.9844)
+[epoch : 20] (l_loss: 0.00002) (t_loss: 0.08948) (accu: 0.9848)
+Finish! (Best accu: 0.9848) (Time taken(sec) : 220.01) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (14833 | 251367)          5.57
+fc1.weight   :      235200 (12930 | 222270)          5.50
+fc2.weight   :        30000 (1649 | 28351)           5.50
+fcout.weight :          1000 (254 | 746)            25.40
+------------------------------------------------------------
+Learning start! [Prune_iter : (14/21), Remaining weight : 5.57 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 1.95759) (accu: 0.2202)
+[epoch : 1] (l_loss: 0.19198) (t_loss: 0.07495) (accu: 0.9768)
+[epoch : 2] (l_loss: 0.03975) (t_loss: 0.05694) (accu: 0.9818)
+[epoch : 3] (l_loss: 0.01908) (t_loss: 0.05379) (accu: 0.9829)
+[epoch : 4] (l_loss: 0.01093) (t_loss: 0.05242) (accu: 0.9839)
+[epoch : 5] (l_loss: 0.00611) (t_loss: 0.06086) (accu: 0.9822)
+[epoch : 6] (l_loss: 0.00369) (t_loss: 0.06246) (accu: 0.9827)
+[epoch : 7] (l_loss: 0.00247) (t_loss: 0.06470) (accu: 0.9829)
+[epoch : 8] (l_loss: 0.00136) (t_loss: 0.07242) (accu: 0.9829)
+[epoch : 9] (l_loss: 0.00084) (t_loss: 0.07554) (accu: 0.9825)
+[epoch : 10] (l_loss: 0.00370) (t_loss: 0.08791) (accu: 0.9818)
+[epoch : 11] (l_loss: 0.00144) (t_loss: 0.08036) (accu: 0.9823)
+[epoch : 12] (l_loss: 0.00030) (t_loss: 0.08176) (accu: 0.9830)
+[epoch : 13] (l_loss: 0.00016) (t_loss: 0.08370) (accu: 0.9836)
+[epoch : 14] (l_loss: 0.00011) (t_loss: 0.08536) (accu: 0.9832)
+[epoch : 15] (l_loss: 0.00009) (t_loss: 0.08929) (accu: 0.9834)
+[epoch : 16] (l_loss: 0.00435) (t_loss: 0.12209) (accu: 0.9790)
+[epoch : 17] (l_loss: 0.00204) (t_loss: 0.10602) (accu: 0.9810)
+[epoch : 18] (l_loss: 0.00031) (t_loss: 0.09617) (accu: 0.9831)
+[epoch : 19] (l_loss: 0.00009) (t_loss: 0.09662) (accu: 0.9831)
+[epoch : 20] (l_loss: 0.00006) (t_loss: 0.09837) (accu: 0.9836)
+Finish! (Best accu: 0.9839) (Time taken(sec) : 216.90) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :      266200 (11892 | 254308)          4.47
+fc1.weight   :      235200 (10344 | 224856)          4.40
+fc2.weight   :        30000 (1319 | 28681)           4.40
+fcout.weight :          1000 (229 | 771)            22.90
+------------------------------------------------------------
+Learning start! [Prune_iter : (15/21), Remaining weight : 4.47 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.13154) (accu: 0.2474)
+[epoch : 1] (l_loss: 0.23224) (t_loss: 0.08386) (accu: 0.9752)
+[epoch : 2] (l_loss: 0.04848) (t_loss: 0.06020) (accu: 0.9807)
+[epoch : 3] (l_loss: 0.02632) (t_loss: 0.05630) (accu: 0.9820)
+[epoch : 4] (l_loss: 0.01540) (t_loss: 0.05796) (accu: 0.9821)
+[epoch : 5] (l_loss: 0.00947) (t_loss: 0.05880) (accu: 0.9822)
+[epoch : 6] (l_loss: 0.00579) (t_loss: 0.06631) (accu: 0.9817)
+[epoch : 7] (l_loss: 0.00366) (t_loss: 0.06624) (accu: 0.9816)
+[epoch : 8] (l_loss: 0.00280) (t_loss: 0.07229) (accu: 0.9819)
+[epoch : 9] (l_loss: 0.00181) (t_loss: 0.07605) (accu: 0.9815)
+[epoch : 10] (l_loss: 0.00160) (t_loss: 0.08679) (accu: 0.9812)
+[epoch : 11] (l_loss: 0.00104) (t_loss: 0.08466) (accu: 0.9817)
+[epoch : 12] (l_loss: 0.00048) (t_loss: 0.08399) (accu: 0.9822)
+[epoch : 13] (l_loss: 0.00267) (t_loss: 0.09669) (accu: 0.9828)
+[epoch : 14] (l_loss: 0.00181) (t_loss: 0.09549) (accu: 0.9820)
+[epoch : 15] (l_loss: 0.00044) (t_loss: 0.09603) (accu: 0.9826)
+[epoch : 16] (l_loss: 0.00017) (t_loss: 0.09624) (accu: 0.9823)
+[epoch : 17] (l_loss: 0.00011) (t_loss: 0.09754) (accu: 0.9824)
+[epoch : 18] (l_loss: 0.00008) (t_loss: 0.09998) (accu: 0.9827)
+[epoch : 19] (l_loss: 0.00007) (t_loss: 0.10291) (accu: 0.9825)
+[epoch : 20] (l_loss: 0.00005) (t_loss: 0.10696) (accu: 0.9822)
+Finish! (Best accu: 0.9828) (Time taken(sec) : 218.15) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (9537 | 256663)          3.58
+fc1.weight   :       235200 (8275 | 226925)          3.52
+fc2.weight   :        30000 (1056 | 28944)           3.52
+fcout.weight :          1000 (206 | 794)            20.60
+------------------------------------------------------------
+Learning start! [Prune_iter : (16/21), Remaining weight : 3.58 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.12981) (accu: 0.2451)
+[epoch : 1] (l_loss: 0.26971) (t_loss: 0.09040) (accu: 0.9734)
+[epoch : 2] (l_loss: 0.05550) (t_loss: 0.06673) (accu: 0.9789)
+[epoch : 3] (l_loss: 0.03103) (t_loss: 0.05968) (accu: 0.9812)
+[epoch : 4] (l_loss: 0.01900) (t_loss: 0.05780) (accu: 0.9824)
+[epoch : 5] (l_loss: 0.01222) (t_loss: 0.05774) (accu: 0.9831)
+[epoch : 6] (l_loss: 0.00790) (t_loss: 0.06423) (accu: 0.9824)
+[epoch : 7] (l_loss: 0.00528) (t_loss: 0.06590) (accu: 0.9831)
+[epoch : 8] (l_loss: 0.00344) (t_loss: 0.06911) (accu: 0.9822)
+[epoch : 9] (l_loss: 0.00245) (t_loss: 0.07563) (accu: 0.9830)
+[epoch : 10] (l_loss: 0.00225) (t_loss: 0.08239) (accu: 0.9808)
+[epoch : 11] (l_loss: 0.00140) (t_loss: 0.09208) (accu: 0.9810)
+[epoch : 12] (l_loss: 0.00157) (t_loss: 0.09007) (accu: 0.9818)
+[epoch : 13] (l_loss: 0.00080) (t_loss: 0.08870) (accu: 0.9836)
+[epoch : 14] (l_loss: 0.00041) (t_loss: 0.09241) (accu: 0.9828)
+[epoch : 15] (l_loss: 0.00024) (t_loss: 0.09460) (accu: 0.9831)
+[epoch : 16] (l_loss: 0.00017) (t_loss: 0.09911) (accu: 0.9823)
+[epoch : 17] (l_loss: 0.00371) (t_loss: 0.12010) (accu: 0.9806)
+[epoch : 18] (l_loss: 0.00070) (t_loss: 0.10664) (accu: 0.9822)
+[epoch : 19] (l_loss: 0.00018) (t_loss: 0.10569) (accu: 0.9837)
+[epoch : 20] (l_loss: 0.00011) (t_loss: 0.10722) (accu: 0.9835)
+Finish! (Best accu: 0.9837) (Time taken(sec) : 217.37) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (7649 | 258551)          2.87
+fc1.weight   :       235200 (6620 | 228580)          2.81
+fc2.weight   :        30000 (844 | 29156)            2.81
+fcout.weight :          1000 (185 | 815)            18.50
+------------------------------------------------------------
+Learning start! [Prune_iter : (17/21), Remaining weight : 2.87 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.19380) (accu: 0.2434)
+[epoch : 1] (l_loss: 0.31502) (t_loss: 0.10099) (accu: 0.9707)
+[epoch : 2] (l_loss: 0.06597) (t_loss: 0.07230) (accu: 0.9784)
+[epoch : 3] (l_loss: 0.03900) (t_loss: 0.06373) (accu: 0.9810)
+[epoch : 4] (l_loss: 0.02587) (t_loss: 0.06382) (accu: 0.9814)
+[epoch : 5] (l_loss: 0.01803) (t_loss: 0.06411) (accu: 0.9811)
+[epoch : 6] (l_loss: 0.01274) (t_loss: 0.06786) (accu: 0.9813)
+[epoch : 7] (l_loss: 0.00933) (t_loss: 0.07167) (accu: 0.9809)
+[epoch : 8] (l_loss: 0.00655) (t_loss: 0.07721) (accu: 0.9799)
+[epoch : 9] (l_loss: 0.00478) (t_loss: 0.08360) (accu: 0.9797)
+[epoch : 10] (l_loss: 0.00398) (t_loss: 0.08601) (accu: 0.9801)
+[epoch : 11] (l_loss: 0.00274) (t_loss: 0.09140) (accu: 0.9801)
+[epoch : 12] (l_loss: 0.00185) (t_loss: 0.09025) (accu: 0.9810)
+[epoch : 13] (l_loss: 0.00240) (t_loss: 0.10249) (accu: 0.9799)
+[epoch : 14] (l_loss: 0.00152) (t_loss: 0.10171) (accu: 0.9806)
+[epoch : 15] (l_loss: 0.00088) (t_loss: 0.10951) (accu: 0.9804)
+[epoch : 16] (l_loss: 0.00179) (t_loss: 0.11134) (accu: 0.9807)
+[epoch : 17] (l_loss: 0.00102) (t_loss: 0.11306) (accu: 0.9810)
+[epoch : 18] (l_loss: 0.00047) (t_loss: 0.11371) (accu: 0.9815)
+[epoch : 19] (l_loss: 0.00036) (t_loss: 0.11946) (accu: 0.9816)
+[epoch : 20] (l_loss: 0.00024) (t_loss: 0.12369) (accu: 0.9811)
+Finish! (Best accu: 0.9816) (Time taken(sec) : 226.11) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (6139 | 260061)          2.31
+fc1.weight   :       235200 (5296 | 229904)          2.25
+fc2.weight   :        30000 (676 | 29324)            2.25
+fcout.weight :          1000 (167 | 833)            16.70
+------------------------------------------------------------
+Learning start! [Prune_iter : (18/21), Remaining weight : 2.31 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.22504) (accu: 0.1433)
+[epoch : 1] (l_loss: 0.36038) (t_loss: 0.11716) (accu: 0.9646)
+[epoch : 2] (l_loss: 0.07671) (t_loss: 0.07776) (accu: 0.9758)
+[epoch : 3] (l_loss: 0.04681) (t_loss: 0.06888) (accu: 0.9782)
+[epoch : 4] (l_loss: 0.03185) (t_loss: 0.06488) (accu: 0.9798)
+[epoch : 5] (l_loss: 0.02286) (t_loss: 0.06424) (accu: 0.9797)
+[epoch : 6] (l_loss: 0.01682) (t_loss: 0.06628) (accu: 0.9800)
+[epoch : 7] (l_loss: 0.01306) (t_loss: 0.06681) (accu: 0.9800)
+[epoch : 8] (l_loss: 0.00942) (t_loss: 0.07336) (accu: 0.9805)
+[epoch : 9] (l_loss: 0.00735) (t_loss: 0.07637) (accu: 0.9791)
+[epoch : 10] (l_loss: 0.00573) (t_loss: 0.07979) (accu: 0.9803)
+[epoch : 11] (l_loss: 0.00432) (t_loss: 0.08611) (accu: 0.9796)
+[epoch : 12] (l_loss: 0.00363) (t_loss: 0.08707) (accu: 0.9797)
+[epoch : 13] (l_loss: 0.00297) (t_loss: 0.09719) (accu: 0.9787)
+[epoch : 14] (l_loss: 0.00213) (t_loss: 0.09865) (accu: 0.9805)
+[epoch : 15] (l_loss: 0.00166) (t_loss: 0.10172) (accu: 0.9808)
+[epoch : 16] (l_loss: 0.00139) (t_loss: 0.10611) (accu: 0.9800)
+[epoch : 17] (l_loss: 0.00215) (t_loss: 0.11551) (accu: 0.9790)
+[epoch : 18] (l_loss: 0.00128) (t_loss: 0.11587) (accu: 0.9787)
+[epoch : 19] (l_loss: 0.00064) (t_loss: 0.11582) (accu: 0.9805)
+[epoch : 20] (l_loss: 0.00056) (t_loss: 0.12182) (accu: 0.9793)
+Finish! (Best accu: 0.9808) (Time taken(sec) : 236.24) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (4927 | 261273)          1.85
+fc1.weight   :       235200 (4237 | 230963)          1.80
+fc2.weight   :        30000 (540 | 29460)            1.80
+fcout.weight :          1000 (150 | 850)            15.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (19/21), Remaining weight : 1.85 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.30841) (accu: 0.1868)
+[epoch : 1] (l_loss: 0.42905) (t_loss: 0.13536) (accu: 0.9607)
+[epoch : 2] (l_loss: 0.09798) (t_loss: 0.09159) (accu: 0.9709)
+[epoch : 3] (l_loss: 0.06334) (t_loss: 0.07712) (accu: 0.9737)
+[epoch : 4] (l_loss: 0.04613) (t_loss: 0.07179) (accu: 0.9769)
+[epoch : 5] (l_loss: 0.03553) (t_loss: 0.06885) (accu: 0.9776)
+[epoch : 6] (l_loss: 0.02825) (t_loss: 0.06922) (accu: 0.9784)
+[epoch : 7] (l_loss: 0.02285) (t_loss: 0.06951) (accu: 0.9785)
+[epoch : 8] (l_loss: 0.01882) (t_loss: 0.07621) (accu: 0.9770)
+[epoch : 9] (l_loss: 0.01553) (t_loss: 0.07604) (accu: 0.9780)
+[epoch : 10] (l_loss: 0.01297) (t_loss: 0.07886) (accu: 0.9784)
+[epoch : 11] (l_loss: 0.01090) (t_loss: 0.08002) (accu: 0.9776)
+[epoch : 12] (l_loss: 0.00912) (t_loss: 0.08838) (accu: 0.9786)
+[epoch : 13] (l_loss: 0.00776) (t_loss: 0.09109) (accu: 0.9772)
+[epoch : 14] (l_loss: 0.00670) (t_loss: 0.09167) (accu: 0.9785)
+[epoch : 15] (l_loss: 0.00554) (t_loss: 0.09647) (accu: 0.9772)
+[epoch : 16] (l_loss: 0.00496) (t_loss: 0.09696) (accu: 0.9782)
+[epoch : 17] (l_loss: 0.00423) (t_loss: 0.10166) (accu: 0.9777)
+[epoch : 18] (l_loss: 0.00362) (t_loss: 0.10720) (accu: 0.9782)
+[epoch : 19] (l_loss: 0.00322) (t_loss: 0.10962) (accu: 0.9781)
+[epoch : 20] (l_loss: 0.00306) (t_loss: 0.11624) (accu: 0.9773)
+Finish! (Best accu: 0.9786) (Time taken(sec) : 239.01) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (3957 | 262243)          1.49
+fc1.weight   :       235200 (3390 | 231810)          1.44
+fc2.weight   :        30000 (432 | 29568)            1.44
+fcout.weight :          1000 (135 | 865)            13.50
+------------------------------------------------------------
+Learning start! [Prune_iter : (20/21), Remaining weight : 1.49 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.29859) (accu: 0.1028)
+[epoch : 1] (l_loss: 0.48872) (t_loss: 0.14960) (accu: 0.9574)
+[epoch : 2] (l_loss: 0.11474) (t_loss: 0.10550) (accu: 0.9677)
+[epoch : 3] (l_loss: 0.07967) (t_loss: 0.08951) (accu: 0.9729)
+[epoch : 4] (l_loss: 0.06185) (t_loss: 0.08254) (accu: 0.9756)
+[epoch : 5] (l_loss: 0.05095) (t_loss: 0.07948) (accu: 0.9758)
+[epoch : 6] (l_loss: 0.04301) (t_loss: 0.07679) (accu: 0.9777)
+[epoch : 7] (l_loss: 0.03676) (t_loss: 0.07769) (accu: 0.9758)
+[epoch : 8] (l_loss: 0.03199) (t_loss: 0.07748) (accu: 0.9768)
+[epoch : 9] (l_loss: 0.02847) (t_loss: 0.07742) (accu: 0.9779)
+[epoch : 10] (l_loss: 0.02481) (t_loss: 0.07877) (accu: 0.9773)
+[epoch : 11] (l_loss: 0.02214) (t_loss: 0.08157) (accu: 0.9784)
+[epoch : 12] (l_loss: 0.01983) (t_loss: 0.08303) (accu: 0.9771)
+[epoch : 13] (l_loss: 0.01796) (t_loss: 0.08646) (accu: 0.9776)
+[epoch : 14] (l_loss: 0.01640) (t_loss: 0.08548) (accu: 0.9778)
+[epoch : 15] (l_loss: 0.01456) (t_loss: 0.09028) (accu: 0.9773)
+[epoch : 16] (l_loss: 0.01357) (t_loss: 0.09203) (accu: 0.9767)
+[epoch : 17] (l_loss: 0.01227) (t_loss: 0.09702) (accu: 0.9767)
+[epoch : 18] (l_loss: 0.01113) (t_loss: 0.09589) (accu: 0.9776)
+[epoch : 19] (l_loss: 0.01050) (t_loss: 0.09991) (accu: 0.9769)
+[epoch : 20] (l_loss: 0.00935) (t_loss: 0.10158) (accu: 0.9770)
+Finish! (Best accu: 0.9784) (Time taken(sec) : 237.91) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :       266200 (3180 | 263020)          1.19
+fc1.weight   :       235200 (2712 | 232488)          1.15
+fc2.weight   :        30000 (346 | 29654)            1.15
+fcout.weight :          1000 (122 | 878)            12.20
+------------------------------------------------------------
+Learning start! [Prune_iter : (21/21), Remaining weight : 1.19 %]
+[epoch : 0] (l_loss: x.xxxxx) (t_loss: 2.28982) (accu: 0.1028)
+[epoch : 1] (l_loss: 0.55468) (t_loss: 0.16909) (accu: 0.9513)
+[epoch : 2] (l_loss: 0.13157) (t_loss: 0.11976) (accu: 0.9639)
+[epoch : 3] (l_loss: 0.09267) (t_loss: 0.10252) (accu: 0.9674)
+[epoch : 4] (l_loss: 0.07284) (t_loss: 0.09434) (accu: 0.9698)
+[epoch : 5] (l_loss: 0.06067) (t_loss: 0.08919) (accu: 0.9725)
+[epoch : 6] (l_loss: 0.05201) (t_loss: 0.08638) (accu: 0.9724)
+[epoch : 7] (l_loss: 0.04561) (t_loss: 0.08327) (accu: 0.9736)
+[epoch : 8] (l_loss: 0.04080) (t_loss: 0.08507) (accu: 0.9741)
+[epoch : 9] (l_loss: 0.03650) (t_loss: 0.08855) (accu: 0.9719)
+[epoch : 10] (l_loss: 0.03352) (t_loss: 0.08702) (accu: 0.9734)
+[epoch : 11] (l_loss: 0.03060) (t_loss: 0.09055) (accu: 0.9733)
+[epoch : 12] (l_loss: 0.02842) (t_loss: 0.08968) (accu: 0.9735)
+[epoch : 13] (l_loss: 0.02630) (t_loss: 0.09399) (accu: 0.9724)
+[epoch : 14] (l_loss: 0.02461) (t_loss: 0.09477) (accu: 0.9725)
+[epoch : 15] (l_loss: 0.02324) (t_loss: 0.09904) (accu: 0.9731)
+[epoch : 16] (l_loss: 0.02187) (t_loss: 0.09934) (accu: 0.9727)
+[epoch : 17] (l_loss: 0.02034) (t_loss: 0.10074) (accu: 0.9735)
+[epoch : 18] (l_loss: 0.01947) (t_loss: 0.10549) (accu: 0.9733)
+[epoch : 19] (l_loss: 0.01829) (t_loss: 0.10831) (accu: 0.9709)
+[epoch : 20] (l_loss: 0.01731) (t_loss: 0.10878) (accu: 0.9736)
+Finish! (Best accu: 0.9741) (Time taken(sec) : 239.81) 
+
+
+Maximum accuracy per weight remaining
+Remaining weight 100.0 %  Epoch 16 Accu 0.9805
+Remaining weight 80.04 %  Epoch 10 Accu 0.9822
+Remaining weight 64.06 %  Epoch 15 Accu 0.9819
+Remaining weight 51.28 %  Epoch 17 Accu 0.9835
+Remaining weight 41.05 %  Epoch 17 Accu 0.9828
+Remaining weight 32.87 %  Epoch 8 Accu 0.9838
+Remaining weight 26.32 %  Epoch 10 Accu 0.9844
+Remaining weight 21.07 %  Epoch 19 Accu 0.9853
+Remaining weight 16.88 %  Epoch 9 Accu 0.9850
+Remaining weight 13.52 %  Epoch 3 Accu 0.9845
+Remaining weight 10.83 %  Epoch 16 Accu 0.9852
+Remaining weight 8.68 %  Epoch 2 Accu 0.9847
+Remaining weight 6.95 %  Epoch 19 Accu 0.9848
+Remaining weight 5.57 %  Epoch 3 Accu 0.9839
+Remaining weight 4.47 %  Epoch 12 Accu 0.9828
+Remaining weight 3.58 %  Epoch 18 Accu 0.9837
+Remaining weight 2.87 %  Epoch 18 Accu 0.9816
+Remaining weight 2.31 %  Epoch 14 Accu 0.9808
+Remaining weight 1.85 %  Epoch 11 Accu 0.9786
+Remaining weight 1.49 %  Epoch 10 Accu 0.9784
+Remaining weight 1.19 %  Epoch 7 Accu 0.9741
+Average test data
+Remaining weight 100.00 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    3.753520   0.1086
+1     0.215805    0.122745   0.9627
+2     0.095436    0.099100   0.9688
+3     0.066098    0.092814   0.9735
+4     0.051725    0.095980   0.9730
+5     0.043001    0.087194   0.9755
+6     0.037510    0.089217   0.9757
+7     0.031834    0.094388   0.9755
+8     0.029243    0.094198   0.9773
+9     0.025197    0.102247   0.9770
+10     0.024121    0.096524   0.9782
+11     0.023216    0.110435   0.9771
+12     0.021841    0.114097   0.9769
+13     0.018576    0.110773   0.9769
+14     0.020114    0.126396   0.9755
+15     0.016839    0.111814   0.9790
+16     0.017678    0.115901   0.9781
+17     0.013734    0.126259   0.9778
+18     0.016083    0.138198   0.9760
+19     0.017671    0.134460   0.9772
+20     0.013037    0.144997   0.9782
+Remaining weight 80.04 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    2.457102   0.1698
+1     0.183455    0.107929   0.9653
+2     0.079505    0.086708   0.9716
+3     0.055348    0.092108   0.9726
+4     0.042506    0.083558   0.9762
+5     0.034205    0.084773   0.9778
+6     0.029735    0.094868   0.9767
+7     0.027049    0.094686   0.9772
+8     0.022995    0.085946   0.9802
+9     0.020663    0.099110   0.9776
+10     0.019770    0.120708   0.9752
+11     0.020275    0.100377   0.9789
+12     0.015390    0.117737   0.9774
+13     0.017076    0.111471   0.9786
+14     0.013310    0.112155   0.9792
+15     0.016822    0.118433   0.9784
+16     0.012742    0.127526   0.9783
+17     0.013634    0.117917   0.9793
+18     0.013161    0.134122   0.9787
+19     0.013764    0.143233   0.9775
+20     0.012661    0.138884   0.9786
+Remaining weight 64.06 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    2.241356   0.2017
+1     0.163674    0.096565   0.9699
+2     0.065842    0.080746   0.9760
+3     0.044530    0.074253   0.9778
+4     0.032939    0.086260   0.9761
+5     0.027610    0.079159   0.9792
+6     0.023324    0.094986   0.9770
+7     0.021323    0.083834   0.9795
+8     0.019027    0.096133   0.9783
+9     0.016532    0.105458   0.9766
+10     0.014611    0.098512   0.9795
+11     0.015536    0.104581   0.9799
+12     0.013726    0.111128   0.9790
+13     0.013472    0.110505   0.9797
+14     0.012503    0.113926   0.9785
+15     0.010821    0.113491   0.9792
+16     0.012736    0.124435   0.9783
+17     0.011873    0.121183   0.9798
+18     0.010791    0.121935   0.9803
+19     0.009005    0.127568   0.9791
+20     0.010074    0.136419   0.9795
+Remaining weight 51.28 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    2.174744   0.2134
+1     0.147673    0.085597   0.9732
+2     0.053837    0.073989   0.9772
+3     0.033742    0.073063   0.9786
+4     0.025635    0.078099   0.9779
+5     0.020712    0.082899   0.9782
+6     0.017875    0.089862   0.9791
+7     0.016517    0.084372   0.9803
+8     0.015098    0.091074   0.9795
+9     0.013950    0.106419   0.9780
+10     0.011537    0.100131   0.9797
+11     0.012263    0.109543   0.9782
+12     0.010147    0.115072   0.9787
+13     0.012683    0.109103   0.9812
+14     0.009030    0.127418   0.9791
+15     0.009869    0.106294   0.9808
+16     0.009770    0.118535   0.9802
+17     0.009543    0.129030   0.9792
+18     0.007735    0.120687   0.9817
+19     0.008401    0.129974   0.9814
+20     0.008117    0.125791   0.9812
+Remaining weight 41.05 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    2.071738   0.2489
+1     0.131464    0.073484   0.9766
+2     0.043829    0.076319   0.9766
+3     0.026848    0.071580   0.9794
+4     0.019497    0.075615   0.9787
+5     0.015597    0.079753   0.9792
+6     0.014198    0.074593   0.9820
+7     0.012937    0.088147   0.9794
+8     0.010969    0.095770   0.9788
+9     0.009985    0.093511   0.9806
+10     0.010530    0.093480   0.9814
+11     0.009633    0.105433   0.9797
+12     0.009291    0.107954   0.9798
+13     0.007777    0.105188   0.9813
+14     0.007637    0.111975   0.9807
+15     0.007741    0.111980   0.9818
+16     0.007922    0.128342   0.9792
+17     0.006947    0.136686   0.9791
+18     0.007366    0.118659   0.9807
+19     0.007297    0.121520   0.9817
+20     0.006466    0.132535   0.9812
+Remaining weight 32.87 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    1.923557   0.2932
+1     0.120314    0.067664   0.9783
+2     0.034987    0.064181   0.9802
+3     0.019838    0.066575   0.9806
+4     0.015206    0.073864   0.9805
+5     0.011684    0.084370   0.9792
+6     0.010459    0.082654   0.9809
+7     0.009857    0.084561   0.9809
+8     0.007761    0.089821   0.9801
+9     0.008073    0.091427   0.9820
+10     0.006130    0.098455   0.9800
+11     0.008269    0.105260   0.9809
+12     0.007668    0.100753   0.9824
+13     0.005174    0.110996   0.9815
+14     0.006363    0.110302   0.9818
+15     0.006119    0.118104   0.9802
+16     0.007450    0.112766   0.9820
+17     0.004411    0.114936   0.9827
+18     0.005656    0.133836   0.9809
+19     0.004258    0.124432   0.9816
+20     0.004922    0.133203   0.9811
+Remaining weight 26.32 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    1.865050   0.3298
+1     0.114240    0.063012   0.9803
+2     0.030165    0.057120   0.9821
+3     0.015867    0.065477   0.9811
+4     0.010512    0.069609   0.9810
+5     0.008958    0.074988   0.9807
+6     0.008582    0.079112   0.9790
+7     0.007165    0.090256   0.9806
+8     0.007305    0.092204   0.9805
+9     0.005488    0.086222   0.9823
+10     0.005692    0.101611   0.9805
+11     0.006092    0.102662   0.9820
+12     0.005306    0.112092   0.9797
+13     0.004918    0.113417   0.9811
+14     0.004570    0.116282   0.9809
+15     0.005544    0.118565   0.9810
+16     0.004335    0.117926   0.9825
+17     0.004079    0.121103   0.9813
+18     0.005419    0.130408   0.9807
+19     0.003399    0.122222   0.9824
+20     0.003128    0.144298   0.9805
+Remaining weight 21.07 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    1.779667   0.4098
+1     0.111185    0.062041   0.9802
+2     0.026357    0.058662   0.9817
+3     0.012461    0.059426   0.9824
+4     0.009133    0.070125   0.9819
+5     0.007479    0.070323   0.9815
+6     0.005605    0.076396   0.9827
+7     0.005791    0.081330   0.9812
+8     0.005090    0.076741   0.9832
+9     0.003623    0.090854   0.9819
+10     0.005781    0.095990   0.9813
+11     0.003584    0.098523   0.9816
+12     0.003758    0.102687   0.9820
+13     0.005470    0.100212   0.9823
+14     0.003406    0.101731   0.9825
+15     0.002344    0.105059   0.9822
+16     0.003099    0.110179   0.9823
+17     0.002098    0.107028   0.9836
+18     0.001602    0.110953   0.9837
+19     0.001496    0.115001   0.9823
+20     0.001225    0.111749   0.9842
+Remaining weight 16.88 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    1.711093   0.4275
+1     0.112734    0.061855   0.9809
+2     0.025022    0.061369   0.9808
+3     0.011488    0.061579   0.9822
+4     0.006607    0.067093   0.9821
+5     0.004755    0.067503   0.9834
+6     0.004762    0.086591   0.9794
+7     0.005461    0.078678   0.9826
+8     0.003611    0.087821   0.9829
+9     0.004518    0.083999   0.9831
+10     0.002225    0.093376   0.9818
+11     0.005003    0.096182   0.9828
+12     0.002719    0.095523   0.9834
+13     0.002564    0.103763   0.9824
+14     0.003100    0.106780   0.9821
+15     0.003675    0.111294   0.9821
+16     0.002311    0.110706   0.9822
+17     0.003314    0.110263   0.9824
+18     0.002047    0.113975   0.9820
+19     0.002245    0.116864   0.9830
+20     0.003126    0.126553   0.9812
+Remaining weight 13.52 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    1.764530   0.3655
+1     0.120079    0.061925   0.9801
+2     0.025685    0.055422   0.9825
+3     0.011626    0.057843   0.9828
+4     0.006214    0.057986   0.9841
+5     0.004481    0.065952   0.9829
+6     0.004024    0.075086   0.9819
+7     0.002894    0.077816   0.9831
+8     0.003786    0.086439   0.9819
+9     0.003736    0.088010   0.9829
+10     0.002103    0.086882   0.9830
+11     0.003004    0.096865   0.9815
+12     0.003057    0.095750   0.9830
+13     0.001938    0.095084   0.9837
+14     0.001505    0.099006   0.9829
+15     0.001203    0.102688   0.9828
+16     0.001984    0.097774   0.9840
+17     0.001216    0.105765   0.9820
+18     0.001876    0.113532   0.9824
+19     0.001035    0.111493   0.9834
+20     0.001445    0.128819   0.9809
+Remaining weight 10.83 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    1.797351   0.3403
+1     0.132128    0.063332   0.9803
+2     0.027733    0.054592   0.9822
+3     0.012307    0.056922   0.9835
+4     0.006434    0.058560   0.9841
+5     0.004010    0.063264   0.9833
+6     0.002702    0.069248   0.9836
+7     0.003453    0.081678   0.9815
+8     0.003641    0.075130   0.9831
+9     0.001627    0.090078   0.9814
+10     0.002930    0.086193   0.9826
+11     0.001278    0.084388   0.9838
+12     0.001136    0.086679   0.9835
+13     0.000676    0.088964   0.9838
+14     0.002005    0.097551   0.9828
+15     0.003732    0.110001   0.9807
+16     0.002648    0.091594   0.9841
+17     0.000487    0.091043   0.9848
+18     0.001332    0.098692   0.9842
+19     0.000743    0.097289   0.9843
+20     0.000110    0.093000   0.9849
+Remaining weight 8.68 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    1.832922   0.3223
+1     0.145802    0.066152   0.9798
+2     0.029778    0.054561   0.9824
+3     0.013463    0.054190   0.9841
+4     0.006944    0.058470   0.9831
+5     0.004070    0.060662   0.9843
+6     0.002956    0.066454   0.9834
+7     0.001933    0.082230   0.9812
+8     0.002715    0.080800   0.9821
+9     0.002783    0.076816   0.9836
+10     0.001226    0.079521   0.9834
+11     0.001520    0.087390   0.9828
+12     0.002288    0.086558   0.9833
+13     0.000396    0.081671   0.9845
+14     0.000162    0.084614   0.9843
+15     0.001300    0.089498   0.9843
+16     0.001955    0.102431   0.9830
+17     0.001554    0.096229   0.9837
+18     0.002968    0.102358   0.9832
+19     0.000517    0.096388   0.9837
+20     0.000113    0.097447   0.9839
+Remaining weight 6.95 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    1.883130   0.3296
+1     0.165809    0.067443   0.9796
+2     0.033669    0.054699   0.9829
+3     0.016071    0.054961   0.9832
+4     0.008617    0.056792   0.9828
+5     0.004527    0.061483   0.9832
+6     0.002752    0.066464   0.9829
+7     0.002129    0.071600   0.9827
+8     0.002979    0.082684   0.9816
+9     0.002873    0.083109   0.9827
+10     0.001264    0.077848   0.9838
+11     0.000556    0.079271   0.9837
+12     0.001163    0.084320   0.9841
+13     0.000548    0.085101   0.9839
+14     0.000158    0.084564   0.9845
+15     0.001883    0.094844   0.9833
+16     0.003485    0.095708   0.9830
+17     0.000383    0.093333   0.9839
+18     0.000103    0.093152   0.9840
+19     0.000052    0.093960   0.9844
+20     0.000038    0.095550   0.9845
+Remaining weight 5.57 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    1.971207   0.2590
+1     0.191890    0.072474   0.9784
+2     0.039153    0.057106   0.9820
+3     0.019431    0.054593   0.9829
+4     0.010798    0.055564   0.9833
+5     0.006069    0.062497   0.9829
+6     0.003600    0.064579   0.9831
+7     0.002457    0.071315   0.9826
+8     0.002095    0.075978   0.9827
+9     0.001218    0.078245   0.9827
+10     0.002105    0.083418   0.9827
+11     0.000994    0.085600   0.9821
+12     0.001256    0.084906   0.9831
+13     0.001322    0.092232   0.9826
+14     0.000775    0.088110   0.9838
+15     0.000213    0.093884   0.9833
+16     0.001748    0.110298   0.9815
+17     0.001496    0.100345   0.9826
+18     0.000189    0.098094   0.9835
+19     0.002105    0.104208   0.9826
+20     0.000407    0.104723   0.9831
+Remaining weight 4.47 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    2.034049   0.3097
+1     0.226102    0.082542   0.9761
+2     0.046658    0.060411   0.9808
+3     0.024772    0.057192   0.9821
+4     0.014409    0.057944   0.9818
+5     0.008758    0.061224   0.9823
+6     0.005364    0.066798   0.9820
+7     0.003494    0.068845   0.9823
+8     0.002577    0.075384   0.9819
+9     0.001789    0.078703   0.9822
+10     0.001576    0.084023   0.9820
+11     0.001006    0.086459   0.9824
+12     0.001382    0.093780   0.9814
+13     0.001617    0.095417   0.9825
+14     0.001739    0.099039   0.9821
+15     0.000331    0.097700   0.9827
+16     0.000147    0.099008   0.9825
+17     0.000104    0.100477   0.9827
+18     0.000082    0.103026   0.9825
+19     0.000481    0.122643   0.9806
+20     0.001274    0.114607   0.9823
+Remaining weight 3.58 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    2.087606   0.2581
+1     0.262976    0.089721   0.9741
+2     0.054522    0.064827   0.9796
+3     0.030199    0.058558   0.9816
+4     0.018441    0.058711   0.9822
+5     0.011842    0.061303   0.9822
+6     0.007501    0.064005   0.9829
+7     0.004994    0.068046   0.9831
+8     0.003219    0.073641   0.9819
+9     0.002347    0.077623   0.9827
+10     0.002003    0.081896   0.9818
+11     0.001469    0.090826   0.9814
+12     0.001301    0.092622   0.9820
+13     0.001175    0.097018   0.9817
+14     0.000618    0.095960   0.9830
+15     0.000384    0.098053   0.9830
+16     0.000590    0.100753   0.9820
+17     0.001488    0.109804   0.9818
+18     0.000330    0.112219   0.9812
+19     0.001438    0.109310   0.9824
+20     0.000152    0.109938   0.9825
+Remaining weight 2.87 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    2.140193   0.2488
+1     0.304545    0.098491   0.9721
+2     0.065217    0.069217   0.9798
+3     0.038210    0.062136   0.9816
+4     0.025083    0.062039   0.9819
+5     0.017138    0.062246   0.9814
+6     0.011993    0.064621   0.9821
+7     0.008472    0.069108   0.9821
+8     0.005909    0.072434   0.9816
+9     0.004248    0.076161   0.9817
+10     0.003337    0.080362   0.9817
+11     0.002444    0.084430   0.9821
+12     0.001766    0.086598   0.9816
+13     0.001640    0.093493   0.9818
+14     0.001716    0.097897   0.9818
+15     0.001059    0.105046   0.9814
+16     0.001005    0.103530   0.9823
+17     0.000801    0.110456   0.9814
+18     0.001426    0.114926   0.9816
+19     0.000606    0.113339   0.9819
+20     0.000268    0.113873   0.9824
+Remaining weight 2.31 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    2.184629   0.1867
+1     0.353782    0.114017   0.9668
+2     0.076708    0.077022   0.9769
+3     0.046774    0.067978   0.9792
+4     0.032138    0.064558   0.9805
+5     0.023052    0.063316   0.9810
+6     0.016883    0.065543   0.9806
+7     0.012699    0.066289   0.9814
+8     0.009468    0.071806   0.9807
+9     0.007236    0.074021   0.9813
+10     0.005627    0.077839   0.9812
+11     0.004186    0.082373   0.9813
+12     0.003446    0.084251   0.9810
+13     0.002610    0.090156   0.9805
+14     0.002111    0.094018   0.9810
+15     0.001700    0.098673   0.9810
+16     0.001513    0.102526   0.9809
+17     0.001437    0.108691   0.9804
+18     0.001007    0.108854   0.9804
+19     0.000754    0.113664   0.9809
+20     0.000792    0.117713   0.9800
+Remaining weight 1.85 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    2.253584   0.1952
+1     0.414797    0.129160   0.9631
+2     0.093649    0.089103   0.9736
+3     0.060671    0.075982   0.9765
+4     0.044107    0.072174   0.9776
+5     0.033721    0.069413   0.9785
+6     0.026698    0.068612   0.9798
+7     0.021314    0.069772   0.9796
+8     0.017342    0.073002   0.9788
+9     0.014183    0.073698   0.9802
+10     0.011848    0.077260   0.9800
+11     0.009910    0.080171   0.9791
+12     0.008273    0.084813   0.9796
+13     0.006862    0.087482   0.9794
+14     0.005791    0.089528   0.9793
+15     0.004853    0.094745   0.9795
+16     0.004163    0.097394   0.9792
+17     0.003580    0.101437   0.9795
+18     0.003062    0.106317   0.9793
+19     0.002642    0.108903   0.9799
+20     0.002322    0.114018   0.9793
+Remaining weight 1.49 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    2.265577   0.1281
+1     0.473586    0.145770   0.9592
+2     0.108784    0.101338   0.9703
+3     0.073913    0.087236   0.9734
+4     0.056603    0.081475   0.9754
+5     0.045833    0.077699   0.9758
+6     0.038262    0.076076   0.9775
+7     0.032468    0.076869   0.9772
+8     0.027950    0.077264   0.9774
+9     0.024715    0.078283   0.9778
+10     0.021591    0.081340   0.9777
+11     0.019073    0.083271   0.9785
+12     0.017048    0.085500   0.9772
+13     0.015131    0.086900   0.9778
+14     0.013801    0.088760   0.9779
+15     0.012323    0.094096   0.9766
+16     0.011284    0.096420   0.9773
+17     0.010159    0.100448   0.9770
+18     0.009251    0.101984   0.9770
+19     0.008474    0.104482   0.9772
+20     0.007714    0.107262   0.9774
+Remaining weight 1.19 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    2.285864   0.1083
+1     0.542051    0.162119   0.9548
+2     0.125075    0.115048   0.9662
+3     0.087899    0.098043   0.9704
+4     0.069068    0.089611   0.9730
+5     0.057385    0.084933   0.9749
+6     0.049169    0.083414   0.9749
+7     0.043220    0.081922   0.9747
+8     0.038597    0.082065   0.9758
+9     0.034675    0.084062   0.9752
+10     0.031746    0.085012   0.9758
+11     0.029225    0.085857   0.9761
+12     0.027202    0.086544   0.9757
+13     0.025105    0.091370   0.9752
+14     0.023730    0.090987   0.9755
+15     0.022419    0.094148   0.9756
+16     0.021003    0.096890   0.9752
+17     0.019830    0.098055   0.9755
+18     0.018939    0.100552   0.9755
+19     0.018015    0.101442   0.9746
+20     0.016915    0.104586   0.9756

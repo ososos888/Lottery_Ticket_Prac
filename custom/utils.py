@@ -319,9 +319,12 @@ class Lenet_300_100(nn.Module):
         self.fc2 = nn.Linear(300, 100, bias = True)
         self.fcout = nn.Linear(100, 10, bias = True)
         
-        init.xavier_uniform_(self.fc1.weight)
-        init.xavier_uniform_(self.fc2.weight)
-        init.xavier_uniform_(self.fcout.weight)
+        init.xavier_normal_(self.fc1.weight)
+        init.xavier_normal_(self.fc2.weight)
+        init.xavier_normal_(self.fcout.weight)
+        init.uniform_(self.fc1.bias)
+        init.uniform_(self.fc2.bias)
+        init.uniform_(self.fcout.bias)
         
     def forward(self, x):
         x = x.view(x.size(0), -1)
@@ -357,9 +360,12 @@ class Lenet_200_50(nn.Module):
         self.fc2 = nn.Linear(200, 50, bias = True)
         self.fcout = nn.Linear(50, 10, bias = True)
         
-        init.xavier_uniform_(self.fc1.weight)
-        init.xavier_uniform_(self.fc2.weight)
-        init.xavier_uniform_(self.fcout.weight)
+        init.xavier_normal_(self.fc1.weight)
+        init.xavier_normal_(self.fc2.weight)
+        init.xavier_normal_(self.fcout.weight)
+        init.normal_(self.fc1.bias)
+        init.normal_(self.fc2.bias)
+        init.normal_(self.fcout.bias)
         
     def forward(self, x):
         x = x.view(x.size(0), -1)

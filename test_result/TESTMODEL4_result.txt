@@ -1,0 +1,84 @@
+Namespace(batch_size=60, dataset='mnist', epochs=2, lr=0.0012, model_arch='TESTMODEL', prune_iters=2, prune_per_conv=1, prune_per_linear=0.2, prune_per_out=0.1, test_iters=2, test_type='test_accu', testname='TESTMODEL4', validation_ratio=0.08333333333333333, weight_decay=0)
+===================================================================== 
+
+Test_Iter (1/2)
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :         16130 (16130 | 0)           100.00
+fc1.weight   :         15680 (15680 | 0)           100.00
+fc2.weight   :           300 (300 | 0)             100.00
+fcout.weight :           150 (150 | 0)             100.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (1/2), Remaining weight : 100.0 %]
+[epoch : 0] (l_loss: 0) (t_loss: 2.51365) (accu: 0.1296)
+1 0
+[epoch : 1] (l_loss: 0.42520) (t_loss: 0.24443) (accu: 0.9300)
+[epoch : 2] (l_loss: 0.21521) (t_loss: 0.20497) (accu: 0.9399)
+Finish! (Best accu: 0.9399) (Time taken(sec) : 21.79) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :        16130 (12919 | 3211)          80.09
+fc1.weight   :        15680 (12544 | 3136)          80.00
+fc2.weight   :           300 (240 | 60)             80.00
+fcout.weight :           150 (135 | 15)             90.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (2/2), Remaining weight : 80.09 %]
+[epoch : 0] (l_loss: 0) (t_loss: 2.23553) (accu: 0.1953)
+1 1
+[epoch : 1] (l_loss: 0.35949) (t_loss: 0.22583) (accu: 0.9337)
+[epoch : 2] (l_loss: 0.20374) (t_loss: 0.18386) (accu: 0.9454)
+Finish! (Best accu: 0.9454) (Time taken(sec) : 22.44) 
+
+
+Maximum accuracy per weight remaining
+Remaining weight 100.0 %  Epoch 1 Accu 0.9399
+Remaining weight 80.09 %  Epoch 1 Accu 0.9454
+===================================================================== 
+
+Test_Iter (2/2)
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :         16130 (16130 | 0)           100.00
+fc1.weight   :         15680 (15680 | 0)           100.00
+fc2.weight   :           300 (300 | 0)             100.00
+fcout.weight :           150 (150 | 0)             100.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (1/2), Remaining weight : 100.0 %]
+[epoch : 0] (l_loss: 0) (t_loss: 2.51365) (accu: 0.1296)
+2 0
+[epoch : 1] (l_loss: 0.41406) (t_loss: 0.22942) (accu: 0.9319)
+[epoch : 2] (l_loss: 0.21197) (t_loss: 0.20498) (accu: 0.9393)
+Finish! (Best accu: 0.9393) (Time taken(sec) : 22.90) 
+
+
+------------------------------------------------------------
+   Layer                     Weight                Ratio(%)
+all.weight   :        16130 (12919 | 3211)          80.09
+fc1.weight   :        15680 (12544 | 3136)          80.00
+fc2.weight   :           300 (240 | 60)             80.00
+fcout.weight :           150 (135 | 15)             90.00
+------------------------------------------------------------
+Learning start! [Prune_iter : (2/2), Remaining weight : 80.09 %]
+[epoch : 0] (l_loss: 0) (t_loss: 2.23844) (accu: 0.2125)
+2 1
+[epoch : 1] (l_loss: 0.35718) (t_loss: 0.22170) (accu: 0.9360)
+[epoch : 2] (l_loss: 0.19630) (t_loss: 0.18049) (accu: 0.9454)
+Finish! (Best accu: 0.9454) (Time taken(sec) : 22.63) 
+
+
+Maximum accuracy per weight remaining
+Remaining weight 100.0 %  Epoch 1 Accu 0.9393
+Remaining weight 80.09 %  Epoch 1 Accu 0.9454
+Average test data
+Remaining weight 100.00 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    2.513646   0.1296
+1     0.419631    0.236927   0.9309
+2     0.213589    0.204973   0.9396
+Remaining weight 80.09 %
+Epoch Train_loss  Test_loss  Accuracy
+0     0.000000    2.236986   0.2039
+1     0.358338    0.223767   0.9348
+2     0.200021    0.182172   0.9454
