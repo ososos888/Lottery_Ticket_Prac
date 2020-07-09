@@ -1,3 +1,4 @@
+# %%
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -38,20 +39,20 @@ if __name__=="__main__":
     parser = argparse.ArgumentParser()
 
     # Register parameter value
-    parser.add_argument("--testname", default = "TESTMODEL4", type=str, help="Check your test file name")
-    parser.add_argument("--epochs",default=25, type=int, help="Epoch")
-    parser.add_argument("--lr",default=1.2e-3, type=float, help="Learning rate")
-    parser.add_argument("--batch_size", default=60, type=int, help="Batch size")
-    parser.add_argument("--weight_decay", default=0, type=float, help="Weight_decay")
-    parser.add_argument("--test_iters", default=3, type=int, help="Test iterations")
-    parser.add_argument("--prune_iters", default=21, type=int, help="Pruning iterations")
+    parser.add_argument("--testname", default = "Lenet300", type=str, help="Check your test file name")
+    parser.add_argument("--epochs",default=50, type=int)
+    parser.add_argument("--lr",default=1.2e-3, type=float)
+    parser.add_argument("--batch_size", default=60, type=int)
+    parser.add_argument("--weight_decay", default=0, type=float)
+    parser.add_argument("--test_iters", default=5, type=int)
+    parser.add_argument("--prune_iters", default=22, type=int)
     parser.add_argument("--prune_per_conv", default=1, type=float, help="Prune percentage of convoultion layer")
     parser.add_argument("--prune_per_linear", default=0.2, type=float, help="Prune percentage of linear layer")
     parser.add_argument("--prune_per_out", default=0.1, type=float, help="Prune percentage of out layer")
     parser.add_argument("--dataset", default="mnist", type=str, help="mnist | cifar10")
     parser.add_argument("--validation_ratio", default = (1/12), type=float, help="Validation ratio")
-    parser.add_argument("--model_arch", default="Lenet300_100", type=str, help="Lenet300_100, Lenet250_75, Lenet200_50")
-    parser.add_argument("--test_type", default="test_accu", type=str, help="If you want to use validation set, enter val_accu")
+    parser.add_argument("--model_arch", default="Lenet300_100", type=str, help="Lenet300_100 | Lenet250_75 | Lenet200_50")
+    parser.add_argument("--test_type", default="test_accu", type=str, help="test_accu | val_accu")
 
     # Save to args
     args = parser.parse_args()
