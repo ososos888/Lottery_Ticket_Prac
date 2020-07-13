@@ -14,9 +14,9 @@ class Lenet(nn.Module):
         init.xavier_normal_(self.fc1.weight)
         init.xavier_normal_(self.fc2.weight)
         init.xavier_normal_(self.fcout.weight)
-        #init.normal_(self.fc1.bias)
-        #init.normal_(self.fc2.bias)
-        #init.normal_(self.fcout.bias)
+        init.zeros_(self.fc1.bias)
+        init.zeros_(self.fc2.bias)
+        init.zeros_(self.fcout.bias)
         
     def forward(self, x):
         x = x.view(x.size(0), -1)

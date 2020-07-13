@@ -1,3 +1,4 @@
+# %%
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -16,10 +17,10 @@ import os
 from torch.utils.data.sampler import SubsetRandomSampler
 import argparse
 
-# Custom model
+# custom model
 from model_archs import Lenet300_100, Lenet250_75, Lenet200_50, TESTMODEL
 
-# Random seed setting
+# %%
 """
 # random seed for test
 torch.manual_seed(55)
@@ -27,6 +28,7 @@ torch.cuda.manual_seed_all(55)
 torch.backends.cudnn.enabled = False
 """
 
+# %%
 # Cuda setting
 GPU_NUM = 1
 device = torch.device(f'cuda:{GPU_NUM}' if torch.cuda.is_available() else 'cpu')
@@ -34,6 +36,7 @@ torch.cuda.set_device(device)
 print ('Available GPU devices :', torch.cuda.device_count())
 print ('Current cuda device : %d (%s))' % (torch.cuda.current_device(), torch.cuda.get_device_name(device)))
 
+# %%
 if __name__=="__main__":
     # Make instance
     parser = argparse.ArgumentParser(
@@ -42,31 +45,32 @@ if __name__=="__main__":
 
     # Register parameter value
     parser.add_argument("testname", type=str, help="Must enter file name")
-    parser.add_argument("--epochs",default=40, type=int, help="Epoch")
+    parser.add_argument("--epochs",default=20, type=int, help="Epoch")
     parser.add_argument("--lr",default=1.2e-3, type=float, help="Learning rate")
     parser.add_argument("--batch_size", default=60, type=int, help="Batch size")
     parser.add_argument("--weight_decay", default=0, type=float, help="Weight decay value")
-    parser.add_argument("--test_iters", default=3, type=int, help="Test iteration")
+    parser.add_argument("--test_iters", default=1, type=int, help="Test iteration")
     parser.add_argument("--prune_iters", default=19, type=int, help="Prune iteration")
     parser.add_argument("--prune_per_conv", default=1, type=float, help="Prune percentage of convoultion layer")
     parser.add_argument("--prune_per_linear", default=0.2, type=float, help="Prune percentage of linear layer")
     parser.add_argument("--prune_per_out", default=0.1, type=float, help="Prune percentage of out layer")
     parser.add_argument("--dataset", default="mnist", type=str, help="mnist | cifar10")
-    parser.add_argument("--validation_ratio", default = (0), type=float, help="Validation ratio")
+    parser.add_argument("--validation_ratio", default = (1/12), type=float, help="Validation ratio")
     parser.add_argument("--model_arch", default="Lenet300_100", type=str, help="Lenet300_100 | Lenet250_75 | Lenet200_50")
     parser.add_argument("--test_type", default="test_accu", type=str, help="test_accu | val_accu")
 
     # Save to args
     args = parser.parse_args()
 
+# %%
 # Import model function. return model
 def import_model():
     if args.model_arch == "Lenet300_100":
         model = Lenet300_100.Lenet().to(device)
     elif args.model_arch == "Lenet250_75":
-        model = Lenet250_75.Lenet().to(device)
+        model = Lenet300_100.Lenet().to(device)
     elif args.model_arch == "Lenet200_50":
-        model = Lenet200_50.Lenet().to(device)
+        model = Lenet300_100.Lenet().to(device)
     elif args.model_arch == "TESTMODEL":
         model = TESTMODEL.TESTMODEL().to(device)
     return model
@@ -112,9 +116,9 @@ def data_loader():
                                                   drop_last = True)
 
         test_loader = torch.utils.data.DataLoader(dataset = testset,
-                                                  batch_size = args.batch_size,
+                                                  batch_size = 100,
                                                   shuffle = False,
-                                                  drop_last = False)
+                                                  drop_last = True)
     # Add aditional dataloader    
     #elif: ...
     
@@ -156,6 +160,17 @@ def test(model, dataloader, criterion):
             correct += (predicted == label).sum().item()
         # loader -> # of batch loader.dataset -> # of data 
     return (correct/total), test_loss
+
+# Find initial accuracy
+def zero_accu(model, dataloader, criterion, remaining_weight):
+    accuracy, test_loss = test(model, dataloader, criterion)
+    running_loss = 0
+    print('[epoch : 0] (l_loss: 0.00000) (t_loss: %.5f) (accu: %.4f)' % (test_loss, accuracy))
+    test_result[test_iter][prune_iter][0]["Running_loss"] = running_loss
+    test_result[test_iter][prune_iter][0]["Test_loss"] = test_loss
+    test_result[test_iter][prune_iter][0]["Accuracy"] = accuracy
+    
+    return accuracy, test_loss, running_loss
 
 # Prune function. weight pruning n copied mask
 def weight_prune(prune_iter):
@@ -209,6 +224,7 @@ def weight_init_apply():
                 hook = module.weight.register_hook(lambda grad, name_mask=name_mask : grad.mul_(cpd_mask[name_mask]))
         
     optimizer = optim.Adam(model.parameters(), lr = args.lr, weight_decay = args.weight_decay)
+    
     return optimizer, hook
 
 # Weight count function
@@ -252,6 +268,7 @@ def mk_result_dict():
             test_result[test_iter+1][prune_iter]["Running_loss"] = []
             test_result[test_iter+1][prune_iter]["Test_loss"] = []
             test_result[test_iter+1][prune_iter]["Accuracy"] = []
+
     return test_result
 
 # Save result to result dict
@@ -260,6 +277,8 @@ def save_result(running_loss, test_loss, accuracy):
     test_result[test_iter][prune_iter]["Test_loss"].append(test_loss)
     test_result[test_iter][prune_iter]["Accuracy"].append(accuracy)
 
+
+# %%
 # Filename n location
 FolderLocation = "test_result"
 FName_result, FName_accu = args.testname.split(), args.testname.split()
@@ -272,8 +291,11 @@ train_loader, val_loader, test_loader = data_loader()
 criterion = nn.CrossEntropyLoss().to(device)
 test_result = mk_result_dict()
 
+# %%
+#print('\n'.join("%s: %s" % item for item in __dict__.items()),'\n\n')
 print("Learning start!")
 
+# %%
 temp = sys.stdout
 sys.stdout = open(FName_result,'w')
 
@@ -307,7 +329,8 @@ for test_iter in range(1, args.test_iters+1):
         print("Learning start! [Test_Iter : (%d/%d), Prune_iter : (%d/%d), Remaining weight : %s %%]" %
               (test_iter, args.test_iters, prune_iter+1 , args.prune_iters, remaining_weight))
 
-        # Find initial accuracy          
+        # Find initial accuracy
+        #accuracy, test_loss, running_loss = zero_accu(model, test_loader, criterion)            
         best_accu[remaining_weight] = [0, 0]
         start_t = timeit.default_timer()
         
@@ -315,6 +338,12 @@ for test_iter in range(1, args.test_iters+1):
             running_loss, test_loss, accuracy= train(model, train_loader, test_loader,
                                                                   optimizer, criterion)
             
+            #if args.test_type == 'test_accu':
+            #    accuracy, test_loss = test(model, test_loader, criterion)
+            #else:
+            #    accuracy, test_loss = test(model, val_loader, criterion)
+            
+            # Appending best accuracy in list (weight_remain, epoch, accuracy)
             if best_accu[remaining_weight][1] <= accuracy:
                 best_accu[remaining_weight] = [epoch, accuracy]
 
